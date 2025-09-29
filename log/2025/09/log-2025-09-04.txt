@@ -1,0 +1,102 @@
+2025-09-04 18:15:14[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\core\session.php: 15[MESSAGGE]Undefined array key "app"
+
+2025-09-04 18:16:20[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\core\session.php: 15[MESSAGGE]Undefined array key "app"
+
+2025-09-04 18:16:20[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:20[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:21[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\core\session.php: 15[MESSAGGE]Undefined array key "app"
+
+2025-09-04 18:16:21[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:21[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:22[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\models\Caja.php: 65[MESSAGGE]Attempt to read property "caja_apertura" on bool
+
+2025-09-04 18:16:30[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\core\session.php: 15[MESSAGGE]Undefined array key "app"
+
+2025-09-04 18:16:30[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:30[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 75[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 76[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 77[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 78[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 79[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 85[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 86[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 87[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas_enviadas.php: 323[MESSAGGE]Undefined variable $total_soles
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\core\session.php: 15[MESSAGGE]Undefined array key "app"
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 15[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 16[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 17[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 18[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 19[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 25[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 26[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 27[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:32[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 226[MESSAGGE]Undefined variable $total_soles
+
+2025-09-04 18:16:36[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\core\session.php: 15[MESSAGGE]Undefined array key "app"
+
+2025-09-04 18:16:36[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:36[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\models\Encriptar.php: 17[MESSAGGE]strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 15[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 16[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 17[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 18[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 19[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 25[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 26[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 27[MESSAGGE]Undefined variable $estado_cpe
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 61[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 63[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 65[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 2 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 67[MESSAGGE]Undefined variable $tipo_venta
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 185[MESSAGGE]strrpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 186[MESSAGGE]strrpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 185[MESSAGGE]strrpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+
+2025-09-04 18:16:37[UTC -5] [ip] 127.0.0.1 [lugar] Excepcion No Manejada [texto] [LEVEL]: 8192 IN C:\laragon\www\kaffu2d\app\view\ventas\historial_ventas.php: 186[MESSAGGE]strrpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+
