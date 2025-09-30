@@ -27,7 +27,7 @@ if($filas_detalle==1 || $filas_detalle==2){
 $pdf->AddPage();
 //CABECERA DEL ARCHIVO
 //Logo
-$pdf->Image('media/logo/logo_kaffu.jpg',31.1,6, '17', '17', 'JPEG');
+$pdf->Image('media/logo/logo_empresa.jpg',31.1,6, '17', '17', 'JPEG');
 $pdf->Ln(15);
 
 $pdf->SetFont('Helvetica','',9);
@@ -43,7 +43,8 @@ $pdf->Cell(60,4,"RUC Nº $dato_venta->empresa_ruc",0,1,'C');
 $pdf->SetFont('Helvetica','',7);
 //$pdf->Cell(60,4,"$dato_pago->empresa_domiciliofiscal",0,1,'C');
 $pdf->Cell(60,4,"$dato_venta->empresa_domiciliofiscal",0,1,'C');
-$pdf->Cell(60,4,"Loreto - Maynas - Iquitos",0,1,'C');
+$depa_pro_dist = $dato_venta->empresa_departamento. ' - ' . $dato_venta->empresa_provincia. ' - ' . $dato_venta->empresa_distrito;
+$pdf->Cell(60,4,"$depa_pro_dist",0,1,'C');
 //$pdf->Cell(60,4,"Tel. $dato_venta->empresa_telefono1",0,1,'C');
 //$pdf->Cell(60,4,"E-mail: $dato_venta->empresa_correo",0,1,'C');
 $pdf->SetFont('Helvetica','',10);

@@ -1,5 +1,5 @@
-var urlweb = "http://127.0.0.1/kaffu2d/";
-var ruta_web = "http://127.0.0.1/kaffu2d/";
+var urlweb = "http://127.0.0.1/bufi_restaurant/";
+var ruta_web = "http://127.0.0.1/bufi_restaurant/";
 //var ruta_web = "http://localhost:8081/restgaia/";
 //var ruta_web = "http://192.168.43.54:8081/restgaia/";
 

@@ -16,23 +16,23 @@ define('_MANTENIMIENTO_WEB', 0);
 //Establecer Zona Horaria
 date_default_timezone_set('America/Lima');
 //Definicion de servidor del aplicativo
-define('_SERVER_', 'http://127.0.0.1/kaffu2d/');
+define('_SERVER_', 'http://127.0.0.1/bufi_restaurant/');
 //Definicion de variables para conexion de base de datos
 define('_SERVER_DB_', '127.0.0.1');
-define('_DB_', 'kaffy_bd');
+define('_DB_', 'bufirestaurant_bd');
 define('_USER_DB_', 'root');
 define('_PASSWORD_DB_', '');
 
 //Definicion de clave de desencriptacion
 define('_FULL_KEY_','ñklmqz');
 //Titulo
-define('_TITLE_', 'Kaffu 2D Cafetería');
+define('_TITLE_', 'Empresa Demo');
 //Rutas de Archivos
 define('_STYLES_ALL_', 'styles/');
 define('_STYLES_ADMIN_', 'styles/pollitoconpapas/');
 define('_STYLES_LOGIN_', 'styles/login/');
 define('_STYLES_INDEX_', 'styles/inicio/');
-define('_ICON_', 'media/logo/logo_kaffu.jpg');
+define('_ICON_', 'media/logo/logo_empresa.jpg');
 define('_JS_','js/');
 define('_VIEW_PATH_', 'app/view/');
 define('_LIBS_', 'libs/');

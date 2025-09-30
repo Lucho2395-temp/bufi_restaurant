@@ -41,7 +41,7 @@ $printer->setJustification(Printer::JUSTIFY_CENTER);
 	el logo
 */
 try{
-    $logo = EscposImage::load("media/logo/logo_kaffu.jpg", false);
+    $logo = EscposImage::load("media/logo/logo_empresa.jpg", false);
     $printer->bitImage($logo);
 }catch(Exception $e){/*No hacemos nada si hay error*/}
 /*
@@ -56,7 +56,8 @@ $printer->setTextSize(1,1);
 $printer->text("RUC Nº $empresa->empresa_ruc" . "\n");
 $printer->text("$empresa->empresa_domiciliofiscal" . "\n");
 //$printer->text("CAL. YAVARI NRO. 1360" . "\n");
-$printer->text("LORETO - MAYNAS - IQUITOS" . "\n");
+$depa_pro_dist = $empresa->empresa_departamento. ' - ' . $empresa->empresa_provincia. ' - ' . $empresa->empresa_distrito;
+$printer->text("$depa_pro_dist" . "\n");
 if($empresa->empresa_telefono1 != NULL){
     $printer->text("Tel. $empresa->empresa_telefono1" . "\n");
 }

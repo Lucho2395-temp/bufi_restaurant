@@ -22,11 +22,10 @@ class ApiFacturacion
 
         //variable para seguir un orden del proceso,
         $result = 2; //result 2 es error y 1 es ok
+        $modo_sunat = $emisor->empresa_sunat_produccion; //0 beta y 1 produccion
 
-        $ruta_firma = $rutacertificado. 'certificado_prueba.pfx'; //ruta del archivo del certicado para firmar
-        //$ruta_firma = $rutacertificado. 'certificado_10478050122.pfx';
-        $pass_firma = '12345678'; //contraseña del certificado
-        //$pass_firma = 'G4i4PeruSh4';
+        $ruta_firma = $rutacertificado. $emisor->empresa_cdt_nombre;
+        $pass_firma = $emisor->empresa_cdt_clave;
 
         $resp = $objfirma->signature_xml($flg_firma, $ruta, $ruta_firma, $pass_firma);
         //print_r($resp);
@@ -58,8 +57,11 @@ class ApiFacturacion
             if($result == 1){
 
                 //ENVIAR EL ZIP A LOS WS DE SUNAT - INICIO
-                $ws = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService'; //ruta del servicio web de pruebad e SUNAT para enviar documentos
-                //$ws = 'https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService'; //Modo produccion
+                if($modo_sunat == 1){
+                    $ws = 'https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService'; //Modo produccion
+                } else {
+                    $ws = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService'; //ruta del servicio web de pruebad e SUNAT para enviar documentos
+                }
                 $ruta_archivo = $rutazip;
                 $nombre_archivo = $nombrezip;
 
@@ -201,10 +203,10 @@ class ApiFacturacion
         //$ruta_archivo_xml = "xml/";
         $ruta = $ruta_archivo_xml.$nombre.'.XML';
 
-        $ruta_firma = $rutacertificado. 'certificado_prueba.pfx'; //ruta del archivo del certicado para firmar
-        //$ruta_firma = $rutacertificado. 'certificado_10478050122.pfx';
-        $pass_firma = '12345678'; //contraseña del certificado
-        //$pass_firma = 'G4i4PeruSh4';
+        $modo_sunat = $emisor->empresa_sunat_produccion; //0 beta y 1 produccion
+
+        $ruta_firma = $rutacertificado. $emisor->empresa_cdt_nombre;
+        $pass_firma = $emisor->empresa_cdt_clave;
 
         $resp = $objSignature->signature_xml($flg_firma, $ruta, $ruta_firma, $pass_firma);
         //print_r($resp); //hash
@@ -228,10 +230,11 @@ class ApiFacturacion
         $mensaje = "";
         if($result == 1){
             //Enviamos el archivo a sunat
-
-            $ws = "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService";
-            //$ws = 'https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService'; //Modo produccion
-
+            if($modo_sunat == 1){
+                $ws = 'https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService'; //Modo produccion
+            } else {
+                $ws = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService'; //ruta del servicio web de pruebad e SUNAT para enviar documentos
+            }
 
             $ruta_archivo = $ruta_archivo_xml.$nombrezip;
             $nombre_archivo = $nombrezip;
@@ -325,12 +328,19 @@ class ApiFacturacion
 
     }
 
-
     function ConsultarTicket($emisor, $cabecera, $ticket, $ruta_archivo_cdr, $tipo)
     {
         $objventa = new Ventas();
-        $ws = "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService"; //modo beta
-        //$ws = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService"; //modo produccion
+        $modo_sunat = $emisor->empresa_sunat_produccion; //0 beta y 1 produccion
+
+        $ruta_firma = $emisor->empresa_cdt_nombre;
+        $pass_firma = $emisor->empresa_cdt_clave;
+
+        if($modo_sunat == 1){
+            $ws = 'https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService'; //Modo produccion
+        } else {
+            $ws = 'https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService'; //ruta del servicio web de pruebad e SUNAT para enviar documentos
+        }
         $ruta_archivo_xml = "libs/ApiFacturacion/xml/";
         $nombre	= $emisor->empresa_ruc.'-'.$cabecera['tipocomp'].'-'.$cabecera['serie'].'-'.$cabecera['correlativo'];
         $nombre_xml	= $nombre.".XML";
@@ -340,9 +350,6 @@ class ApiFacturacion
         $objSignature = new Signature();
         $flg_firma = "0";
         $ruta = $ruta_archivo_xml.$nombre_xml;
-
-        $ruta_firma = "certificado_prueba.pfx";
-        $pass_firma = "12345678";
 
         //===============================================================//
 
