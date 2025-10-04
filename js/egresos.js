@@ -14,6 +14,12 @@ $("#agregar_egresos").on('submit', function(e){
     var egreso_descripcion = $('#egreso_descripcion').val();
     var id_sucursal = $('#id_sucursal').val();
     var egreso_monto = $('#egreso_monto').val();
+    var movimiento_tipo = $('#movimiento_tipo').val();
+
+    valor = validar_campo_vacio('id_sucursal', id_sucursal, valor);
+    valor = validar_campo_vacio('movimiento_tipo', movimiento_tipo, valor);
+    valor = validar_campo_vacio('egreso_descripcion', egreso_descripcion, valor);
+    valor = validar_campo_vacio('egreso_monto', egreso_monto, valor);
 
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){
@@ -41,6 +47,9 @@ $("#agregar_egresos").on('submit', function(e){
                         break;
                     case 2:
                         respuesta('Error al guardar egreso, vuelva a intentarlo', 'error');
+                        break;
+                    case 3:
+                        respuesta(r.result.message, 'error');
                         break;
                     default:
                         respuesta('¡Algo catastrofico ha ocurrido!', 'error');

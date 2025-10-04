@@ -157,7 +157,7 @@
                                         foreach ($ventas as $al){
                                             $stylee="style= 'text-align: center;'";
                                             if ($al->anulado_sunat == 1){
-                                                $stylee="style= 'text-align: center; background: #F98892'";
+                                                $stylee="style= 'background-color: #f8d7da;  font-style: italic;'";
                                             }
 
                                             if($al->venta_tipo == "03"){

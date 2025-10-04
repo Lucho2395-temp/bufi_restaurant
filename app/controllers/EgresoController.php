@@ -87,16 +87,22 @@ class EgresoController
                 $id_usuario = $this->encriptar->desencriptar($_SESSION['c_u'],_FULL_KEY_);
                 $fecha = date('Y-m-d H:i:s');
                 $buscar_caja = $this->caja->jalar_caja_movi($fecha_hoy,$id_usuario);
-                $model->id_caja_numero = $buscar_caja->id_caja_numero;
-                $model->id_usuario = $id_usuario;
-                $model->id_sucursal = $_POST['id_sucursal'];
-                $model->movimiento_tipo = $_POST['movimiento_tipo'];
-                $model->egreso_descripcion = $_POST['egreso_descripcion'];
-                $model->egreso_monto = $_POST['egreso_monto'];
-                $model->egreso_fecha_registro = $fecha;
-                $model->egreso_estado = 1;
-                //Guardamos el menú y recibimos el resultado
-                $result = $this->egresos->guardar_egresos($model);
+                if(!empty($buscar_caja)){
+                    $model->id_caja_numero = $buscar_caja->id_caja_numero;
+                    $model->id_usuario = $id_usuario;
+                    $model->id_sucursal = $_POST['id_sucursal'];
+                    $model->movimiento_tipo = $_POST['movimiento_tipo'];
+                    $model->egreso_descripcion = $_POST['egreso_descripcion'];
+                    $model->egreso_monto = $_POST['egreso_monto'];
+                    $model->egreso_fecha_registro = $fecha;
+                    $model->egreso_estado = 1;
+                    //Guardamos el menú y recibimos el resultado
+                    $result = $this->egresos->guardar_egresos($model);
+                }else{
+                    //Código 6: Integridad de datos erronea
+                    $result = 3;
+                    $message = "Tiene que haber una caja aperturada en el día";
+                }
             } else {
                 //Código 6: Integridad de datos erronea
                 $result = 6;

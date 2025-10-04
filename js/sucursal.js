@@ -15,6 +15,9 @@ $("#gestionarsucursal").on('submit', function(e){
 
     //Validamos si los campos a usar no se encuentran vacios
     valor = validar_campo_vacio('sucursal_nombre', sucursal_nombre, valor);
+    valor = validar_campo_vacio('id_ciudad', id_ciudad, valor);
+    valor = validar_campo_vacio('id_negocio', id_negocio, valor);
+    valor = validar_campo_vacio('sucursal_ruc', sucursal_ruc, valor);
 
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){

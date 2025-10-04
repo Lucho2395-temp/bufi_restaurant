@@ -14,6 +14,10 @@ $("#agregar").on('submit', function(e){
     var tipo_afectacion = $('#tipo_afectacion').val();
 
     //Validamos si los campos a usar no se encuentran vacios
+    valor = validar_campo_vacio('id_receta', id_receta, valor);
+    valor = validar_campo_vacio('id_grupo', id_grupo, valor);
+    valor = validar_campo_vacio('id_producto_familia', id_producto_familia, valor);
+    valor = validar_campo_vacio('id_medida', id_medida, valor);
     valor = validar_campo_vacio('producto_nombre', producto_nombre, valor);
     valor = validar_campo_vacio('producto_precio_venta', producto_precio_venta, valor);
 
@@ -71,7 +75,7 @@ function editar_producto(id_producto, id_receta,id_grupo,id_producto_familia, pr
             $("#tipo_afectacion_e option[value='"+producto_precio_codigoafectacion+"']").attr("selected", true);
             $('#producto_nombre_e').val(producto_nombre);
             $('#producto_descripcion_e').val(producto_descripcion);
-            //$('#producto_precio_venta_e').val(producto_precio_venta);
+            $('#producto_precio_venta_e').val(producto_precio_venta);
             $('#fotito_actual').attr("src",urlweb+producto_foto);
         }
     });
@@ -81,8 +85,15 @@ function agregar_precios(){
     var valor = true;
     var id_producto = $('#id_producto').val();
     var id_medida_e = $('#id_medida_e').val();
+    var id_receta_e = $('#id_receta_e').val();
+    var id_grupo_e = $('#id_grupo_e').val();
+    var id_producto_familia_e = $('#id_producto_familia_e').val();
     var tipo_afectacion_e = $('#tipo_afectacion_e').val();
+    var producto_nombre_e = $('#producto_nombre_e').val();
+    var producto_descripcion_e = $('#producto_descripcion_e').val();
     var producto_precio_venta_a = $('#producto_precio_venta_a').val();
+    var producto_foto_e = $('#producto_foto_e').val();
+    valor = validar_campo_vacio('producto_precio_venta_a',producto_precio_venta_a,valor)
     if(valor) {
         var cadena = "producto_precio_venta_a=" + producto_precio_venta_a + "&id_producto=" + id_producto + "&id_medida_e=" + id_medida_e +"&tipo_afectacion_e=" + tipo_afectacion_e;
         $.ajax({
@@ -93,7 +104,9 @@ function agregar_precios(){
             success: function (r) {
                 switch (r.result.code) {
                     case 1:
+
                         respuesta('¡Precio Agregado!', 'success');
+                        editar_producto(id_producto, id_receta_e,id_grupo_e,id_producto_familia_e, producto_nombre_e, id_medida_e, tipo_afectacion_e, producto_descripcion_e, producto_precio_venta_a, producto_foto_e);
                         break;
                     case 2:
                         respuesta('Error al eliminar mascota', 'error');
@@ -218,6 +231,8 @@ function guardar_familia(){
     var valor = true;
     //Extraemos las variable según los valores del campo consultado
     var producto_familia_nombre = $('#producto_familia_nombre').val();
+
+    valor = validar_campo_vacio('producto_familia_nombre', producto_familia_nombre, valor)
 
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){

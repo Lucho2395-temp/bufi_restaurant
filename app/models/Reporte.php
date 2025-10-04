@@ -30,8 +30,8 @@ class Reporte
     public function clientes_sucursal_todo($dni_cliente,$fecha_i,$fecha_f){
         try{
             $sql = 'select count(v.id_venta) total,sum(v.venta_total) total_venta, v.venta_fecha, c. * from clientes c inner join ventas v 
-                    on c.id_cliente = v.id_cliente where c.cliente_numero = ? and date(venta_fecha) between ? and ? and c.id_cliente <> 0 
-                    and v.venta_tipo <> 07 and v.venta_estado_sunat = 1 and v.anulado_sunat = 0 and v.venta_cancelar = 1 group by v.id_cliente';
+                    on c.id_cliente = v.id_cliente where c.cliente_numero LIKE ? and date(venta_fecha) between ? and ? and c.id_cliente <> 0 
+                    and v.venta_tipo <> 07 and v.anulado_sunat = 0 and v.venta_cancelar = 1 group by v.id_cliente';
             $stm = $this->pdo->prepare($sql);
             $stm->execute([$dni_cliente,$fecha_i,$fecha_f]);
             $return = $stm->fetchAll();
@@ -45,7 +45,8 @@ class Reporte
     public function clientes_fechas($fecha_i,$fecha_f){
         try{
             $sql = 'select count(v.id_venta) total,sum(v.venta_total) total_venta, v.venta_fecha, c. * from clientes c inner join ventas v 
-                    on c.id_cliente = v.id_cliente where date(venta_fecha) between ? and ? and c.id_cliente <> 0 group by v.id_cliente';
+                    on c.id_cliente = v.id_cliente where date(venta_fecha) between ? and ? and c.id_cliente <> 0 and v.venta_tipo <> 07 and 
+                    v.anulado_sunat = 0 group by v.id_cliente';
             $stm = $this->pdo->prepare($sql);
             $stm->execute([$fecha_i,$fecha_f]);
             $return = $stm->fetchAll();

@@ -299,7 +299,7 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
-            <a href="#">
+            <a href="<?= _SERVER_;?>">
                 <img src="<?= _SERVER_;?>media/logo/logo_empresa.jpg" style="width: 75px; margin-top: 5px; margin-left: 60px" alt="<?= _TITLE_;?>" />
             </a>
         </div>

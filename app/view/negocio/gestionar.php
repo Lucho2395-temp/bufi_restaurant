@@ -61,7 +61,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Foto</label>
-                                        <input class="form-control" type="file" id="negocio_foto" name="negocio_foto" placeholder="Ingrese Foto...">
+                                        <input class="form-control" type="file" id="negocio_foto" name="negocio_foto" placeholder="Ingrese Foto..." accept="image/jpeg, image/png, image/gif">
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Foto</label>
-                                        <input class="form-control" type="file" id="negocio_foto_e" name="negocio_foto_e" placeholder="Ingrese Foto...">
+                                        <input class="form-control" type="file" id="negocio_foto_e" name="negocio_foto_e" placeholder="Ingrese Foto..." accept="image/jpeg, image/png, image/gif">
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                                                 <td><img class="rounded" src="<?= $foto;?>" alt="Foto de <?php echo $ar->negocio_nombre;?>" width="60"></td>
                                                 <td>
                                                     <a class="btn btn-success" onclick="editar_negocio(<?= $ar->id_negocio?>,'<?= $ar->id_ciudad?>','<?= $ar->negocio_nombre?>','<?= $ar->negocio_direccion?>','<?= $ar->negocio_ruc?>','<?= $ar->negocio_foto?>','<?= $ar->negocio_telefono?>')" data-target="#negocio_editar" data-toggle="modal" title='Editar'><i class='fa fa-pencil text-white editar margen'></i></a>
-                                                    <a class="btn btn-primary" href="<?php echo _SERVER_ . 'Negocio/sucursal/' . $ar->id_negocio;?>" title='Agregar Sucursal'><i class='fa fa-save text-white editar margen'></i></a>
+                                                    <a class="btn btn-primary" href="<?php echo _SERVER_ . 'Negocio/sucursal/' . $ar->id_negocio;?>" title='Agregar Sucursal'><i class='fa fa-industry text-white editar margen'></i></a>
                                                     <a class="btn btn-warning" href="<?php echo _SERVER_ . 'Negocio/usuarios_negocio/' . $ar->id_negocio;?>" title='Asignar Usuarios'><i class='fa fa-user text-white editar margen'></i></a>
                                                     <?php
                                                     if ($ar->negocio_estado == 0) {

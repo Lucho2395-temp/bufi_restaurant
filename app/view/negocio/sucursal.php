@@ -60,7 +60,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Foto</label>
-                                        <input class="form-control" type="file" id="sucursal_foto" name="sucursal_foto" placeholder="Ingrese Foto...">
+                                        <input class="form-control" type="file" id="sucursal_foto" name="sucursal_foto" placeholder="Ingrese Foto..." accept="image/jpeg, image/png, image/gif">
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Foto</label>
-                                        <input class="form-control" type="file" id="sucursal_foto_e" name="sucursal_foto_e" placeholder="Ingrese Foto...">
+                                        <input class="form-control" type="file" id="sucursal_foto_e" name="sucursal_foto_e" placeholder="Ingrese Foto..." accept="image/jpeg, image/png, image/gif">
                                     </div>
                                 </div>
                             </div>

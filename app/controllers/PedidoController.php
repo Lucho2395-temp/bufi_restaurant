@@ -125,8 +125,10 @@ class PedidoController
             $datos_cliente = $this->pedido->datos_cliente($id);
             if($datos_cliente->id_tipodocumento == 4){
                 $cliente_nombre = $datos_cliente->cliente_razonsocial;
+                $tipo_comprobante = '01';
             }else{
                 $cliente_nombre = $datos_cliente->cliente_nombre;
+                $tipo_comprobante = '03';
             }
             if($dato_pedido->comanda_nombre_delivery != ""){
                 $cliente_nombre = $dato_pedido->comanda_nombre_delivery;
@@ -349,6 +351,39 @@ class PedidoController
             require _VIEW_PATH_ . 'navbar.php';
             require _VIEW_PATH_ . 'pedido/historial_pedidos.php';
             require _VIEW_PATH_ . 'footer.php';
+        }catch (Throwable $e){
+            //En caso de errores insertamos el error generado y redireccionamos a la vista de inicio
+            $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
+            echo "<script language=\"javascript\">alert(\"Error Al Mostrar Contenido. Redireccionando Al Inicio\");</script>";
+            echo "<script language=\"javascript\">window.location.href=\"". _SERVER_ ."\";</script>";
+        }
+    }
+    public function historial_pedidos_excel(){
+        try{
+            $this->nav = new Navbar();
+            $navs = $this->nav->listar_menus($this->encriptar->desencriptar($_SESSION['ru'],_FULL_KEY_));
+
+            $filtro = false;
+            $mesas = $this->mesa->listar_mesas();
+            $fecha_ini = date('Y-m-d');
+            $fecha_fin = date('Y-m-d');
+            if($_GET['id_mesa']!=""){
+                $pedidos = $this->pedido->listar_pedidos_x_mesa($_GET['id_mesa'],$_GET['fecha_inicio'], $_GET['fecha_final']);
+                $mesa = $_GET['id_mesa'];
+            }else{
+                $pedidos = $this->pedido->listar_pedidos($_GET['fecha_inicio'], $_GET['fecha_final']);
+            }
+            $fecha_ini = $_GET['fecha_inicio'];
+            $fecha_fin = $_GET['fecha_final'];
+            $filtro = true;
+
+            $fecha_hoy = date("d-m-y");
+            $nombre_excel = 'historial_de_pedidos' . '_' . $fecha_hoy;
+
+            //creamos el archivo excel
+            header( "Content-Type: application/vnd.ms-excel;charset=utf-8");
+            header("Content-Disposition: attachment; filename=".$nombre_excel.".xls");
+            require _VIEW_PATH_ . 'pedido/historial_pedidos_excel.php';
         }catch (Throwable $e){
             //En caso de errores insertamos el error generado y redireccionamos a la vista de inicio
             $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
@@ -1277,6 +1312,7 @@ class PedidoController
         $result = 2;
         //Mensaje a devolver en caso de hacer consulta por app
         $message = 'OK';
+        $this->builder->beginTransaction();
         try{
             $ok_data = true;
             //Validacion de datos
@@ -1322,263 +1358,269 @@ class PedidoController
                         $tipo_pago = $_POST['id_tipo_pago'];
                         $fecha_hoy = date('Y-m-d');
                         $jalar_id_caja = $this->pedido->jalar_id_caja_aperturada($fecha_hoy,$id_usuario);
-
-                        $id_mesa = $_POST['id_mesa'];
-                        $fecha = date('Y-m-d H:i:s');
-                        $model->id_caja_numero = $jalar_id_caja->id_caja_numero;
-                        $model->id_usuario = $id_usuario;
-                        $model->id_mesa = $id_mesa;
-                        $model->id_moneda = 1;
-                        //$model->id_cliente = $_POST['id_cliente'];
-                        $model->id_cliente = $id_cliente;
-                        $model->venta_tipo = $_POST['tipo_venta'];
-                        //obtener serie con el id
-                        $serie_ = $this->pedido->listar_correlativos_x_serie($_POST['serie']);
-                        $model->venta_serie = $serie_->serie;
-                        if (isset($_POST['id_venta'])){
-                            if($_POST['tipo_venta']== "20"){
-                                $correlativo = $_POST['correlativo'];
+                        //DEBE HABER CAJA APERTURADA PARA GENERAR LA VENTA
+                        if(!empty($jalar_id_caja)){
+                            $id_mesa = $_POST['id_mesa'];
+                            $fecha = date('Y-m-d H:i:s');
+                            $model->id_caja_numero = $jalar_id_caja->id_caja_numero;
+                            $model->id_usuario = $id_usuario;
+                            $model->id_mesa = $id_mesa;
+                            $model->id_moneda = 1;
+                            //$model->id_cliente = $_POST['id_cliente'];
+                            $model->id_cliente = $id_cliente;
+                            $model->venta_tipo = $_POST['tipo_venta'];
+                            //obtener serie con el id
+                            $serie_ = $this->pedido->listar_correlativos_x_serie($_POST['serie']);
+                            $model->venta_serie = $serie_->serie;
+                            if (isset($_POST['id_venta'])){
+                                if($_POST['tipo_venta']== "20"){
+                                    $correlativo = $_POST['correlativo'];
+                                }else{
+                                    $correlativo = $serie_->correlativo + 1;
+                                }
                             }else{
                                 $correlativo = $serie_->correlativo + 1;
                             }
-                        }else{
-                            $correlativo = $serie_->correlativo + 1;
-                        }
-                        $model->venta_correlativo = $correlativo;
-                        $model->venta_tipo_moneda = $_POST['tipo_moneda'];
-                        $model->id_tipo_pago = $tipo_pago;
+                            $model->venta_correlativo = $correlativo;
+                            $model->venta_tipo_moneda = $_POST['tipo_moneda'];
+                            $model->id_tipo_pago = $tipo_pago;
 
 
-                        //$correlativo = $this->pedido->listar_correlativos();
-                        //AL HACER LA VENTA AUTOMATICAMENTE SE LLENA EL CORRELATIVO DE LA VENTA
-                        $model->venta_totalgratuita = $_POST['op_gratuitas_'];
-                        $model->venta_totalexonerada = $_POST['op_exoneradas_'];
-                        $model->venta_totalinafecta = $_POST['op_inafectas_'];
-                        $model->venta_totalgravada = $_POST['op_gravadas_'];
-                        $model->venta_totaligv = $_POST['igv_'];
-                        $model->venta_icbper = $_POST['icbper_'];
-                        $model->venta_fecha = $fecha;
-                        $model->tipo_documento_modificar = "";
-                        $model->tipo_nota_id = 0;
-                        $model->correlativo_modificar = "";
-                        $model->venta_total = $_POST['venta_total'];
-                        if(empty($_POST['pago_cliente'])){
-                            $model->pago_cliente = 0;
-                        }else{
-                            $model->pago_cliente = $_POST['pago_cliente'];
-                        }
-                        if(empty($_POST['vuelto_'])){
-                            $model->vuelto_ = 0;
-                        }else{
-                            $model->vuelto_ = $_POST['vuelto_'];
-                        }
-                        //si la cajera escoge nota de venta se guardará en nota de venta - SINO SERÁ UUNA VENTA BOLETA O FACTURA
-                        $guardar_venta = 2;
-                        if($_POST['tipo_venta'] == '20'){
-//                        $guardar_venta = $this->pedido->guardar_nota_venta($model);
-                            $guardar_venta = $this->pedido->guardar_venta($model);
-
-                        }else{
-                            $guardar_venta = $this->pedido->guardar_venta($model);
-                        }
-
-                        if($guardar_venta == 1){
-                            $model = new Pedido();
-                            if($_POST['tipo_venta'] == '20'){
-                                /*$jalar_id_venta = $this->pedido->jalar_id_nota_venta($fecha,$id_cliente);
-                                $id_venta = $jalar_id_venta->id_nota_venta;*/
-                                $jalar_id_venta = $this->pedido->jalar_id_venta($fecha,$id_cliente);
-                                $id_venta = $jalar_id_venta->id_venta;
+                            //$correlativo = $this->pedido->listar_correlativos();
+                            //AL HACER LA VENTA AUTOMATICAMENTE SE LLENA EL CORRELATIVO DE LA VENTA
+                            $model->venta_totalgratuita = $_POST['op_gratuitas_'];
+                            $model->venta_totalexonerada = $_POST['op_exoneradas_'];
+                            $model->venta_totalinafecta = $_POST['op_inafectas_'];
+                            $model->venta_totalgravada = $_POST['op_gravadas_'];
+                            $model->venta_totaligv = $_POST['igv_'];
+                            $model->venta_icbper = $_POST['icbper_'];
+                            $model->venta_fecha = $fecha;
+                            $model->tipo_documento_modificar = "";
+                            $model->tipo_nota_id = 0;
+                            $model->correlativo_modificar = "";
+                            $model->venta_total = $_POST['venta_total'];
+                            if(empty($_POST['pago_cliente'])){
+                                $model->pago_cliente = 0;
                             }else{
-                                $jalar_id_venta = $this->pedido->jalar_id_venta($fecha,$id_cliente);
-                                $id_venta = $jalar_id_venta->id_venta;
+                                $model->pago_cliente = $_POST['pago_cliente'];
+                            }
+                            if(empty($_POST['vuelto_'])){
+                                $model->vuelto_ = 0;
+                            }else{
+                                $model->vuelto_ = $_POST['vuelto_'];
+                            }
+                            //si la cajera escoge nota de venta se guardará en nota de venta - SINO SERÁ UUNA VENTA BOLETA O FACTURA
+                            $guardar_venta = 2;
+                            if($_POST['tipo_venta'] == '20'){
+//                        $guardar_venta = $this->pedido->guardar_nota_venta($model);
+                                $guardar_venta = $this->pedido->guardar_venta($model);
+
+                            }else{
+                                $guardar_venta = $this->pedido->guardar_venta($model);
                             }
 
-                            $datos_detalle_pedido = $_POST['datos_detalle_pedido'];
-                            if(count_chars($datos_detalle_pedido)>0){
-                                $celdas=explode('-.-.',$datos_detalle_pedido);
-                                if(count($celdas)>0){
-                                    $igv_porcentaje = 0.18;
-                                    for ($i=0;$i<count($celdas);$i++){
-                                        $model->id_venta = $id_venta;
-                                        $id_comanda_detalle = $celdas[$i];
+                            if($guardar_venta == 1){
+                                $model = new Pedido();
+                                if($_POST['tipo_venta'] == '20'){
+                                    /*$jalar_id_venta = $this->pedido->jalar_id_nota_venta($fecha,$id_cliente);
+                                    $id_venta = $jalar_id_venta->id_nota_venta;*/
+                                    $jalar_id_venta = $this->pedido->jalar_id_venta($fecha,$id_cliente);
+                                    $id_venta = $jalar_id_venta->id_venta;
+                                }else{
+                                    $jalar_id_venta = $this->pedido->jalar_id_venta($fecha,$id_cliente);
+                                    $id_venta = $jalar_id_venta->id_venta;
+                                }
 
-                                        $jalar_datos = $this->pedido->jalar_datos($id_comanda_detalle);
-                                        $cantidad = $jalar_datos->comanda_detalle_cantidad;
-                                        $precio_unitario = $jalar_datos->comanda_detalle_precio;
-                                        $codigo_afectacion = $jalar_datos->producto_precio_codigoafectacion;
-                                        $igv_detalle = 0;
-                                        $factor_porcentaje = 1;
-                                        if($codigo_afectacion == 10){
-                                            $igv_detalle = $precio_unitario * $cantidad * $igv_porcentaje;
-                                            $factor_porcentaje = 1 + $igv_porcentaje;
-                                        }
+                                $datos_detalle_pedido = $_POST['datos_detalle_pedido'];
+                                if(count_chars($datos_detalle_pedido)>0){
+                                    $celdas=explode('-.-.',$datos_detalle_pedido);
+                                    if(count($celdas)>0){
+                                        $igv_porcentaje = 0.18;
+                                        for ($i=0;$i<count($celdas);$i++){
+                                            $model->id_venta = $id_venta;
+                                            $id_comanda_detalle = $celdas[$i];
 
-                                        $model->id_comanda_detalle = $id_comanda_detalle;
-                                        $model->venta_detalle_valor_unitario = $precio_unitario;
-                                        $model->venta_detalle_precio_unitario = $precio_unitario * $factor_porcentaje;
-                                        $model->venta_detalle_nombre_producto = $jalar_datos->producto_nombre;
-                                        $model->venta_detalle_cantidad = $cantidad;
-                                        //$model->venta_total_selled = 1;
-                                        $model->venta_detalle_total_igv = $igv_detalle;
-                                        $model->venta_detalle_porcentaje_igv = $igv_porcentaje * 100;
-                                        //$model->id_igv = 1;
-                                        $model->venta_detalle_total_icbper = 0.00;
-                                        $model->venta_detalle_valor_total = $precio_unitario * $cantidad;
-                                        $model->venta_detalle_total_price = $precio_unitario * $cantidad * $factor_porcentaje;
-
-                                        if($_POST['tipo_venta']=="20"){
-                                            //$result = $this->pedido->guardar_nota_venta_detalle($model);
-                                            $result = $this->pedido->guardar_venta_detalle($model);
-                                        }else{
-                                            $result = $this->pedido->guardar_venta_detalle($model);
-                                        }
-                                        if($result == 1){
-                                            $this->pedido->cambiar_estado_comanda($id_comanda_detalle);
-                                            $pago = 0;
-                                            $id_comanda = $jalar_datos->id_comanda;
-                                            $verificar = $this->pedido->verificar_pago($id_comanda);
-
-                                            //VALIDAR PARA QUE NO DISMINUYA EL STOCK DE NUEVO
-                                            /*$existe_detalle_comanda = $this->pedido->verificar_existencia_detalle_comanda($id_comanda_detalle);
-                                            $existe = false;
-                                            if(empty($existe_detalle_comanda)){
-                                                $existe = true;
-                                            }*/
-                                            if(isset($_POST['id_venta'])){
-                                                $entr = false;
-                                            }else{
-                                                $entr = true; //cambiar a true cuando se deje de emitir las facturas antiguas para no restar stock
+                                            $jalar_datos = $this->pedido->jalar_datos($id_comanda_detalle);
+                                            $cantidad = $jalar_datos->comanda_detalle_cantidad;
+                                            $precio_unitario = $jalar_datos->comanda_detalle_precio;
+                                            $codigo_afectacion = $jalar_datos->producto_precio_codigoafectacion;
+                                            $igv_detalle = 0;
+                                            $factor_porcentaje = 1;
+                                            if($codigo_afectacion == 10){
+                                                $igv_detalle = $precio_unitario * $cantidad * $igv_porcentaje;
+                                                $factor_porcentaje = 1 + $igv_porcentaje;
                                             }
-                                            if ($entr){
-                                                //Aqui ira la disminucion de stock aunque no se como pocta lo hare
-                                                $valor_insumos = $this->pedido->valor_insumos($id_comanda_detalle);
-                                                foreach ($valor_insumos as $v){
-                                                    $capturar = $v->id_recurso_sede;
-                                                    $unidad_medida = $v->id_medida;
-                                                    $id_detalle_receta = $v->id_detalle_receta;
-                                                    $monto_usado = $v->detalle_receta_cantidad;
-                                                    $cantidad = $this->pedido->capturar_cantidad($capturar);
-                                                    $valor_cantidad = $cantidad->recurso_sede_stock;
-                                                    if($v->detalle_receta_unidad_medida != 0){
-                                                        $detalle_conversion = $this->pedido->conversion_por_id($v->detalle_receta_unidad_medida);
-                                                        $nuevo_monto = ($monto_usado / $detalle_conversion->conversion_cantidad) * (-1);
-                                                        $actualizar_stock = $this->pedido->actualizar_stock($nuevo_monto,$capturar);
-                                                    }else{
-                                                        $montito = $monto_usado * (-1);
-                                                        $actualizar_stock = $this->pedido->actualizar_stock($montito,$capturar);
+
+                                            $model->id_comanda_detalle = $id_comanda_detalle;
+                                            $model->venta_detalle_valor_unitario = $precio_unitario;
+                                            $model->venta_detalle_precio_unitario = $precio_unitario * $factor_porcentaje;
+                                            $model->venta_detalle_nombre_producto = $jalar_datos->producto_nombre;
+                                            $model->venta_detalle_cantidad = $cantidad;
+                                            //$model->venta_total_selled = 1;
+                                            $model->venta_detalle_total_igv = $igv_detalle;
+                                            $model->venta_detalle_porcentaje_igv = $igv_porcentaje * 100;
+                                            //$model->id_igv = 1;
+                                            $model->venta_detalle_total_icbper = 0.00;
+                                            $model->venta_detalle_valor_total = $precio_unitario * $cantidad;
+                                            $model->venta_detalle_total_price = $precio_unitario * $cantidad * $factor_porcentaje;
+
+                                            if($_POST['tipo_venta']=="20"){
+                                                //$result = $this->pedido->guardar_nota_venta_detalle($model);
+                                                $result = $this->pedido->guardar_venta_detalle($model);
+                                            }else{
+                                                $result = $this->pedido->guardar_venta_detalle($model);
+                                            }
+                                            if($result == 1){
+                                                $this->pedido->cambiar_estado_comanda($id_comanda_detalle);
+                                                $pago = 0;
+                                                $id_comanda = $jalar_datos->id_comanda;
+                                                $verificar = $this->pedido->verificar_pago($id_comanda);
+
+                                                //VALIDAR PARA QUE NO DISMINUYA EL STOCK DE NUEVO
+                                                /*$existe_detalle_comanda = $this->pedido->verificar_existencia_detalle_comanda($id_comanda_detalle);
+                                                $existe = false;
+                                                if(empty($existe_detalle_comanda)){
+                                                    $existe = true;
+                                                }*/
+                                                if(isset($_POST['id_venta'])){
+                                                    $entr = false;
+                                                }else{
+                                                    $entr = true; //cambiar a true cuando se deje de emitir las facturas antiguas para no restar stock
+                                                }
+                                                if ($entr){
+                                                    //Aqui ira la disminucion de stock aunque no se como pocta lo hare
+                                                    $valor_insumos = $this->pedido->valor_insumos($id_comanda_detalle);
+                                                    foreach ($valor_insumos as $v){
+                                                        $capturar = $v->id_recurso_sede;
+                                                        $unidad_medida = $v->id_medida;
+                                                        $id_detalle_receta = $v->id_detalle_receta;
+                                                        $monto_usado = $v->detalle_receta_cantidad;
+                                                        $cantidad = $this->pedido->capturar_cantidad($capturar);
+                                                        $valor_cantidad = $cantidad->recurso_sede_stock;
+                                                        if($v->detalle_receta_unidad_medida != 0){
+                                                            $detalle_conversion = $this->pedido->conversion_por_id($v->detalle_receta_unidad_medida);
+                                                            $nuevo_monto = ($monto_usado / $detalle_conversion->conversion_cantidad) * (-1);
+                                                            $actualizar_stock = $this->pedido->actualizar_stock($nuevo_monto,$capturar);
+                                                        }else{
+                                                            $montito = $monto_usado * (-1);
+                                                            $actualizar_stock = $this->pedido->actualizar_stock($montito,$capturar);
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                }
-                                $contenido_tipopago = $_POST['contenido_tipopago'];
-                                if(count_chars($contenido_tipopago)>0){
-                                    $filas=explode('/-/-',$contenido_tipopago);
-                                    if(count($filas)>0){
-                                        for ($i=0;$i<count($filas)-1;$i++){
-                                            $modelDSI=new Pedido();
-                                            $celdas=explode('-.-.',$filas[$i]);
-                                            $modelDSI->id_venta = $id_venta;
-                                            $modelDSI->id_tipo_pago = $celdas[0];
-                                            $modelDSI->venta_detalle_pago_monto = $celdas[1];
-                                            $modelDSI->venta_detalle_pago_estado = 1;
-                                            $result__ = $this->pedido->guardar_detalle_pago($modelDSI);
+                                    $contenido_tipopago = $_POST['contenido_tipopago'];
+                                    if(count_chars($contenido_tipopago)>0){
+                                        $filas=explode('/-/-',$contenido_tipopago);
+                                        if(count($filas)>0){
+                                            for ($i=0;$i<count($filas)-1;$i++){
+                                                $modelDSI=new Pedido();
+                                                $celdas=explode('-.-.',$filas[$i]);
+                                                $modelDSI->id_venta = $id_venta;
+                                                $modelDSI->id_tipo_pago = $celdas[0];
+                                                $modelDSI->venta_detalle_pago_monto = $celdas[1];
+                                                $modelDSI->venta_detalle_pago_estado = 1;
+                                                $result = $this->pedido->guardar_detalle_pago($modelDSI);
 
-                                        }
-                                    }
-                                }
-                                if($result==1){
-                                    $result = $this->pedido->actualizarCorrelativo_x_id_Serie($_POST['serie'],$correlativo);
-                                    if (!isset($_POST['id_venta'])){
-                                        if(empty($verificar)){
-                                            $result = $this->pedido->actualizar_estado_mesa($id_mesa);
-                                            $this->pedido->ocultar_reserva($id_mesa);
-                                            $pago = 1;
+                                            }
                                         }
                                     }
                                     if($result==1){
-                                        $result__ = $this->pedido->ocultar_reserva($id_mesa);
-                                    }
+                                        $result = $this->pedido->actualizarCorrelativo_x_id_Serie($_POST['serie'],$correlativo);
+                                        if (!isset($_POST['id_venta'])){
+                                            if(empty($verificar)){
+                                                $result = $this->pedido->actualizar_estado_mesa($id_mesa);
+                                                $this->pedido->ocultar_reserva($id_mesa);
+                                                $pago = 1;
+                                            }
+                                        }
+                                        if($result==1){
+                                            $result__ = $this->pedido->ocultar_reserva($id_mesa);
+                                        }
 
-                                    if($_POST['tipo_venta']=="20"){
-                                        /*$venta = $this->venta->listar_nota_venta_x_id($id_venta);
-                                        $detalle_venta =$this->venta->listar_nota_venta_detalle_x_id_venta($id_venta);
-                                        $empresa = $this->venta->listar_empresa_x_id_empresa($venta->id_empresa);
-                                        $cliente = $this->venta->listar_cliente_notaventa_x_id($venta->id_cliente);*/
-                                        $venta = $this->venta->listar_venta_x_id($id_venta);
-                                        $detalle_venta =$this->venta->listar_venta_detalle_x_id_venta($id_venta);
-                                        $empresa = $this->venta->listar_empresa_x_id_empresa($venta->id_empresa);
-                                        $cliente = $this->venta->listar_clienteventa_x_id($venta->id_cliente);
-                                        $venta_tipo = "NOTA DE VENTA";
-                                        if($cliente->id_tipodocumento == "4"){
-                                            $cliente_nombre = $cliente->cliente_razonsocial;
+                                        if($_POST['tipo_venta']=="20"){
+                                            /*$venta = $this->venta->listar_nota_venta_x_id($id_venta);
+                                            $detalle_venta =$this->venta->listar_nota_venta_detalle_x_id_venta($id_venta);
+                                            $empresa = $this->venta->listar_empresa_x_id_empresa($venta->id_empresa);
+                                            $cliente = $this->venta->listar_cliente_notaventa_x_id($venta->id_cliente);*/
+                                            $venta = $this->venta->listar_venta_x_id($id_venta);
+                                            $detalle_venta =$this->venta->listar_venta_detalle_x_id_venta($id_venta);
+                                            $empresa = $this->venta->listar_empresa_x_id_empresa($venta->id_empresa);
+                                            $cliente = $this->venta->listar_clienteventa_x_id($venta->id_cliente);
+                                            $venta_tipo = "NOTA DE VENTA";
+                                            if($cliente->id_tipodocumento == "4"){
+                                                $cliente_nombre = $cliente->cliente_razonsocial;
+                                            }else{
+                                                $cliente_nombre = $_POST['cliente_nombre'];
+                                            }
+                                            if($_POST['imprimir'] == "1"){
+                                                require _VIEW_PATH_ . 'pedido/ticket_nota_venta.php';
+                                            }
+
                                         }else{
-                                            $cliente_nombre = $_POST['cliente_nombre'];
-                                        }
-                                        if($_POST['imprimir'] == "1"){
-                                            require _VIEW_PATH_ . 'pedido/ticket_nota_venta.php';
-                                        }
+                                            //INICIO - LISTAR COLUMNAS PARA TICKET DE VENTA
+                                            include('libs/ApiFacturacion/phpqrcode/qrlib.php');
 
-                                    }else{
-                                        //INICIO - LISTAR COLUMNAS PARA TICKET DE VENTA
-                                        include('libs/ApiFacturacion/phpqrcode/qrlib.php');
-
-                                        $venta = $this->venta->listar_venta_x_id($id_venta);
-                                        $detalle_venta =$this->venta->listar_venta_detalle_x_id_venta($id_venta);
-                                        $empresa = $this->venta->listar_empresa_x_id_empresa($venta->id_empresa);
-                                        $cliente = $this->venta->listar_clienteventa_x_id($venta->id_cliente);
-                                        //INICIO - CREACION QR
-                                        $nombre_qr = $empresa->empresa_ruc. '-' .$venta->venta_tipo. '-' .$venta->venta_serie. '-' .$venta->venta_correlativo;
-                                        $contenido_qr = $empresa->empresa_ruc.'|'.$venta->venta_tipo.'|'.$venta->venta_serie.'|'.$venta->venta_correlativo. '|'.
-                                            $venta->venta_totaligv.'|'.$venta->venta_total.'|'.date('Y-m-d', strtotime($venta->venta_fecha)).'|'.
-                                            $cliente->tipodocumento_codigo.'|'.$cliente->cliente_numero;
-                                        $ruta = 'libs/ApiFacturacion/imagenqr/';
-                                        $ruta_qr = $ruta.$nombre_qr.'.png';
-                                        QRcode::png($contenido_qr, $ruta_qr, 'H - mejor', '3');
-                                        //FIN - CREACION QR
-                                        if($venta->venta_tipo == "03"){
-                                            $venta_tipo = "BOLETA DE VENTA ELECTRÓNICA";
-                                        }elseif($venta->venta_tipo == "01"){
-                                            $venta_tipo = "FACTURA DE VENTA ELECTRÓNICA";
-                                        }
-                                        if($cliente->id_tipodocumento == "4"){
-                                            $cliente_nombre = $cliente->cliente_razonsocial;
-                                        }else{
-                                            $cliente_nombre = $_POST['cliente_nombre'];
-                                        }
-                                        if($_POST['imprimir'] == "1"){
-                                            require _VIEW_PATH_ . 'pedido/ticket_venta.php';
-                                        }
-                                    }
-
-
-                                    //INICIO - TICKET DELIVERY
-                                    //$venta = $this->venta->listar_venta_x_id($id);
-                                    if($id_mesa == 0){
-                                        $cliente = $this->pedido->listar_clienteventa_x_id_delivery($id_cliente);
-                                        $id_comanda = $cliente->id_comanda;
-                                        $datos_ticket = $this->pedido->jalar_datos_comanda($id_comanda);
-
-                                        if($cliente->id_tipodocumento == "4"){
-                                            $cliente_nombre = $cliente->cliente_razonsocial;
-                                        }else{
-                                            $cliente_nombre = $_POST['cliente_nombre'];
+                                            $venta = $this->venta->listar_venta_x_id($id_venta);
+                                            $detalle_venta =$this->venta->listar_venta_detalle_x_id_venta($id_venta);
+                                            $empresa = $this->venta->listar_empresa_x_id_empresa($venta->id_empresa);
+                                            $cliente = $this->venta->listar_clienteventa_x_id($venta->id_cliente);
+                                            //INICIO - CREACION QR
+                                            $nombre_qr = $empresa->empresa_ruc. '-' .$venta->venta_tipo. '-' .$venta->venta_serie. '-' .$venta->venta_correlativo;
+                                            $contenido_qr = $empresa->empresa_ruc.'|'.$venta->venta_tipo.'|'.$venta->venta_serie.'|'.$venta->venta_correlativo. '|'.
+                                                $venta->venta_totaligv.'|'.$venta->venta_total.'|'.date('Y-m-d', strtotime($venta->venta_fecha)).'|'.
+                                                $cliente->tipodocumento_codigo.'|'.$cliente->cliente_numero;
+                                            $ruta = 'libs/ApiFacturacion/imagenqr/';
+                                            $ruta_qr = $ruta.$nombre_qr.'.png';
+                                            QRcode::png($contenido_qr, $ruta_qr, 'H - mejor', '3');
+                                            //FIN - CREACION QR
+                                            if($venta->venta_tipo == "03"){
+                                                $venta_tipo = "BOLETA DE VENTA ELECTRÓNICA";
+                                            }elseif($venta->venta_tipo == "01"){
+                                                $venta_tipo = "FACTURA DE VENTA ELECTRÓNICA";
+                                            }
+                                            if($cliente->id_tipodocumento == "4"){
+                                                $cliente_nombre = $cliente->cliente_razonsocial;
+                                            }else{
+                                                $cliente_nombre = $_POST['cliente_nombre'];
+                                            }
+                                            if($_POST['imprimir'] == "1"){
+                                                require _VIEW_PATH_ . 'pedido/ticket_venta.php';
+                                            }
                                         }
 
-                                        require _VIEW_PATH_ . 'pedido/ticket_venta_delivery.php';
-                                        //echo "<script>window.open("._SERVER_."'Pedido/ticket_venta/".$id_venta."','_blank')</script>";
+
+                                        //INICIO - TICKET DELIVERY
+                                        //$venta = $this->venta->listar_venta_x_id($id);
+                                        if($id_mesa == 0){
+                                            $cliente = $this->pedido->listar_clienteventa_x_id_delivery($id_cliente);
+                                            $id_comanda = $cliente->id_comanda;
+                                            $datos_ticket = $this->pedido->jalar_datos_comanda($id_comanda);
+
+                                            if($cliente->id_tipodocumento == "4"){
+                                                $cliente_nombre = $cliente->cliente_razonsocial;
+                                            }else{
+                                                $cliente_nombre = $_POST['cliente_nombre'];
+                                            }
+
+                                            require _VIEW_PATH_ . 'pedido/ticket_venta_delivery.php';
+                                            //echo "<script>window.open("._SERVER_."'Pedido/ticket_venta/".$id_venta."','_blank')</script>";
+                                        }
+
                                     }
 
                                 }
 
+                                //$this->pedido->cambiar_estado_comanda_principal($id_comanda);
+                            }else{
+                                $result = 2;
                             }
-
-                            //$this->pedido->cambiar_estado_comanda_principal($id_comanda);
                         }else{
-                            $result = 2;
+                            $result = 3;
+                            $message = "Tiene que haber una caja aperturada en el día";
                         }
+
                     }
                 }else{
                     if($result == 1){
@@ -1603,7 +1645,7 @@ class PedidoController
                                 $celdas=explode('-.-.',$datos_detalle_pedido);
                                 if(count($celdas)>0){
 
-                                    for ($i=0;$i<count($celdas)-1;$i++){
+                                    for ($i=0;$i<count($celdas);$i++){
 
                                         $id_comanda_detalle = $celdas[$i];
                                         $jalar_datos = $this->pedido->jalar_datos($id_comanda_detalle);
@@ -1671,10 +1713,17 @@ class PedidoController
                 $result = 6;
                 $message = "Integridad de datos fallida. Algún parametro se está enviando mal";
             }
+            if($result == 1){
+                $this->builder->commit();
+            }else{
+                $this->builder->rollBack();
+            }
+
         }catch (Exception $e){
             //Registramos el error generado y devolvemos el mensaje enviado por PHP
             $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
             $message = $e->getMessage();
+            $this->builder->rollBack();
         }
         //Retornamos el json
         echo json_encode(array("result" => array("code" => $result, "message" => $message, "pago"=>$pago)));

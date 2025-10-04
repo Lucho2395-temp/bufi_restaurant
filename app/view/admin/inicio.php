@@ -411,7 +411,6 @@
                     cambiar_estado_boton(boton, "Guardando...", true);
                 },
                 success:function (r) {
-                    cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i>  Aperturar Caja", false);
                     switch (r.result.code) {
                         case 1:
                             respuesta('¡Ingreso de Apertura Exitoso!', 'success');
@@ -421,9 +420,11 @@
                             limpiar();
                             break;
                         case 2:
+                            cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i>  Aperturar Caja", false);
                             respuesta('Error al ingresar la apertura de la caja', 'error');
                             break;
                         default:
+                            cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i>  Aperturar Caja", false);
                             respuesta('¡Algo catastrofico ha ocurrido!', 'error');
                             break;
                     }
@@ -452,7 +453,6 @@
                     cambiar_estado_boton(boton, "Guardando...", true);
                 },
                 success:function (r) {
-                    cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar Cierre", false);
                     switch (r.result.code) {
                         case 1:
                             respuesta('¡Cierre de caja Exitoso!', 'success');
@@ -462,9 +462,11 @@
                             limpiar();
                             break;
                         case 2:
+                            cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar Cierre", false);
                             respuesta('Error al guardar, comuniquese con BufeoTec Company', 'error');
                             break;
                         default:
+                            cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar Cierre", false);
                             respuesta('¡Algo catastrofico ha ocurrido!', 'error');
                             break;
                     }

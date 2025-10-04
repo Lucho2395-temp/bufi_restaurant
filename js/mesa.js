@@ -42,6 +42,9 @@
                     case 2:
                         respuesta('Error al guardar mesa', 'error');
                         break;
+                    case 5:
+                        respuesta(r.result.message, 'error');
+                        break;
                     default:
                         respuesta('¡Algo catastrofico ha ocurrido!', 'error');
                         break;

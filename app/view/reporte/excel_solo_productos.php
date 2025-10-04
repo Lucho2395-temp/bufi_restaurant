@@ -30,7 +30,7 @@
                                                 $venta_total = $venta_total + $p->total_suma;
                                                 ?>
                                                 <tr>
-                                                    <td style="text-align: center"><?= $p->venta_detalle_nombre_producto?></td>
+                                                    <td style="text-align: center"><?= utf8_decode($p->venta_detalle_nombre_producto)?></td>
                                                     <td style="text-align: center"><?= $p->venta_detalle_precio_unitario;?></td>
                                                     <td style="text-align: center"><?= $p->total?></td>
                                                     <td style="text-align: center">S/. <?= $p->total_suma?></td>

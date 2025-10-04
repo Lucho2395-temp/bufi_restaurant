@@ -30,7 +30,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Nro Documento:</label>
-                                    <input class="form-control" type="text" id="cliente_numero" onchange="consultar_documento(this.value)" onkeyup="return validar_numeros(this.id)" name="cliente_numero" maxlength="15" placeholder="Ingrese Telefono...">
+                                    <input class="form-control" type="text" id="cliente_numero" onchange="consultar_documento(this.value)" onkeyup="return validar_numeros(this.id)" name="cliente_numero" maxlength="15" placeholder="Ingrese N° Documento...">
                                 </div>
                             </div>
                             <div class="col-lg-12" id="div_nombre">
@@ -290,7 +290,7 @@
                                             <label for="">Cliente</label><br>
                                             <!--<label for="" id="cliente_nombre"></label>-->
                                             <input class="form-control" id="cliente_nombre_d" name="cliente_nombre_d" value="ANONIMO">
-                                            <input type="hidden" id="id_cliente" name="id_cliente" value="3">
+                                            <input type="hidden" id="id_cliente" name="id_cliente" value="1">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -315,7 +315,7 @@
                                 <div class="row">
                                     <div class="col-lg-6"></div>
                                     <div class="col-lg-2" style="margin-top: 12px">
-                                        <button onclick="guardar_comanda_delivery()" class="btn btn-primary"><i class="fa fa-check"></i> Generar</button>
+                                        <button id="btn_guardar_delivery" onclick="guardar_comanda_delivery()" class="btn btn-primary"><i class="fa fa-check"></i> Generar</button>
                                     </div>
                                     <div class="col-lg-1"></div>
                                     <div class="col-lg-2" style="margin-top: 12px">
@@ -466,7 +466,7 @@
 
 
     function guardar_comanda_delivery(){
-
+        var boton = 'btn_guardar_delivery'
         var valor = true;
         var contenido = $('#contenido').val();
         var id_cliente = $('#id_cliente').val();
@@ -475,8 +475,14 @@
         var comanda_direccion_delivery = $('#cliente_direccion_d').val();
         var comanda_telefono_delivery = $('#cliente_telefono_d').val();
 
+        valor = validar_campo_vacio('cliente_direccion_d', comanda_direccion_delivery, valor);
+        valor = validar_campo_vacio('cliente_nombre_d', cliente_nombre_d, valor);
         valor = validar_campo_vacio('contenido', contenido, valor);
         //valor = validar_campo_vacio('id_mesa', id_mesa, valor);
+        if(contenido==''){
+            respuesta("Debe tener seleccionado mínimo 1 producto", 'error');
+            valor = false
+        }
         if (valor){
             var cadena = "contenido=" + contenido +
                 "&comanda_total=" + comanda_total +
@@ -490,6 +496,9 @@
                 url: urlweb + "api/Pedido/guardar_delivery",
                 data: cadena,
                 dataType: 'json',
+                beforeSend: function () {
+                    cambiar_estado_boton(boton, 'cobrando...', true);
+                },
                 success:function (r) {
                     switch (r.result.code) {
                         case 1:
@@ -499,12 +508,15 @@
                             }, 1000);
                             break;
                         case 2:
+                            cambiar_estado_boton(boton, '<i class="fa fa-check"></i> Generar', false);
                             respuesta("Fallo el guardado, intentelo de nuevo", 'error');
                             break;
                         case 6:
+                            cambiar_estado_boton(boton, '<i class="fa fa-check"></i> Generar', false);
                             respuesta("Algún dato fue ingresado de manera erronéa. Recargue la página por favor.",'error');
                             break;
                         default:
+                            cambiar_estado_boton(boton, '<i class="fa fa-check"></i> Generar', false);
                             respuesta("ERROR DESCONOCIDO", 'error');
                     }
                 }

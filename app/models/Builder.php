@@ -46,6 +46,28 @@ class Builder
 //            return 2;
 //        }
 //    }
+
+    public function beginTransaction(){
+        try{
+            $this->pdo->beginTransaction();
+        } catch (Throwable $e){
+            $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
+        }
+    }
+    public function commit(){
+        try{
+            $this->pdo->commit();
+        } catch (Throwable $e){
+            $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
+        }
+    }
+    public function rollBack(){
+        try{
+            $this->pdo->rollBack();
+        } catch (Throwable $e){
+            $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
+        }
+    }
     public function save($table , $datos){
         try{
             $query = "INSERT INTO " . $table . " (";

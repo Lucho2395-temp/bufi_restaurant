@@ -14,9 +14,10 @@ class Negocio
 
     public function listar($parametro){
         try{
-            $sql = 'select * from negocios n inner join ciudad c on n.id_ciudad = c.id_ciudad where n.negocio_nombre like ? order by negocio_nombre asc';
+            $sql = 'select * from negocios n inner join ciudad c on n.id_ciudad = c.id_ciudad 
+                    where n.negocio_nombre like ? or n.negocio_ruc like ? order by negocio_nombre asc';
             $stm = $this->pdo->prepare($sql);
-            $stm->execute(['%'.$parametro.'%']);
+            $stm->execute(['%'.$parametro.'%','%'.$parametro.'%']);
             $result = $stm->fetchAll();
         } catch (Exception $e){
             $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
@@ -64,7 +65,18 @@ class Negocio
         }
         return $result;
     }
-
+    public function validar_ruc_negocio($negocio_ruc){
+        try{
+            $sql = 'select id_negocio from negocios where negocio_ruc = ? and negocio_estado = 1 limit 1';
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute([$negocio_ruc]);
+            $result = $stm->fetch();
+            return isset($result->id_negocio);
+        } catch (Throwable $e){
+            $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
+            return true;
+        }
+    }
 
     public function guardar_negocio($model){
         try{

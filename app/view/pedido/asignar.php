@@ -374,16 +374,20 @@
                             }, 300);
                             break;
                         case 2:
+                            $('#guardar_comanda').css("opacity","");
+                            $(".submitBtn").removeAttr("disabled");
                             respuesta("Fallo el envio, intentelo de nuevo", 'error');
                             break;
                         case 6:
+                            $('#guardar_comanda').css("opacity","");
+                            $(".submitBtn").removeAttr("disabled");
                             respuesta("Algún dato fue ingresado de manera erronéa. Recargue la página por favor.",'error');
                             break;
                         default:
+                            $('#guardar_comanda').css("opacity","");
+                            $(".submitBtn").removeAttr("disabled");
                             respuesta("ERROR DESCONOCIDO", 'error');
                     }
-                    $('#guardar_comanda').css("opacity","");
-                    $(".submitBtn").removeAttr("disabled");
                 }
             });
         }

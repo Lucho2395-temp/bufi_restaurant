@@ -138,40 +138,54 @@
                                 <div class="form-group">
                                     <label><b>Productos :</b></label>
                                     <hr>
-                                    <div class="row">
-                                        <?php
-                                        foreach($venta_productos as $ls){
-                                            if($ls->comanda_detalle_estado_venta == 0){
-                                                //$tipo_afectacion = $this->pedido->tipo_afectacion_x_producto
+                                    <div class="table-responsive" style="max-height:300px; overflow-y:auto;">
+                                        <table class="table table-bordered table-sm">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th style="width:40px;">#</th>
+                                                <th>Producto</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Total</th>
+                                                <th>Para</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach($venta_productos as $index => $ls):
+                                                $disabled = $ls->comanda_detalle_estado_venta != 0 ? 'disabled style="color:lightgray;"' : '';
+                                                $row_style = $ls->comanda_detalle_estado_venta != 0 ? 'style="color:lightgray;"' : '';
                                                 ?>
-                                                <div class="col-md-12" style="font-weight: bold;">
-                                                    <input  type="checkbox" onchange="calcular_total(<?= $ls->id_comanda_detalle;?>)" id="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>" name="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>" value="<?= $ls->id_comanda_detalle;?>">
-                                                    <label for="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"> <?php echo $ls->producto_nombre;?> // S/.<?php echo $ls->comanda_detalle_precio;?> // Cant. <?php echo $ls->comanda_detalle_cantidad?> // Total: <?php echo $ls->comanda_detalle_total;?> // Para: <?php echo $ls->comanda_detalle_despacho;?></label>
+                                                <tr <?= $row_style; ?>>
+                                                    <td>
+                                                        <input type="checkbox" <?= $disabled; ?> onchange="calcular_total(<?= $ls->id_comanda_detalle;?>)"
+                                                               id="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"
+                                                               name="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"
+                                                               value="<?= $ls->id_comanda_detalle;?>"
+                                                               class="chk-box cobrar_venta_check"
+                                                                style="transform: scale(1.5);margin-right: 8px;cursor: pointer;">
+                                                    </td>
+                                                    <td><label for="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"><?= $ls->producto_nombre; ?></label></td>
+                                                    <td>S/.<?= number_format($ls->comanda_detalle_precio,2); ?></td>
+                                                    <td><?= $ls->comanda_detalle_cantidad; ?></td>
+                                                    <td><?= number_format($ls->comanda_detalle_total,2); ?></td>
+                                                    <td><?= $ls->comanda_detalle_despacho; ?></td>
+
+                                                    <!-- Hidden inputs -->
                                                     <input type="hidden" id="precio_total_detalle<?= $ls->id_comanda_detalle;?>" name="precio_total_detalle<?= $ls->id_comanda_detalle;?>" value="<?= $ls->comanda_detalle_total;?>">
                                                     <input type="hidden" id="tipo_afectacion_producto<?= $ls->id_comanda_detalle;?>" name="tipo_afectacion_producto<?= $ls->id_comanda_detalle;?>" value="<?= $ls->producto_precio_codigoafectacion;?>">
                                                     <input type="hidden" id="producto_precio_venta<?= $ls->id_comanda_detalle;?>" name="producto_precio_venta<?= $ls->id_comanda_detalle;?>" value="<?= $ls->comanda_detalle_precio;?>">
                                                     <input type="hidden" id="comanda_detalle_cantidad<?= $ls->id_comanda_detalle;?>" name="comanda_detalle_cantidad<?= $ls->id_comanda_detalle;?>" value="<?= $ls->comanda_detalle_cantidad;?>">
                                                     <input type="hidden" id="id_receta<?= $ls->id_comanda_detalle;?>" name="id_receta<?= $ls->id_comanda_detalle;?>" value="<?= $ls->id_receta;?>">
-                                                </div>
-                                                <?php
-                                            }else{
-                                                ?>
-                                                <div class="col-md-12" style="color: lightgray">
-                                                    <input type="checkbox" disabled  id="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>">
-                                                    <label for="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"> <?php echo $ls->producto_nombre;?> // S/.<?php echo $ls->comanda_detalle_precio;?> // Cant. <?php echo $ls->comanda_detalle_cantidad?> // Total: <?php echo $ls->comanda_detalle_total;?> // Para: <?php echo $ls->comanda_detalle_despacho;?></label>
-                                                </div>
-                                                <?php
-                                            }
-                                            ?>
-                                            <?php
-                                        }
-                                        ?>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="row">
-                                                <div class="col-lg-8" style="text-align: right">
+                                                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8" style="text-align: right">
                                                     <label for="" style="font-size: 14px;">OP. GRAVADAS</label><br>
                                                     <label for="" style="font-size: 14px;">IGV(18%)</label><br>
                                                     <label for="" style="font-size: 14px;">OP. EXONERADAS</label><br>
@@ -181,7 +195,7 @@
                                                     <label for="" style="font-size: 17px;"><strong>TOTAL</strong></label><br>
                                                     <label for="" style="font-size: 14px;">VUELTO</label>
                                                 </div>
-                                                <div class="col-lg-2" style="text-align: right">
+                                                <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2" style="text-align: right">
                                                     <label for="" style="font-size: 14px;"><span id="op_gravadas">0.00</span></label><br>
                                                     <input type="hidden" id="op_gravadas_" name="op_gravadas_">
                                                     <label for="" style="font-size: 14px;"><span id="igv">0.00</span></label><br>
@@ -200,12 +214,6 @@
                                                     <input type="hidden" id="vuelto_" name="vuelto_">
                                                 </div>
                                             </div>
-                                            <!--<div class="form-group">
-                                                <label for="">Monto Total</label>
-                                                <input class="form-control" type="text" id="venta_total" name="venta_total" readonly>
-                                                <label for=""><span id="igv_total">0.00</span></label>
-
-                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -256,11 +264,11 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="tipo_igv">Tipo Venta</label><br>
-                                            <select class="form-control" id="tipo_venta" name="tipo_venta" onchange="Consultar_serie_delivery()">
+                                            <select class="form-control" id="tipo_venta" name="tipo_venta" onchange="Consultar_serie_delivery()" disabled>
                                                 <option value="">Seleccionar...</option>
-                                                <option value="20">NOTA DE VENTA</option>
-                                                <option value="03" selected>BOLETA</option>
-                                                <option value="01">FACTURA</option>
+                                                <option value="20" <?= ($tipo_comprobante == '20')?'selected':''?>>NOTA DE VENTA</option>
+                                                <option value="03" <?= ($tipo_comprobante == '03')?'selected':''?>>BOLETA</option>
+                                                <option value="01" <?= ($tipo_comprobante == '01')?'selected':''?>>FACTURA</option>
                                             </select>
                                         </div>
                                     </div>
@@ -279,8 +287,10 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <label for="">Pagó con:</label><br>
-                                        <input type="text" class="form-control" name="pago_cliente" id="pago_cliente" onkeyup="calcular_vuelto()">
+                                        <label for="pago_cliente"><b>Pagó con:</b></label>
+                                        <input type="text" class="form-control" name="pago_cliente" id="pago_cliente"
+                                               placeholder="Cálculo del vuelto."
+                                               onkeyup="validar_numeros_decimales_dos(this.id);calcular_vuelto()">
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
@@ -535,13 +545,26 @@
                                     </div>
                                     <?php
                                     $entre=true;
+                                    $fecha = date('Y-m-d');
+                                    $id_usuario = $this->encriptar->desencriptar($_SESSION['c_u'],_FULL_KEY_);
+                                    $caja_apertura_fecha = $this->pedido->listar_ultima_fecha($fecha,$id_usuario);
                                     if($id_rol == 2 || $id_rol == 3 || $id_rol ==5){
-                                        ?>
-                                        <div class="col-lg-3 col-sm-3 col-md-3">
-                                            <button type="button" id="btn_generarventa" class="btn btn-primary" data-toggle="modal" data-target="#ventas">
-                                                <i class="fa fa-money"></i> Cobrar</button>
-                                        </div>
-                                        <?php
+                                        if($caja_apertura_fecha){
+                                            ?>
+                                            <div class="col-lg-3 col-sm-3 col-md-3">
+                                                <button type="button" id="btn_generarventa" class="btn btn-primary" data-toggle="modal" data-target="#ventas">
+                                                    <i class="fa fa-money"></i> Cobrar</button>
+                                            </div>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <div class="col-lg-3 col-sm-3 col-md-3">
+                                                <div class="alert alert-warning" role="alert">
+                                                    <i class="fa fa-exclamation-circle"></i> Debe aperturar primero su caja del día para poder generar ventas.
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
                                     }
                                     ?>
                                     <div class="col-lg-3 col-sm-3 col-md-3" style="text-align: right;">

@@ -151,6 +151,7 @@ class DatosController{
                 $model->persona_apellido_materno = $_POST['persona_apellido_maternop'];
                 $model->persona_nacimiento = $_POST['persona_nacimientop'];
                 $model->persona_telefono = $_POST['persona_telefonop'];
+                $model->id_empresa = 1;
                 //Guardamos el menú y recibimos el resultado
                 $result = $this->usuario->guardar_persona($model);
             } else {

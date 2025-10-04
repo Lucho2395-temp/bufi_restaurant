@@ -151,12 +151,15 @@ class Usuario{
                     $model->id_persona
                 ]);
             } else {
-                $sql = 'insert into personas (persona_nombre, persona_apellido_paterno, persona_apellido_materno, persona_nacimiento, persona_telefono, persona_creacion, persona_modificacion, person_codigo) values (?,?,?,?,?,?,?,?)';
+                $sql = 'insert into personas (id_empresa,persona_nombre, persona_apellido_paterno, persona_apellido_materno, persona_dni, persona_nacimiento, persona_telefono, persona_creacion, persona_modificacion, person_codigo) 
+                        values (?,?,?,?,?,?,?,?,?,?)';
                 $stm = $this->pdo->prepare($sql);
                 $stm->execute([
+                    $model->id_empresa,
                     $model->persona_nombre,
                     $model->persona_apellido_paterno,
                     $model->persona_apellido_materno,
+                    $model->persona_dni,
                     $model->persona_nacimiento,
                     $model->persona_telefono,
                     $fecha_actual,

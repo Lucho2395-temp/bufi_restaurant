@@ -171,6 +171,7 @@
                             </thead>
                             <tbody>
                             <?php
+                            $a = 1;
                             foreach ($mesas as $m){
                                 $estado = "DESHABILITADO";
                                 $estilo_estado = "class=\"texto-deshabilitado\"";
@@ -180,7 +181,7 @@
                                 }
                                 ?>
                                 <tr>
-                                    <td>►</td>
+                                    <td><?= $a;?></td>
                                     <td id="sucursalnombre<?= $m->id_sucursal;?>"><strong><?= $m->sucursal_nombre;?></strong></td>
                                     <td id="mesanombre<?= $m->id_mesa;?>"><?= $m->mesa_nombre;?></td>
                                     <td id="mesacapacidad<?php echo $m->id_mesa;?>"><?php echo $m->mesa_capacidad;?></td>
@@ -192,6 +193,7 @@
                                     </td>
                                 </tr>
                                 <?php
+                                $a++;
                             }
                             ?>
                             </tbody>

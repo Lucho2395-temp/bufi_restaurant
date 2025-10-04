@@ -37,7 +37,8 @@
                         </div>
                         <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
                             <label for="">Fecha Reserva</label>
-                            <input type="date" class="form-control" id="reserva_fecha" name="reserva_fecha">
+                            <input type="hidden" class="form-control" id="reserva_fecha_hoy" name="reserva_fecha_hoy" value="<?= date('Y-m-d', strtotime($fecha_hoy))?>">
+                            <input type="date" class="form-control" id="reserva_fecha" name="reserva_fecha" onchange="validar_fechas()" value="<?= date('Y-m-d', strtotime($fecha_hoy))?>">
                         </div>
                         <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
                             <label for="">Hora Reserva</label>
@@ -261,4 +262,18 @@
     }
     //Función para actualizar cada 60 segundos(60000 milisegundos)
     setInterval(actualizar, 60000);
+    function validar_fechas() {
+        var inicio = $('#reserva_fecha_hoy').val();
+        var fin = $('#reserva_fecha').val();
+
+        if(inicio !== "" && fin !== ""){
+            var f_inicial = new Date(inicio);
+            var f_final = new Date(fin);
+
+            if(f_inicial > f_final){
+                respuesta('La fecha de reserva debe ser a futuro', 'error');
+                $('#reserva_fecha').val(inicio);
+            }
+        }
+    }
 </script>

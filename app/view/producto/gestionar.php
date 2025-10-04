@@ -70,7 +70,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Precio Venta</label>
-                                        <input class="form-control" type="text" id="producto_precio_venta" name="producto_precio_venta" value="" placeholder="Ingrese Precio...">
+                                        <input class="form-control" type="text" id="producto_precio_venta" name="producto_precio_venta" value="" placeholder="Ingrese Precio..." onkeyup="return validar_numeros_decimales_dos(this.id)">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -104,13 +104,13 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="col-form-label">Descripción</label>
-                                        <textarea rows="3" class="form-control" type="text" id="producto_descripcion" name="producto_descripcion" maxlength="500" placeholder="Ingrese Diagnostico..."></textarea>
+                                        <textarea rows="3" class="form-control" type="text" id="producto_descripcion" name="producto_descripcion" maxlength="500" placeholder="Ingrese Descripción del producto..."></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Foto</label>
-                                        <input class="form-control" type="file" id="producto_foto" name="producto_foto" maxlength="30" placeholder="Ingrese Foto...">
+                                        <input class="form-control" type="file" id="producto_foto" name="producto_foto" maxlength="30" placeholder="Ingrese Foto..." accept="image/jpeg, image/png, image/gif">
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
     <div class="modal-dialog" role="document" style="max-width: 50% !important;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Categoria Carta</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Categoría Carta</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -142,7 +142,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="col-form-label">Nombre:</label>
-                                <input class="form-control" type="text" id="producto_familia_nombre" name="producto_familia_nombre" maxlength="200" placeholder="Ingrese Datos...">
+                                <input class="form-control" type="text" id="producto_familia_nombre" name="producto_familia_nombre" maxlength="200" placeholder="Ingrese Nombre de la Categoría...">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -294,7 +294,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="col-form-label">Descripción</label>
-                                        <textarea rows="3" class="form-control" type="text" id="producto_descripcion_e" name="producto_descripcion_e" maxlength="500" placeholder="Ingrese Diagnostico..."></textarea>
+                                        <textarea rows="3" class="form-control" type="text" id="producto_descripcion_e" name="producto_descripcion_e" maxlength="500" placeholder="Ingrese Descripción del producto..."></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -304,7 +304,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Cambiar foto</label>
-                                        <input class="form-control" type="file" id="producto_foto_e" name="producto_foto_e" maxlength="30" placeholder="Ingrese Foto...">
+                                        <input class="form-control" type="file" id="producto_foto_e" name="producto_foto_e" maxlength="30" placeholder="Ingrese Foto..." accept="image/jpeg, image/png, image/gif">
                                     </div>
                                 </div>
                             </div>
@@ -315,11 +315,11 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label class="col-form-label">Agregar precio</label>
-                                            <input class="form-control" type="text" id="producto_precio_venta_a" name="producto_precio_venta_a" value="">
+                                            <input class="form-control" type="text" id="producto_precio_venta_a" name="producto_precio_venta_a" value="" onkeyup="return validar_numeros_decimales_dos(this.id)">
                                         </div>
                                     </div>
-                                    <div class="col-lg-3" style="margin-top: 11px">
-                                        <br><button class="btn btn-success" onclick="agregar_precios()"><i class="fa fa-save"></i> Agregar</button>
+                                    <div class="col-lg-3" style="margin-top: 11px; color: white">
+                                        <br><a type="button" class="btn btn-success" onclick="agregar_precios()"><i class="fa fa-save"></i> Agregar</a>
                                     </div>
                                 </div>
                                 <div id="tabla" class="table-responsive">

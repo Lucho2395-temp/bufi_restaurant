@@ -102,12 +102,14 @@ class UsuarioController{
                         $message = "Ya existe un usuario con este correo registrado";
                     } else {
                         $microtime = microtime(true);
+                        $model->persona_dni = null;
                         $model->persona_nombre = $_POST['persona_nombre'];
                         $model->persona_apellido_paterno = $_POST['persona_apellido_paterno'];
                         $model->persona_apellido_materno = $_POST['persona_apellido_materno'];
-                        $model->persona_nacimiento = $_POST['persona_nacimiento'];
+                        $model->persona_nacimiento = !empty($_POST['persona_nacimiento'])?$_POST['persona_nacimiento']:null;
                         $model->persona_telefono = $_POST['persona_telefono'];
                         $model->person_codigo = $microtime;
+                        $model->id_empresa = 1;
                         //Guardamos el menú y recibimos el resultado
                         $guardar_persona = $this->usuario->guardar_persona($model);
                         if($guardar_persona == 1){

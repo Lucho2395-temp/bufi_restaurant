@@ -772,7 +772,7 @@ function guardar_departamento(){
     var valor = true;
     //Extraemos las variable según los valores del campo consultado
     var departamento_nombre = $('#departamento_nombre').val();
-
+    valor = validar_campo_vacio('departamento_nombre', departamento_nombre, valor);
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){
         //Cadena donde enviaremos los parametros por POST
@@ -807,6 +807,7 @@ function guardar_cargo(){
     var valor = true;
     //Extraemos las variable según los valores del campo consultado
     var cargo_nombre = $('#cargo_nombre').val();
+    valor = validar_campo_vacio('cargo_nombre', cargo_nombre, valor);
 
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){

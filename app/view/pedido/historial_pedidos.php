@@ -104,7 +104,7 @@
                     <div class="row">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4">
-                            <a id="btnExportar" href="<?= _SERVER_ ; ?>index.php?c=Ventas&a=excel_ventas_enviadas&tipo_venta=<?= $_POST['tipo_venta']?>&fecha_inicio=<?= $_POST['fecha_inicio']?>&fecha_final=<?= $_POST['fecha_final']?>" target="_blank" class="btn btn-success" style="width: 100%"><i class="fa fa-download"></i> Generar Excel</a>
+                            <a id="btnExportar" href="<?= _SERVER_ ; ?>index.php?c=Pedido&a=historial_pedidos_excel&id_mesa=<?= $_POST['id_mesa']?>&fecha_inicio=<?= $_POST['fecha_inicio']?>&fecha_final=<?= $_POST['fecha_final']?>" target="_blank" class="btn btn-success" style="width: 100%"><i class="fa fa-download"></i> Generar Excel</a>
                         </div>
                     </div>
                     <?php

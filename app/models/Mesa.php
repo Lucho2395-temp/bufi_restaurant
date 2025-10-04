@@ -37,7 +37,18 @@ class Mesa{
             return [];
         }
     }
-
+    public function validar_mesa($mesa_nombre){
+        try{
+            $sql = 'select id_mesa from mesas where mesa_nombre = ? and mesa_estado = 1 limit 1';
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute([$mesa_nombre]);
+            $result = $stm->fetch();
+            return isset($result->id_mesa);
+        } catch (Throwable $e){
+            $this->log->insertar($e->getMessage(), get_class($this).'|'.__FUNCTION__);
+            return true;
+        }
+    }
     //Registrar nuevo mesa
     public function guardar_mesa($model){
         try{

@@ -9,8 +9,8 @@
                 <input type="hidden" id="enviar_fecha" name="enviar_fecha" value="1">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label for="turno">DNI Cliente:</label>
-                        <input type="text" class="form-control" onkeyup="return validar_numeros(this.id)"  id="dni_cliente" name="dni_cliente" value="<?= $dni_cliente;?>">
+                        <label for="turno">DNI o RUC Cliente:</label>
+                        <input type="text" class="form-control" onkeyup="return validar_numeros(this.id)"  id="dni_cliente" name="dni_cliente" value="<?= $dni_cliente;?>" placeholder="ejm. 11111111">
                     </div>
                     <div class="col-lg-3">
                         <label for="turno">Desde:</label>

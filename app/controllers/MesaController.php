@@ -90,17 +90,23 @@ class MesaController
 
             //Validacion de datos
             if ($ok_data) {
-                //Creamos el modelo y ingresamos los datos a guardar
-                $model = new Mesa();
-                $microtime = microtime(true);
-                $model->mesa_nombre = $_POST['mesa_nombre'];
-                $model->mesa_capacidad = $_POST['mesa_capacidad'];
-                $model->mesa_estado = $_POST['mesa_estado'];
-                $model->id_sucursal = $_POST['id_sucursal'];
-                $model->mesacodigo = $microtime;
-                //Guardamos el menú y recibimos el resultado
-                $model->mesa_estado = 1;
-                $result = $this->mesa->guardar_mesa($model);
+                if($this->mesa->validar_mesa($_POST['mesa_nombre'])){
+                    //Código 5: mesa duplicado
+                    $result = 5;
+                    $message = "Ya existe una mesa con este nombre";
+                }else{
+                    //Creamos el modelo y ingresamos los datos a guardar
+                    $model = new Mesa();
+                    $microtime = microtime(true);
+                    $model->mesa_nombre = $_POST['mesa_nombre'];
+                    $model->mesa_capacidad = $_POST['mesa_capacidad'];
+                    $model->mesa_estado = $_POST['mesa_estado'];
+                    $model->id_sucursal = $_POST['id_sucursal'];
+                    $model->mesacodigo = $microtime;
+                    //Guardamos el menú y recibimos el resultado
+                    $model->mesa_estado = 1;
+                    $result = $this->mesa->guardar_mesa($model);
+                }
 
             }else {
                 //Código 6: Integridad de datos erronea

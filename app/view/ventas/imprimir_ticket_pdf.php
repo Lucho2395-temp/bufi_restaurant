@@ -27,7 +27,7 @@ if($filas_detalle==1 || $filas_detalle==2){
 $pdf->AddPage();
 //CABECERA DEL ARCHIVO
 //Logo
-$pdf->Image('media/logo/logo_empresa.jpg',31.1,6, '17', '17', 'JPEG');
+$pdf->Image('media/logo/logo_empresa.png',31.1,6, '17', '17', 'PNG');
 $pdf->Ln(15);
 
 $pdf->SetFont('Helvetica','',9);

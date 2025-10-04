@@ -25,6 +25,7 @@ $pdf->Cell(25,6,'CANT.',1,0,'C',1);
 $pdf->Cell(25,6,'TOTAL',1,0,'C',1);
 $pdf->Ln();
 $cantidad_vendida = 0;
+$total = 0;
 $pdf->SetFont('Arial','',9);
 foreach ($productos as $p){
 
@@ -34,11 +35,13 @@ foreach ($productos as $p){
     $pdf->CellFitSpace(25,6,$p->total,1,0,'C',0);
     $pdf->CellFitSpace(25,6,$p->total_suma,1,1,'C',0);
     $cantidad_vendida = $cantidad_vendida +$p->total;
+    $total = $total + $p->total_suma;
 
 }
 $pdf->SetFont('Arial','',12);
-$pdf->Cell(118,10,'TOTAL DE PRODUCTOS VENDIDOS',0,0,'C',0);
-$pdf->Cell(30,10,$cantidad_vendida,0,1,'R',0);
+$pdf->Cell(140,10,'TOTAL DE PRODUCTOS VENDIDOS',0,0,'L',0);
+$pdf->Cell(25,10,$cantidad_vendida,0,0,'C',0);
+$pdf->Cell(25,10,number_format($total, 2),0,1,'C',0);
 
 $pdf->Ln();
 $pdf->Ln();

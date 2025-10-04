@@ -10,7 +10,6 @@ function enviar_comprobante_sunat(id_venta) {
             cambiar_estado_boton(boton, 'enviando...', true);
         },
         success:function (r) {
-            cambiar_estado_boton(boton, "<i style=\"font-size: 16pt;\" class=\"fa fa-check margen\"></i>", false);
             switch (r.result.code) {
                 case 1:
                     respuesta('¡Comprobante Enviado a Sunat!', 'success');

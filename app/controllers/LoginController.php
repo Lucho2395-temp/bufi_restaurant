@@ -231,7 +231,7 @@ class LoginController{
         /* Obtenemos la primera linea  */
         $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         /* desencriptar la linea  */
-        $licencia = $this->encrypt_lic('2F8G-0RT9Y-20RC25C',_FULL_KEY_);
+        $licencia = $this->encrypt_lic('2F8G-0RT9Y-20RC26C',_FULL_KEY_);
         $lcs = $this->decrypt($lines[0],_FULL_KEY_);
         $dsr =$this->decrypt_date($lcs);
 

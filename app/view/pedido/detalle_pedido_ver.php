@@ -25,13 +25,6 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <input class="form-control" type="password" id="password"  placeholder="Ingrese su Contraseña AQUÍ para Permitir Cambios...">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <thead class="text-capitalize">
                                     <tr>
                                         <!--<th>Mesa</th>-->
@@ -97,9 +90,8 @@
                                 <div class="col-lg-3 col-sm-3 col-md-3">
                                     <a id="imprimir_ticket" style="color: white;" class="btn btn-success" onclick="ticket_pedido(<?= $id; ?>)"><i class="fa fa-print"></i> Pre Cuenta</a>
                                 </div>
-
                                 <div class="col-lg-3 col-sm-3 col-md-3" style="text-align: right">
-                                    <a class="btn btn-secondary" href="javascript:history.back()" role="button"><i class="fa fa-backward"></i> Regresar</a>
+                                    <a class="btn btn-secondary" href="<?= _SERVER_ . 'Pedido/historial_pedidos'?>" role="button"><i class="fa fa-backward"></i> Regresar</a>
                                 </div>
                             </div>
                         </div>

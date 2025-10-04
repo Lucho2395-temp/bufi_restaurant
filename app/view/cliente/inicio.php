@@ -36,7 +36,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-form-label">Nro Documento:</label>
-                                        <input class="form-control" type="text" id="cliente_numero" onchange="consultar_documento(this.value)" onkeyup="return validar_numeros(this.id)" name="cliente_numero" maxlength="15" placeholder="Ingrese Telefono...">
+                                        <input class="form-control" type="text" id="cliente_numero" onchange="consultar_documento(this.value)" onkeyup="return validar_numeros(this.id)" name="cliente_numero" maxlength="15" placeholder="Ingrese Número...">
                                     </div>
                                 </div>
                                 <div class="col-lg-12" id="div_nombre">
@@ -84,7 +84,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="col-form-label">Correo:</label>
-                                        <input class="form-control" type="text" id="cliente_correo" name="cliente_correo" maxlength="500" placeholder="Ingrese Correo...">
+                                        <input class="form-control" type="email" id="cliente_correo" name="cliente_correo" maxlength="500" placeholder="Ingrese Correo...">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -179,7 +179,7 @@
                                 <div class="col-lg-7">
                                     <div class="form-group">
                                         <label class="col-form-label">Correo:</label>
-                                        <textarea rows="2" class="form-control" type="email" id="cliente_correo_e" name="cliente_correo_e" maxlength="500" placeholder="Ingrese Correo..."></textarea>
+                                        <input type="email" class="form-control" id="cliente_correo_e" name="cliente_correo_e" placeholder="Ingrese Correo...">
                                     </div>
                                 </div>
                             </div>
@@ -333,21 +333,35 @@
 
     function consultar_documento(valor){
         var tipo_doc = $('#id_tipodocumento').val();
+        $.ajax({
+            type: "POST",
+            url: urlweb + "api/Clientes/obtener_datos_x_dni",
+            data: "numero="+valor,
+            dataType: 'json',
+            success:function (r) {
+                if(r.result.resultado == 1){
+                    $("#cliente_nombre").val(r.result.name+ ' ' + r.result.first_name+ ' ' + r.result.last_name);
+                    $("#cliente_direccion").val(r.result.direccion);
+                }else{
+                    if(tipo_doc == "2"){
+                        if(valor.length==8){
+                            ObtenerDatosDni(valor);
+                        }else{
+                            $('#cliente_numero').val('')
+                            alert('El numero debe tener 8 digitos');
+                        }
+                    }else if(tipo_doc == "4"){
+                        if (valor.length==11){
+                            ObtenerDatosRuc(valor);
+                        }else{
+                            $('#cliente_numero').val('')
+                            alert('El numero debe tener 11 digitos');
+                        }
 
-        if(tipo_doc == "2"){
-            if(valor.length==8){
-                ObtenerDatosDni(valor);
-            }else{
-                alert('El numero debe tener 8 digitos');
+                    }
+                }
             }
-        }else if(tipo_doc == "4"){
-            if (valor.length==11){
-                ObtenerDatosRuc(valor);
-            }else{
-                alert('El numero debe tener 11 digitos');
-            }
-
-        }
+        });
     }
     function consultar_documento_e(valor){
         var tipo_doc = $('#id_tipodocumento_e').val();
@@ -368,40 +382,71 @@
 
     function ObtenerDatosDni(valor){
         var numero_dni =  valor;
-        var cliente_nombre = 'cliente_nombre';
 
-        $.ajax({
-            type: "POST",
-            url: urlweb + "api/Cliente/obtener_datos_x_dni",
-            data: "numero_dni="+numero_dni,
-            dataType: 'json',
-            beforeSend: function () {
-                cambiar_estado_boton(cliente_nombre, 'buscando...', true);
-            },
-            success:function (r) {
-                cambiar_estado_boton(cliente_nombre, "", false);
-                $("#cliente_nombre").val(r.result.name+ ' ' + r.result.first_name+ ' ' + r.result.last_name);
+        cambiar_estado_boton('cliente_nombre', 'buscando...', true);
+        var formData = new FormData();
+        formData.append("token", "WNxcDmZ1Nftc1QeJcSHpDgdaW5ynN9gL8t2VQvjAQGBYt4HcUlPzxvf03c4c");
+        formData.append("dni", numero_dni);
+        var request = new XMLHttpRequest();
+        request.open("POST", "https://api.migo.pe/api/v1/dni");
+        request.setRequestHeader("Accept", "application/json");
+        request.send(formData);
+        //$('.loader').show();
+        request.onload = function() {
+            var data = JSON.parse(this.response);
+            if(data.success){
+                //$('.loader').hide();
+                console.log("Datos Encontrados");
+                cambiar_estado_boton('cliente_nombre', "", false);
+                //$('#cotizacion_beneficiario').val(data.nombre);
+                $("#cliente_nombre").val(data.nombre);
+                //$('#cliente_direccion').val('');
+                //$('#cliente_condicion').val("HABIDO");
+            }else{
+                //$('.loader').hide();
+                console.log(data.message);
             }
-        });
+        };
     }
     function ObtenerDatosRuc(valor){
         var numero_ruc =  valor;
-        var cliente_razonsocial = 'cliente_razonsocial';
 
-        $.ajax({
+        cambiar_estado_boton('cliente_nombre', 'buscando...', true);
+        cambiar_estado_boton('cliente_direccion', 'buscando...', true);
+        var formData = new FormData();
+        formData.append("token", "WNxcDmZ1Nftc1QeJcSHpDgdaW5ynN9gL8t2VQvjAQGBYt4HcUlPzxvf03c4c");
+        formData.append("ruc", numero_ruc);
+        var request = new XMLHttpRequest();
+        request.open("POST", "https://api.migo.pe/api/v1/ruc");
+        request.setRequestHeader("Accept", "application/json");
+        request.send(formData);
+        $('.loader').show();
+        request.onload = function() {
+            var data = JSON.parse(this.response);
+            if(data.success){
+                //$('.loader').hide();
+                console.log("Datos Encontrados");
+                cambiar_estado_boton('cliente_nombre', "", false);
+                cambiar_estado_boton('cliente_direccion', "", false);
+                //$('#cotizacion_beneficiario').val(data.nombre_o_razon_social);
+                $("#cliente_razonsocial").val(data.nombre_o_razon_social);
+                $("#cliente_direccion").val(data.direccion);
+            }else{
+                //$('.loader').hide();
+                console.log(data.message);
+            }
+        };
+        /*$.ajax({
             type: "POST",
             url: urlweb + "api/Cliente/obtener_datos_x_ruc",
             data: "numero_ruc="+numero_ruc,
             dataType: 'json',
-            beforeSend: function () {
-                cambiar_estado_boton(cliente_razonsocial, 'buscando...', true);
-            },
             success:function (r) {
-                cambiar_estado_boton(cliente_razonsocial, "", false);
-                $("#cliente_razonsocial").val(r.result.razon_social);
+                $("#client_name").val(r.result.razon_social);
             }
-        });
+        });*/
     }
+
     function ObtenerDatosDni_e(valor){
         var numero_dni =  valor;
 

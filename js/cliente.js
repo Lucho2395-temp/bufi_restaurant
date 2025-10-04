@@ -25,6 +25,20 @@ $("#gestionarInfoCliente").on('submit', function(e){
     //valor = validar_campo_vacio('cliente_fecha', cliente_fecha, valor);
     //valor = validar_campo_vacio('cliente_estado', cliente_estado, valor);
 
+    var tipo_doc = $('#id_tipodocumento').val();
+
+    if(tipo_doc == "2"){
+        if(valor.length!==8){
+            alert('El numero debe tener 8 digitos');
+            valor = false;
+        }
+    }else if(tipo_doc == "4"){
+        if (valor.length!==11){
+            alert('El numero debe tener 11 digitos');
+            valor = false;
+        }
+    }
+
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){
         //Cadena donde enviaremos los parametros por POST

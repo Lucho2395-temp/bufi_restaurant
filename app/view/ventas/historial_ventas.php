@@ -99,7 +99,7 @@
                                     foreach ($ventas as $al){
                                         $stylee="style= 'text-align: center;'";
                                         if ($al->anulado_sunat == 1){
-                                            $stylee="style= 'text-align: center; text-decoration: line-through'";
+                                            $stylee="style= 'background-color: #f8d7da;  font-style: italic;'";
                                         }
 
                                         if($al->venta_tipo == "03"){
@@ -164,8 +164,10 @@
                                             <td style="text-align: left">
                                                 <a type="button" title="Ver detalle" class="btn btn-sm btn-primary" style="color: white" href="<?php echo _SERVER_. 'Ventas/ver_detalle_venta/' . $al->id_venta;?>" ><i class="fa fa-eye ver_detalle"></i></a>
                                                 <?php
-                                                if($al->anulado_sunat == "0" && ($al->venta_tipo_envio == "0" || $al->venta_tipo_envio == "1") AND $al->venta_tipo != "03"){ ?>
-                                                    <a id="btn_enviar<?= $al->id_venta;?>" type="button" title="Enviar a Sunat" class="btn btn-sm btn-success btne" style="color: white" onclick="preguntar('¿Está seguro que desea enviar a la Sunat este Comprobante?','enviar_comprobante_sunat','Si','No',<?= $al->id_venta;?>)"><i class="fa fa-check margen"></i></a>
+                                                if($al->anulado_sunat == "0" && ($al->venta_tipo_envio == "0" || $al->venta_tipo_envio == "1") AND $al->venta_tipo != "03")
+                                                { ?>
+                                                    <button id="btn_enviar<?= $al->id_venta;?>" title="Enviar a Sunat" class="btn btn-sm btn-success btne" style="color: white" onclick="preguntar('¿Está seguro que desea enviar a la Sunat este Comprobante?','enviar_comprobante_sunat','Si','No',<?= $al->id_venta;?>)"><i class="fa fa-check margen"></i></button>
+                                                    <!--<a id="btn_enviar<?php /*= $al->id_venta;*/?>" type="button" title="Enviar a Sunat" class="btn btn-sm btn-success btne" style="color: white" onclick="preguntar('¿Está seguro que desea enviar a la Sunat este Comprobante?','enviar_comprobante_sunat','Si','No',<?php /*= $al->id_venta;*/?>)"><i class="fa fa-check margen"></i></a>-->
                                                     <?php
                                                 }
                                                 if($al->venta_tipo == "03" and $al->anulado_sunat == "0"){

@@ -30,7 +30,7 @@
         <div class="wrap-login100 p-t-190 p-b-30">
             <div class="login100-form validate-form">
                 <div class="login100-form-avatar">
-                    <img src="<?=_SERVER_;?>media/logo/logo_kaffu.jpg" alt="Logo de Proyecto">
+                    <img src="<?=_SERVER_;?>media/logo/logo_empresa.jpg" alt="Logo de Proyecto">
                 </div>
 
                 <span class="login100-form-title p-t-20 p-b-45"><?=_TITLE_;?></span>

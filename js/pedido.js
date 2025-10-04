@@ -145,7 +145,7 @@ function calcular_total(id){
     $('#icbper_').val(total_icbper.toFixed(2));
     $('#venta_total').html(total_pedido_detalle.toFixed(2));
     $('#venta_total_').val(total_pedido_detalle.toFixed(2));
-
+    calcular_vuelto();
    // var calcular_igv = tot * 0.18 ;
     //igv = calcular_igv;
     //$('#igv_total').html(igv);
@@ -207,7 +207,7 @@ function agregar(){
     valor = validar_campo_vacio('correlativo', correlativo, valor);
     if(venta_total === "0.00" || venta_total === ""){
         var temporal_total = "";
-        valor = validar_campo_vacio('venta_total_', temporal_total, valor);
+        valor = validar_campo_vacio('venta_total', temporal_total, valor);
     }
     if(gratis == 1){
         valor = validar_campo_vacio('observacion_cortesia', observacion_cortesia, valor);
@@ -265,7 +265,6 @@ function agregar(){
                 cambiar_estado_boton(boton, 'cobrando...', true);
             },
             success: function (r) {
-                cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar", false);
                 switch (r.result.code) {
                     case 1:
                         respuesta('¡Venta realizada correctamente!', 'success');
@@ -280,12 +279,15 @@ function agregar(){
                         }
                         break;
                     case 2:
+                        cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar", false);
                         respuesta('Error al generar Venta', 'error');
                         break;
                     case 5:
+                        cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar", false);
                         respuesta('Error al generar Venta, revisar Cliente', 'error');
                         break;
                     default:
+                        cambiar_estado_boton(boton, "<i class=\"fa fa-save fa-sm text-white-50\"></i> Guardar", false);
                         respuesta('¡Algo catastrofico ha ocurrido!', 'error');
                         break;
                 }
@@ -296,6 +298,7 @@ function agregar(){
 
 function agregar_(){
     var valor = true;
+    var boton = "btn-agregar";
     var id_cliente = $('#id_cliente').val();
     var select_tipodocumento = $('#select_tipodocumento').val();
     var cliente_numero = $('#cliente_numero').val();
@@ -321,7 +324,6 @@ function agregar_(){
 
     var partir_pago = $('#partir_pago').val();
     var contenido_tipopago = "";
-    var id_tipo_pago = $('#id_tipo_pago').val();
     var monto_1 = $('#monto_1').val();
 
     if(partir_pago == 1){
@@ -331,11 +333,12 @@ function agregar_(){
     }else{
         contenido_tipopago = id_tipo_pago + '-.-.' + venta_total + '/-/-';
     }
-
-    $("input:checkbox:checked").each(function() {
+    let arraycheck={}
+    $(".cobrar_venta_check:checked").each(function() {
         pedido_check_ += $(this).val() + "-.-.";
+        arraycheck[`${$(this).val()}`]=$(this).val()
     });
-    $('#datos_detalle_pedido').val(pedido_check_);
+    $('#datos_detalle_pedido').val(Object.keys(arraycheck).join("-.-."));
     var datos_detalle_pedido = $('#datos_detalle_pedido').val();
 
     //validar campos vacios
@@ -380,6 +383,9 @@ function agregar_(){
             url: urlweb + "api/Pedido/guardar_venta",
             data: cadena,
             dataType: 'json',
+            beforeSend: function () {
+                cambiar_estado_boton(boton, 'cobrando...', true);
+            },
             success: function (r) {
                 switch (r.result.code) {
                     case 1:
@@ -395,12 +401,15 @@ function agregar_(){
                         }
                         break;
                     case 2:
+                        cambiar_estado_boton(boton, '<i class="fa fa-save fa-sm text-white-50"></i> Guardar', true);
                         respuesta('Error al generar Venta', 'error');
                         break;
                     case 5:
+                        cambiar_estado_boton(boton, '<i class="fa fa-save fa-sm text-white-50"></i> Guardar', true);
                         respuesta('Error al generar Venta, revisar Cliente', 'error');
                         break;
                     default:
+                        cambiar_estado_boton(boton, '<i class="fa fa-save fa-sm text-white-50"></i> Guardar', true);
                         respuesta('¡Algo catastrofico ha ocurrido!', 'error');
                         break;
                 }

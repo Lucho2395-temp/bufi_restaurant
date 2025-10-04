@@ -129,7 +129,7 @@
     <div class="modal-dialog" role="document" style="max-width: 40% !important;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Pedido</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar de Mesa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -180,38 +180,48 @@
                                 <div class="form-group">
                                     <label><b>Productos :</b></label>
                                     <hr>
-                                    <div class="row">
-                                        <?php
-                                        $cal_posi = 0;
-                                        $cal_nega = 0;
-                                        foreach($pedidos as $ls){
-
-                                            $consultar_estado = $this->pedido->consultar($ls->id_comanda_detalle);
-                                            if($ls->comanda_detalle_estado_venta == 0 ){
-                                                //$tipo_afectacion = $this->pedido->tipo_afectacion_x_producto
+                                    <div class="table-responsive" style="max-height:300px; overflow-y:auto;">
+                                        <table class="table table-bordered table-sm">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th style="width:40px;">#</th>
+                                                <th>Producto</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Total</th>
+                                                <th>Para</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach($pedidos as $index => $ls):
+                                                $disabled = $ls->comanda_detalle_estado_venta != 0 ? 'disabled style="color:lightgray;"' : '';
+                                                $row_style = $ls->comanda_detalle_estado_venta != 0 ? 'style="color:lightgray;"' : '';
                                                 ?>
-                                                <div class="col-md-12" style="font-weight: bold;">
-                                                    <input  type="checkbox" onchange="calcular_total(<?= $ls->id_comanda_detalle;?>)" id="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>" name="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>" value="<?= $ls->id_comanda_detalle;?>" class="chk-box cobrar_venta_check">
-                                                    <label for="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"> <?php echo $ls->producto_nombre;?> // S/.<?php echo $ls->comanda_detalle_precio;?> // Cant. <?php echo $ls->comanda_detalle_cantidad?> // Total: <?php echo $ls->comanda_detalle_total;?> // Para: <?php echo $ls->comanda_detalle_despacho;?></label>
+                                                <tr <?= $row_style; ?>>
+                                                    <td>
+                                                        <input type="checkbox" <?= $disabled; ?> onchange="calcular_total(<?= $ls->id_comanda_detalle;?>)"
+                                                               id="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"
+                                                               name="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"
+                                                               value="<?= $ls->id_comanda_detalle;?>"
+                                                               class="chk-box cobrar_venta_check"
+                                                               style="transform: scale(1.5);margin-right: 8px;cursor: pointer;">
+                                                    </td>
+                                                    <td><label for="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"><?= $ls->producto_nombre; ?></label></td>
+                                                    <td>S/.<?= number_format($ls->comanda_detalle_precio,2); ?></td>
+                                                    <td><?= $ls->comanda_detalle_cantidad; ?></td>
+                                                    <td><?= number_format($ls->comanda_detalle_total,2); ?></td>
+                                                    <td><?= $ls->comanda_detalle_despacho; ?></td>
+
+                                                    <!-- Hidden inputs -->
                                                     <input type="hidden" id="precio_total_detalle<?= $ls->id_comanda_detalle;?>" name="precio_total_detalle<?= $ls->id_comanda_detalle;?>" value="<?= $ls->comanda_detalle_total;?>">
                                                     <input type="hidden" id="tipo_afectacion_producto<?= $ls->id_comanda_detalle;?>" name="tipo_afectacion_producto<?= $ls->id_comanda_detalle;?>" value="<?= $ls->producto_precio_codigoafectacion;?>">
                                                     <input type="hidden" id="producto_precio_venta<?= $ls->id_comanda_detalle;?>" name="producto_precio_venta<?= $ls->id_comanda_detalle;?>" value="<?= $ls->comanda_detalle_precio;?>">
                                                     <input type="hidden" id="comanda_detalle_cantidad<?= $ls->id_comanda_detalle;?>" name="comanda_detalle_cantidad<?= $ls->id_comanda_detalle;?>" value="<?= $ls->comanda_detalle_cantidad;?>">
                                                     <input type="hidden" id="id_receta<?= $ls->id_comanda_detalle;?>" name="id_receta<?= $ls->id_comanda_detalle;?>" value="<?= $ls->id_receta;?>">
-                                                </div>
-                                                <?php
-                                            }else{
-                                                ?>
-                                                <div class="col-md-12" style="color: lightgray">
-                                                    <input type="checkbox" disabled  id="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>">
-                                                    <label for="id_comanda_detalle_<?= $ls->id_comanda_detalle;?>"> <?php echo $ls->producto_nombre;?> // S/.<?php echo $ls->comanda_detalle_precio;?> // Cant. <?php echo $ls->comanda_detalle_cantidad?> // Total: <?php echo $ls->comanda_detalle_total;?> // Para: <?php echo $ls->comanda_detalle_despacho;?></label>
-                                                </div>
-                                                <?php
-                                            }
-                                            ?>
-                                            <?php
-                                        }
-                                        ?>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <hr>
                                     <div class="row">
@@ -309,7 +319,8 @@
                                                 <?php
                                                 $consultar_existe_nota_venta = $this->pedido->consultar_existe_en_nota_venta_detalle($dato_pedido->id_comanda);
                                                 (count($consultar_existe_nota_venta) != count($pedidos))?$en=true:$en=false;
-                                                if($en){
+                                                //if($en){ SI QUEREMOS NOTA DE VENTA DESCOMENTAMOS ESTO Y COMENTAMOS DE ABAJO
+                                                if(false){
                                                     ?>
                                                     <option value="20">Nota de Venta</option>
                                                     <?php
@@ -338,8 +349,10 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <label for="">Pagó con:</label><br>
-                                        <input type="text" class="form-control" name="pago_cliente" id="pago_cliente" onkeypress="return validar_numeros_decimales_dos(this.id)" onkeyup="calcular_vuelto()" >
+                                        <label for="pago_cliente"><b>Pagó con:</b></label>
+                                        <input type="text" class="form-control" name="pago_cliente" id="pago_cliente"
+                                               placeholder="Cálculo del vuelto."
+                                               onkeyup="validar_numeros_decimales_dos(this.id);calcular_vuelto()">
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
@@ -458,7 +471,7 @@
     <div class="modal-dialog" role="document" style="max-width: 40% !important;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Generar Venta</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Cantidad de Personas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -624,6 +637,14 @@
                                         <div class="col-lg-3 col-sm-3 col-md-3">
                                             <button type="button" id="btn_generarventa" class="btn btn-primary" data-toggle="modal" data-target="#ventas">
                                                 <i class="fa fa-money"></i> Cobrar</button>
+                                        </div>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <div class="col-lg-3 col-sm-3 col-md-3">
+                                            <div class="alert alert-warning" role="alert">
+                                                <i class="fa fa-exclamation-circle"></i> Debe aperturar primero su caja del día para poder generar ventas.
+                                            </div>
                                         </div>
                                         <?php
                                     }

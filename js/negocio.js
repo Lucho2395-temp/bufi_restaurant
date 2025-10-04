@@ -14,6 +14,8 @@ $("#gestionarnegocio").on('submit', function(e){
 
     //Validamos si los campos a usar no se encuentran vacios
     valor = validar_campo_vacio('negocio_nombre', negocio_nombre, valor);
+    valor = validar_campo_vacio('id_ciudad', id_ciudad, valor);
+    valor = validar_campo_vacio('negocio_ruc', negocio_ruc, valor);
 
     //Si var valor no ha cambiado de valor, procedemos a hacer la llamada de ajax
     if(valor){
@@ -40,6 +42,9 @@ $("#gestionarnegocio").on('submit', function(e){
                         break;
                     case 2:
                         respuesta('Error al guardar Negocio, vuelva a intentarlo', 'error');
+                        break;
+                    case 5:
+                        respuesta(r.result.message, 'error');
                         break;
                     default:
                         respuesta('¡Algo catastrofico ha ocurrido!', 'error');

@@ -78,7 +78,7 @@
                                         foreach ($ventas as $al){
                                             $stylee="style= 'text-align: center;'";
                                             if ($al->anulado_sunat == 1){
-                                                $stylee="style= 'text-align: center; text-decoration: line-through'";
+                                                $stylee="style= 'background-color: #f8d7da;  font-style: italic;'";
                                             }
                                             if($al->venta_tipo == "03"){
                                                 $tipo_comprobante = "BOLETA";

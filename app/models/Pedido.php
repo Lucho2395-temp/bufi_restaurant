@@ -1352,7 +1352,7 @@ class Pedido
     }
     public function listar_ultima_fecha($fecha_hoy,$id_usuario){
         try{
-            $sql = 'select * from caja where date(caja_fecha_apertura) = ? and id_usuario_apertura = ?';
+            $sql = 'select * from caja where date(caja_fecha_apertura) = ? and id_usuario_apertura = ? and caja_fecha_cierre is null';
             $stm = $this->pdo->prepare($sql);
             $stm->execute([$fecha_hoy,$id_usuario]);
             $result = $stm->fetch();

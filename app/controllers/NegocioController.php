@@ -155,33 +155,40 @@ class NegocioController
             //Validacion de datos
             if($ok_data) {
                 $model = new Negocio();
-                $fecha = date('Y-m-d H:i:s');
-                $negocio_nombre = $_POST['negocio_nombre'];
-                $model->negocio_nombre = $negocio_nombre;
-                $model->id_ciudad = $_POST['id_ciudad'];
-                $model->negocio_ruc = $_POST['negocio_ruc'];
-                $model->negocio_direccion = $_POST['negocio_direccion'];
-                $model->negocio_telefono = $_POST['negocio_telefono'];
-                $model->negocio_fecha_registro = $fecha;
-                $model->negocio_estado = 1;
+                if($this->negocio->validar_ruc_negocio($_POST['negocio_ruc'])){
+                    //Código 5: DNI duplicado
+                    $result = 5;
+                    $message = "Ya existe un cliente con este DNI registrado";
+                }else{
+                    $fecha = date('Y-m-d H:i:s');
+                    $negocio_nombre = $_POST['negocio_nombre'];
+                    $model->negocio_nombre = $negocio_nombre;
+                    $model->id_ciudad = $_POST['id_ciudad'];
+                    $model->negocio_ruc = $_POST['negocio_ruc'];
+                    $model->negocio_direccion = $_POST['negocio_direccion'];
+                    $model->negocio_telefono = $_POST['negocio_telefono'];
+                    $model->negocio_fecha_registro = $fecha;
+                    $model->negocio_estado = 1;
 
-                if($_FILES['negocio_foto']['name'] != null) {
-                    //Conseguimos la extension del archivo y especificamos la ruta
-                    $ext = pathinfo($_FILES['negocio_foto']['name'], PATHINFO_EXTENSION);
-                    $file_path = "media/negocio/" . $negocio_nombre . '_' .date('dmYHis') . "." . $ext;
-                    //Para subir archivos en general o imagenes sin comprimir
-                    //if(move_uploaded_file($_FILES['usuario_imagenp']['tmp_name'], $file_path)){
-                    //Para subir imagenes comprimidas
-                    if($this->archivo->subir_imagen_comprimida($_FILES['negocio_foto']['tmp_name'], $file_path,false)){
-                        $model->negocio_foto = $file_path;
+                    if($_FILES['negocio_foto']['name'] != null) {
+                        //Conseguimos la extension del archivo y especificamos la ruta
+                        $ext = pathinfo($_FILES['negocio_foto']['name'], PATHINFO_EXTENSION);
+                        $file_path = "media/negocio/" . $negocio_nombre . '_' .date('dmYHis') . "." . $ext;
+                        //Para subir archivos en general o imagenes sin comprimir
+                        //if(move_uploaded_file($_FILES['usuario_imagenp']['tmp_name'], $file_path)){
+                        //Para subir imagenes comprimidas
+                        if($this->archivo->subir_imagen_comprimida($_FILES['negocio_foto']['tmp_name'], $file_path,false)){
+                            $model->negocio_foto = $file_path;
+                        } else {
+                            $model->negocio_foto = 'media/negocio/default.jpg';
+                        }
                     } else {
-                        $model->negocio_foto = 'media/negocio/default.jpg';
+                        $model->negocio_foto = 'media/negocio/default.png';
                     }
-                } else {
-                    $model->negocio_foto = 'media/negocio/default.png';
+
+                    $result = $this->negocio->guardar_negocio($model);
                 }
 
-                $result = $this->negocio->guardar_negocio($model);
             }else {
                 //Código 6: Integridad de datos erronea
                 $result = 6;

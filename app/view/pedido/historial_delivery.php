@@ -18,7 +18,7 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-lg-5">
-                                                <input class="form-control" type="password" id="password"  placeholder="Ingrese su Contraseña AQUÍ para Permitir Cambios...">
+                                                <input class="form-control" type="password" id="password"  placeholder="Ingrese su Contraseña AQUÍ para Permitir Eliminar...">
                                             </div>
                                         </div>
                                     </div>

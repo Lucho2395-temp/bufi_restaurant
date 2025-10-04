@@ -142,7 +142,7 @@ class Caja
 
     public function jalar_caja_movi($fecha_hoy,$id_usuario){
         try{
-            $sql = 'select * from caja where date(caja_fecha) = ? and id_usuario_apertura = ? limit 1';
+            $sql = 'select * from caja where date(caja_fecha) = ? and id_usuario_apertura = ? and caja_fecha_cierre is null limit 1';
             $stm = $this->pdo->prepare($sql);
             $stm->execute([$fecha_hoy,$id_usuario]);
             return $stm->fetch();
