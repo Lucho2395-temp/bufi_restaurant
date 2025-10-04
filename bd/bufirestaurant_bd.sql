@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 05, 2025 at 10:37 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Servidor: localhost
+-- Tiempo de generación: 04-10-2025 a las 19:04:00
+-- Versión del servidor: 8.0.30
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kaffu_bd`
+-- Base de datos: `bufirestaurant_bd`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `almacenes`
+-- Estructura de tabla para la tabla `almacenes`
 --
 
 CREATE TABLE `almacenes` (
@@ -37,7 +37,7 @@ CREATE TABLE `almacenes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `almacenes`
+-- Volcado de datos para la tabla `almacenes`
 --
 
 INSERT INTO `almacenes` (`id_almacen`, `id_negocio`, `id_sucursal`, `almacen_nombre`, `almacen_capacidad`, `almacen_estado`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `almacenes` (`id_almacen`, `id_negocio`, `id_sucursal`, `almacen_nom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asistencia`
+-- Estructura de tabla para la tabla `asistencia`
 --
 
 CREATE TABLE `asistencia` (
@@ -66,7 +66,7 @@ CREATE TABLE `asistencia` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `asistencia_fecha`
+-- Estructura de tabla para la tabla `asistencia_fecha`
 --
 
 CREATE TABLE `asistencia_fecha` (
@@ -77,7 +77,7 @@ CREATE TABLE `asistencia_fecha` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `caja`
+-- Estructura de tabla para la tabla `caja`
 --
 
 CREATE TABLE `caja` (
@@ -95,21 +95,18 @@ CREATE TABLE `caja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `caja`
+-- Volcado de datos para la tabla `caja`
 --
 
 INSERT INTO `caja` (`id_caja`, `id_turno`, `id_caja_numero`, `caja_fecha`, `id_usuario_apertura`, `caja_apertura`, `caja_fecha_apertura`, `id_usuario_cierre`, `caja_cierre`, `caja_fecha_cierre`, `caja_estado`) VALUES
-(1, 2, 1, '2025-08-29', 16, '29.00', '2025-08-29 17:27:58', 16, '100.00', '2025-08-30 08:28:02', 0),
-(2, 1, 1, '2025-08-30', 16, '110.00', '2025-08-30 08:29:39', 16, '110.00', '2025-09-01 19:47:49', 0),
-(3, 1, 1, '2025-09-01', 16, '110.00', '2025-09-01 20:17:15', 16, '218.80', '2025-09-01 21:53:29', 0),
-(4, 1, 1, '2025-09-02', 16, '131.80', '2025-09-02 07:39:38', 16, '123.50', '2025-09-02 22:19:30', 0),
-(5, 1, 1, '2025-09-04', 16, '70.70', '2025-09-04 11:08:35', 16, '0.00', '2025-09-05 17:35:33', 0),
-(6, 1, 1, '2025-09-05', 16, '70.70', '2025-09-05 17:35:42', NULL, NULL, NULL, 1);
+(1, 1, 1, '2025-10-03', 1, 10.00, '2025-10-03 11:21:03', 1, 100.00, '2025-10-04 11:50:48', 0),
+(2, 1, 1, '2025-10-03', 15, 100.00, '2025-10-03 11:57:33', 15, 0.00, '2025-10-04 12:42:59', 0),
+(3, 1, 1, '2025-10-04', 15, 100.00, '2025-10-04 12:45:22', 15, 1000.00, '2025-10-04 13:26:59', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `caja_numero`
+-- Estructura de tabla para la tabla `caja_numero`
 --
 
 CREATE TABLE `caja_numero` (
@@ -120,7 +117,7 @@ CREATE TABLE `caja_numero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `caja_numero`
+-- Volcado de datos para la tabla `caja_numero`
 --
 
 INSERT INTO `caja_numero` (`id_caja_numero`, `caja_numero_nombre`, `caja_numero_fecha`, `caja_numero_estado`) VALUES
@@ -130,7 +127,7 @@ INSERT INTO `caja_numero` (`id_caja_numero`, `caja_numero_nombre`, `caja_numero_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
+-- Estructura de tabla para la tabla `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -141,7 +138,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `categorias`
+-- Volcado de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`id_categoria`, `categoria_nombre`, `categoria_fecha_registro`, `categoria_estado`) VALUES
@@ -156,7 +153,7 @@ INSERT INTO `categorias` (`id_categoria`, `categoria_nombre`, `categoria_fecha_r
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias_negocio`
+-- Estructura de tabla para la tabla `categorias_negocio`
 --
 
 CREATE TABLE `categorias_negocio` (
@@ -171,7 +168,7 @@ CREATE TABLE `categorias_negocio` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ciudad`
+-- Estructura de tabla para la tabla `ciudad`
 --
 
 CREATE TABLE `ciudad` (
@@ -181,7 +178,7 @@ CREATE TABLE `ciudad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `ciudad`
+-- Volcado de datos para la tabla `ciudad`
 --
 
 INSERT INTO `ciudad` (`id_ciudad`, `ciudad_nombre`, `ciudad_estado`) VALUES
@@ -191,7 +188,7 @@ INSERT INTO `ciudad` (`id_ciudad`, `ciudad_nombre`, `ciudad_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientes`
+-- Estructura de tabla para la tabla `clientes`
 --
 
 CREATE TABLE `clientes` (
@@ -209,7 +206,7 @@ CREATE TABLE `clientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `clientes`
+-- Volcado de datos para la tabla `clientes`
 --
 
 INSERT INTO `clientes` (`id_cliente`, `id_tipodocumento`, `cliente_razonsocial`, `cliente_nombre`, `cliente_numero`, `cliente_correo`, `cliente_direccion`, `cliente_direccion_2`, `cliente_telefono`, `cliente_fecha`, `cliente_estado`) VALUES
@@ -218,7 +215,7 @@ INSERT INTO `clientes` (`id_cliente`, `id_tipodocumento`, `cliente_razonsocial`,
 (3, 4, 'CORPORACION LOGISTICA Y SERVICIOS LEO S.A.C.', '', '20536810341', '', 'AV. PRIMERO DE MAYO NRO. 2805 INT. 202 COO. HUANCAYO 1ERA ETAPA - LIMA LIMA EL AGUSTINO', '', '', '2025-08-28 16:18:26', 1),
 (5, 2, '', NULL, '72425369', '', '', '', '900274724', '2025-09-05 17:06:00', 1),
 (6, 2, '', '  Ariana Diaz', '71146962', '', '\r\n\r\n', '', '935932740', '2025-09-05 17:06:38', 1),
-(7, 2, '', '  Kiara Yalta', '71021801', '', '', '', '971903289', '2025-09-05 17:07:21', 1),
+(7, 2, '', '  Kiara Yalta', '71021801', 'kiara', '', '', '971903289', '2025-09-05 17:07:21', 1),
 (8, 2, '', '  Arlet Romayna', '77490815', '', '', '', '925744948', '2025-09-05 17:07:57', 1),
 (9, 2, '', '  Dylan Candela', '61794008', '', '', '', '921600620', '2025-09-05 17:08:55', 1),
 (10, 2, '', '  Valeria Rivera', '61935921', '', '', '', '956807522', '2025-09-05 17:09:39', 1),
@@ -236,7 +233,7 @@ INSERT INTO `clientes` (`id_cliente`, `id_tipodocumento`, `cliente_razonsocial`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comanda`
+-- Estructura de tabla para la tabla `comanda`
 --
 
 CREATE TABLE `comanda` (
@@ -256,46 +253,22 @@ CREATE TABLE `comanda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `comanda`
+-- Volcado de datos para la tabla `comanda`
 --
 
 INSERT INTO `comanda` (`id_comanda`, `id_mesa`, `id_usuario`, `id_cliente`, `comanda_nombre_delivery`, `comanda_direccion_delivery`, `comanda_telefono_delivery`, `comanda_cantidad_personas`, `comanda_correlativo`, `comanda_total`, `comanda_fecha_registro`, `comanda_estado`, `comanda_codigo`) VALUES
-(1, 6, 18, NULL, NULL, NULL, NULL, '1', '290825-1', '10.00', '2025-08-29 17:26:38', 1, '1756506398.5573'),
-(2, 8, 18, NULL, NULL, NULL, NULL, '2', '290825-2', '69.00', '2025-08-29 18:45:42', 1, '1756511142.239'),
-(3, 6, 18, NULL, NULL, NULL, NULL, '1', '290825-3', '32.00', '2025-08-29 19:43:46', 1, '1756514626.0117'),
-(4, 7, 16, NULL, NULL, NULL, NULL, '1', '290825-4', '54.00', '2025-08-29 21:32:57', 1, '1756521177.6513'),
-(5, 0, 18, 3, 'ANONIMO', '\n\n', '', '1', '290825-5', '20.00', '2025-08-29 21:48:11', 1, '1756522091.228'),
-(6, 0, 18, 3, 'ANONIMO', '\n\n', '', '1', '290825-6', '55.00', '2025-08-29 22:39:28', 1, '1756525168.0567'),
-(7, 6, 16, NULL, NULL, NULL, NULL, '1', '290825-7', '55.00', '2025-08-29 22:40:36', 1, '1756525236.8338'),
-(8, 6, 17, NULL, NULL, NULL, NULL, '1', '300825-1', '21.00', '2025-08-30 09:12:48', 1, '1756563168.2191'),
-(9, 6, 16, NULL, NULL, NULL, NULL, '1', '300825-2', '46.00', '2025-08-30 13:56:56', 1, '1756580216.3507'),
-(10, 8, 18, NULL, NULL, NULL, NULL, '1', '300825-3', '25.00', '2025-08-30 15:11:57', 1, '1756584717.0175'),
-(11, 7, 18, NULL, NULL, NULL, NULL, '1', '300825-4', '32.00', '2025-08-30 16:28:06', 1, '1756589286.885'),
-(12, 8, 16, NULL, NULL, NULL, NULL, '1', '300825-5', '20.00', '2025-08-30 16:57:02', 1, '1756591022.1712'),
-(13, 8, 18, NULL, NULL, NULL, NULL, '1', '300825-6', '139.00', '2025-08-30 20:27:57', 1, '1756603677.6139'),
-(14, 6, 18, NULL, NULL, NULL, NULL, '1', '300825-7', '41.00', '2025-08-30 20:40:04', 1, '1756604404.4535'),
-(15, 9, 18, NULL, NULL, NULL, NULL, '1', '300825-8', '25.00', '2025-08-30 20:44:15', 1, '1756604655.9361'),
-(16, 6, 16, NULL, NULL, NULL, NULL, '1', '010925-1', '10.00', '2025-09-01 17:23:10', 1, '1756765390.0163'),
-(17, 7, 18, NULL, NULL, NULL, NULL, '1', '010925-2', '45.00', '2025-09-01 19:17:22', 1, '1756772242.8797'),
-(18, 8, 18, NULL, NULL, NULL, NULL, '1', '010925-3', '22.00', '2025-09-01 19:36:13', 1, '1756773373.3277'),
-(19, 9, 16, NULL, NULL, NULL, NULL, '1', '010925-4', '10.00', '2025-09-01 19:49:12', 1, '1756774152.2855'),
-(20, 7, 16, NULL, NULL, NULL, NULL, '1', '010925-5', '12.00', '2025-09-01 20:52:15', 1, '1756777935.6378'),
-(21, 7, 18, NULL, NULL, NULL, NULL, '1', '020925-1', '52.00', '2025-09-02 18:25:42', 1, '1756855542.0808'),
-(22, 7, 16, NULL, NULL, NULL, NULL, '1', '020925-2', '52.00', '2025-09-02 19:09:47', 1, '1756858187.9613'),
-(23, 6, 18, NULL, NULL, NULL, NULL, '1', '020925-3', '71.00', '2025-09-02 20:00:19', 1, '1756861219.9789'),
-(24, 7, 18, NULL, NULL, NULL, NULL, '1', '040925-1', '92.00', '2025-09-04 17:28:54', 1, '1757024934.3917'),
-(25, 6, 18, NULL, NULL, NULL, NULL, '1', '040925-2', '52.00', '2025-09-04 20:29:02', 1, '1757035742.5222'),
-(26, 6, 18, NULL, NULL, NULL, NULL, '1', '050925-1', '10.00', '2025-09-05 17:19:08', 1, '1757110748.0287'),
-(27, 9, 18, NULL, NULL, NULL, NULL, '1', '050925-2', '15.00', '2025-09-05 17:22:45', 1, '1757110965.861'),
-(28, 8, 18, NULL, NULL, NULL, NULL, '1', '050925-3', '43.00', '2025-09-05 17:24:43', 1, '1757111083.7546'),
-(29, 12, 16, NULL, NULL, NULL, NULL, '1', '050925-4', '56.00', '2025-09-05 17:27:01', 1, '1757111221.0948'),
-(30, 7, 18, NULL, NULL, NULL, NULL, '1', '050925-5', '58.00', '2025-09-05 17:34:40', 1, '1757111680.7311'),
-(31, 10, 16, NULL, NULL, NULL, NULL, '1', '050925-6', '52.00', '2025-09-05 17:36:24', 1, '1757111784.0903');
+(1, 6, 1, NULL, NULL, NULL, NULL, '1', '021025-1', 11.00, '2025-10-02 16:48:00', 1, '1759441680.1723'),
+(2, 7, 1, NULL, NULL, NULL, NULL, '1', '021025-2', 45.00, '2025-10-02 17:44:47', 1, '1759445087.3707'),
+(3, 0, 1, 3, 'ANONIMO', '', '', '1', '021025-3', 11.00, '2025-10-02 18:31:27', 1, '1759447887.9844'),
+(4, 0, 1, 3, 'Luis Salazar', 'Alzamora 958', '', '1', '031025-1', 34.00, '2025-10-03 12:37:01', 1, '1759513021.6432'),
+(5, 0, 1, 2, 'SALAZAR BARTRA LUIS ANTONIO', 'Alzamora 958', '', '1', '031025-2', 5.00, '2025-10-03 12:47:05', 1, '1759513625.9274'),
+(6, 0, 1, 1, 'Luis Aguilar', 'sin direccion', '', '1', '031025-3', 5.00, '2025-10-03 16:08:02', 1, '1759525682.0636'),
+(8, 8, 1, NULL, NULL, NULL, NULL, '1', '031025-4', 15.00, '2025-10-03 17:37:10', 1, '1759531030.6655');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comanda_detalle`
+-- Estructura de tabla para la tabla `comanda_detalle`
 --
 
 CREATE TABLE `comanda_detalle` (
@@ -317,104 +290,28 @@ CREATE TABLE `comanda_detalle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `comanda_detalle`
+-- Volcado de datos para la tabla `comanda_detalle`
 --
 
 INSERT INTO `comanda_detalle` (`id_comanda_detalle`, `id_comanda`, `id_producto`, `comanda_detalle_precio`, `comanda_detalle_cantidad`, `comanda_detalle_despacho`, `comanda_detalle_total`, `comanda_detalle_observacion`, `comanda_detalle_fecha_registro`, `comanda_detalle_fecha_eliminacion`, `comanda_detalle_estado`, `comanda_detalle_estado_venta`, `comanda_detalle_hora_entrega`, `comanda_detalle_usuario`, `id_usuario_eli`) VALUES
-(1, 1, 1, '10.00', '1', 'Salon', '10.00', '-', '2025-08-29 17:26:39', NULL, 1, 1, NULL, NULL, NULL),
-(2, 2, 48, '22.00', '2', 'Salon', '44.00', '-', '2025-08-29 18:45:43', NULL, 1, 1, NULL, NULL, NULL),
-(3, 2, 13, '5.00', '2', 'Salon', '10.00', '-', '2025-08-29 18:45:43', NULL, 1, 1, NULL, NULL, NULL),
-(4, 2, 55, '15.00', '1', 'Salon', '15.00', '-', '2025-08-29 19:22:27', NULL, 1, 1, NULL, NULL, NULL),
-(5, 3, 3, '12.00', '1', 'Salon', '12.00', '-', '2025-08-29 19:43:47', NULL, 1, 1, NULL, NULL, NULL),
-(6, 3, 51, '20.00', '1', 'Salon', '20.00', '-', '2025-08-29 19:43:48', NULL, 1, 1, NULL, NULL, NULL),
-(7, 4, 48, '22.00', '1', 'Salon', '22.00', '-', '2025-08-29 21:32:58', NULL, 1, 1, NULL, NULL, NULL),
-(8, 4, 13, '5.00', '1', 'Salon', '5.00', '-', '2025-08-29 21:32:58', NULL, 1, 1, NULL, NULL, NULL),
-(9, 5, 49, '20.00', '1', 'Delivery', '20.00', '-', '2025-08-29 21:48:11', NULL, 1, 0, NULL, NULL, NULL),
-(10, 4, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-08-29 22:03:15', NULL, 1, 1, NULL, NULL, NULL),
-(11, 4, 13, '5.00', '1', 'Salon', '5.00', '-', '2025-08-29 22:03:15', NULL, 1, 1, NULL, NULL, NULL),
-(12, 6, 17, '15.00', '1', 'Delivery', '15.00', '-', '2025-08-29 22:39:28', NULL, 1, 0, NULL, NULL, NULL),
-(13, 6, 49, '20.00', '2', 'Delivery', '40.00', '-', '2025-08-29 22:39:28', NULL, 1, 0, NULL, NULL, NULL),
-(14, 7, 17, '15.00', '1', 'Salon', '15.00', '-', '2025-08-29 22:40:37', NULL, 1, 1, NULL, NULL, NULL),
-(15, 7, 49, '20.00', '2', 'Salon', '40.00', '-', '2025-08-29 22:40:37', NULL, 1, 1, NULL, NULL, NULL),
-(16, 8, 3, '12.00', '1', 'Salon', '12.00', '-', '2025-08-30 09:12:48', NULL, 1, 1, NULL, NULL, NULL),
-(17, 8, 35, '9.00', '1', 'Salon', '9.00', '-', '2025-08-30 09:12:48', NULL, 1, 1, NULL, NULL, NULL),
-(18, 9, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-08-30 13:56:56', NULL, 1, 1, NULL, NULL, NULL),
-(19, 9, 56, '9.00', '1', 'Salon', '9.00', '-', '2025-08-30 14:02:34', NULL, 1, 1, NULL, NULL, NULL),
-(20, 9, 57, '15.00', '1', 'Salon', '15.00', '-', '2025-08-30 14:09:13', NULL, 1, 1, NULL, NULL, NULL),
-(21, 10, 13, '5.00', '1', 'Salon', '5.00', '-', '2025-08-30 15:11:57', NULL, 1, 1, NULL, NULL, NULL),
-(22, 10, 51, '20.00', '1', 'Salon', '20.00', '-', '2025-08-30 15:12:35', NULL, 1, 1, NULL, NULL, NULL),
-(23, 11, 37, '9.00', '1', 'Salon', '9.00', '-', '2025-08-30 16:28:07', '2025-08-30 22:21:41', 0, 0, NULL, NULL, 16),
-(24, 11, 27, '12.00', '1', 'Salon', '12.00', '-', '2025-08-30 16:28:07', NULL, 1, 1, NULL, NULL, NULL),
-(25, 12, 51, '20.00', '1', 'Salon', '20.00', '-', '2025-08-30 16:57:02', NULL, 1, 1, NULL, NULL, NULL),
-(26, 13, 40, '25.00', '1', 'Salon', '25.00', '-', '2025-08-30 20:27:57', NULL, 1, 1, NULL, NULL, NULL),
-(27, 13, 1, '10.00', '1', 'Salon', '10.00', '-', '2025-08-30 20:27:57', NULL, 1, 1, NULL, NULL, NULL),
-(28, 13, 48, '22.00', '1', 'Salon', '22.00', '-', '2025-08-30 20:27:57', NULL, 1, 1, NULL, NULL, NULL),
-(29, 13, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-08-30 20:27:58', NULL, 1, 1, NULL, NULL, NULL),
-(30, 13, 49, '20.00', '1', 'Salon', '20.00', '-', '2025-08-30 20:27:58', NULL, 1, 1, NULL, NULL, NULL),
-(31, 13, 28, '10.00', '3', 'Salon', '30.00', '-', '2025-08-30 20:27:58', NULL, 1, 1, NULL, NULL, NULL),
-(32, 14, 3, '12.00', '1', 'Salon', '12.00', '-', '2025-08-30 20:40:04', NULL, 1, 1, NULL, NULL, NULL),
-(33, 14, 49, '20.00', '1', 'Salon', '20.00', '-', '2025-08-30 20:40:04', NULL, 1, 1, NULL, NULL, NULL),
-(34, 15, 49, '20.00', '1', 'Salon', '20.00', '-', '2025-08-30 20:44:16', NULL, 1, 1, NULL, NULL, NULL),
-(35, 15, 13, '5.00', '1', 'Salon', '5.00', '-', '2025-08-30 20:44:16', NULL, 1, 1, NULL, NULL, NULL),
-(36, 14, 56, '9.00', '1', 'Salon', '9.00', '-', '2025-08-30 20:57:00', '2025-08-30 21:07:50', 0, 0, NULL, NULL, 18),
-(37, 14, 56, '9.00', '1', 'Salon', '9.00', '-', '2025-08-30 21:16:38', NULL, 1, 1, NULL, NULL, NULL),
-(38, 13, 13, '5.00', '2', 'Salon', '10.00', '-', '2025-08-30 21:44:48', NULL, 1, 1, NULL, NULL, NULL),
-(39, 13, 13, '5.00', '1', 'Salon', '5.00', '-', '2025-08-30 21:44:48', '2025-08-30 21:44:56', 0, 0, NULL, NULL, 18),
-(40, 11, 51, '20.00', '1', 'Salon', '20.00', '-', '2025-08-30 22:22:00', NULL, 1, 1, NULL, NULL, NULL),
-(41, 16, 58, '10.00', '1', 'Salon', '10.00', '-', '2025-09-01 17:23:11', NULL, 1, 1, NULL, NULL, NULL),
-(42, 17, 42, '15.00', '1', 'Salon', '15.00', '-', '2025-09-01 19:17:23', NULL, 1, 1, NULL, NULL, NULL),
-(43, 17, 19, '15.00', '1', 'Salon', '15.00', '-', '2025-09-01 19:17:23', NULL, 1, 1, NULL, NULL, NULL),
-(44, 17, 18, '15.00', '1', 'Salon', '15.00', '-', '2025-09-01 19:17:23', NULL, 1, 1, NULL, NULL, NULL),
-(45, 18, 36, '10.00', '1', 'Salon', '10.00', '-', '2025-09-01 19:36:13', NULL, 1, 1, NULL, NULL, NULL),
-(46, 18, 27, '12.00', '1', 'Salon', '12.00', '-', '2025-09-01 19:36:13', NULL, 1, 1, NULL, NULL, NULL),
-(47, 19, 2, '10.00', '1', 'Salon', '10.00', '-', '2025-09-01 19:49:12', NULL, 1, 1, NULL, NULL, NULL),
-(48, 20, 3, '12.00', '1', 'Salon', '12.00', '-', '2025-09-01 20:52:15', NULL, 1, 1, NULL, NULL, NULL),
-(49, 21, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-09-02 18:25:42', NULL, 1, 1, NULL, NULL, NULL),
-(50, 21, 20, '15.00', '1', 'Salon', '15.00', '-', '2025-09-02 18:25:42', NULL, 1, 1, NULL, NULL, NULL),
-(51, 21, 17, '15.00', '1', 'Salon', '15.00', '-', '2025-09-02 18:25:42', NULL, 1, 1, NULL, NULL, NULL),
-(52, 22, 20, '15.00', '1', 'Salon', '15.00', '-', '2025-09-02 19:09:48', NULL, 1, 1, NULL, NULL, NULL),
-(53, 22, 17, '15.00', '1', 'Salon', '15.00', '-', '2025-09-02 19:09:48', NULL, 1, 1, NULL, NULL, NULL),
-(54, 22, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-09-02 19:09:48', NULL, 1, 1, NULL, NULL, NULL),
-(55, 23, 48, '22.00', '1', 'Salon', '22.00', '-', '2025-09-02 20:00:20', NULL, 1, 1, NULL, NULL, NULL),
-(56, 23, 28, '10.00', '1', 'Salon', '10.00', '-', '2025-09-02 20:00:20', NULL, 1, 1, NULL, NULL, NULL),
-(57, 23, 3, '12.00', '1', 'Salon', '12.00', '-', '2025-09-02 20:00:20', NULL, 1, 1, NULL, NULL, NULL),
-(58, 23, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-09-02 20:00:20', NULL, 1, 1, NULL, NULL, NULL),
-(59, 23, 21, '5.00', '1', 'Salon', '5.00', '-', '2025-09-02 21:11:11', NULL, 1, 1, NULL, NULL, NULL),
-(60, 24, 17, '15.00', '1', 'Salon', '15.00', '-', '2025-09-04 17:28:55', NULL, 1, 1, NULL, NULL, NULL),
-(61, 24, 18, '15.00', '1', 'Salon', '15.00', '-', '2025-09-04 17:28:55', NULL, 1, 1, NULL, NULL, NULL),
-(62, 24, 7, '10.00', '1', 'Salon', '10.00', '-', '2025-09-04 17:28:55', NULL, 1, 1, NULL, NULL, NULL),
-(63, 24, 68, '15.00', '1', 'Salon', '15.00', '-', '2025-09-04 17:28:56', NULL, 1, 1, NULL, NULL, NULL),
-(64, 24, 50, '22.00', '1', 'Salon', '22.00', '-', '2025-09-04 17:28:56', NULL, 1, 1, NULL, NULL, NULL),
-(65, 24, 36, '10.00', '1', 'Salon', '10.00', '-', '2025-09-04 17:28:56', NULL, 1, 1, NULL, NULL, NULL),
-(66, 24, 22, '5.00', '1', 'Salon', '5.00', '-', '2025-09-04 18:15:09', NULL, 1, 1, NULL, NULL, NULL),
-(67, 25, 68, '15.00', '1', 'Salon', '15.00', '-', '2025-09-04 20:29:02', NULL, 1, 1, NULL, NULL, NULL),
-(68, 25, 52, '22.00', '1', 'Salon', '22.00', '-', '2025-09-04 20:29:02', NULL, 1, 1, NULL, NULL, NULL),
-(69, 25, 5, '10.00', '1', 'Salon', '10.00', '-', '2025-09-04 20:29:02', NULL, 1, 1, NULL, NULL, NULL),
-(70, 25, 21, '5.00', '1', 'Salon', '5.00', '-', '2025-09-04 20:29:02', NULL, 1, 1, NULL, NULL, NULL),
-(71, 26, 12, '5.00', '1', 'Salon', '5.00', '-', '2025-09-05 17:19:08', NULL, 1, 0, NULL, NULL, NULL),
-(72, 26, 13, '5.00', '1', 'Salon', '5.00', '-', '2025-09-05 17:19:09', NULL, 1, 0, NULL, NULL, NULL),
-(73, 27, 17, '15.00', '1', 'Salon', '15.00', '-', '2025-09-05 17:22:46', NULL, 1, 0, NULL, NULL, NULL),
-(74, 28, 12, '5.00', '3', 'Salon', '15.00', '-', '2025-09-05 17:24:44', NULL, 1, 0, NULL, NULL, NULL),
-(75, 28, 25, '8.00', '1', 'Salon', '8.00', '-', '2025-09-05 17:24:45', NULL, 1, 0, NULL, NULL, NULL),
-(76, 28, 41, '20.00', '1', 'Salon', '20.00', '-', '2025-09-05 17:24:45', NULL, 1, 0, NULL, NULL, NULL),
-(77, 29, 3, '12.00', '1', 'Salon', '12.00', '-', '2025-09-05 17:27:01', NULL, 1, 0, NULL, NULL, NULL),
-(78, 29, 58, '10.00', '1', 'Salon', '10.00', '-', '2025-09-05 17:27:01', NULL, 1, 0, NULL, NULL, NULL),
-(79, 29, 42, '15.00', '1', 'Salon', '15.00', '-', '2025-09-05 17:27:01', NULL, 1, 0, NULL, NULL, NULL),
-(80, 29, 58, '10.00', '1', 'Salon', '10.00', '-', '2025-09-05 17:27:01', NULL, 1, 0, NULL, NULL, NULL),
-(81, 29, 37, '9.00', '1', 'Salon', '9.00', '-', '2025-09-05 17:27:01', NULL, 1, 0, NULL, NULL, NULL),
-(82, 30, 5, '10.00', '2', 'Salon', '20.00', '-', '2025-09-05 17:34:41', NULL, 1, 0, NULL, NULL, NULL),
-(83, 30, 59, '10.00', '1', 'Salon', '10.00', '-', '2025-09-05 17:34:41', NULL, 1, 0, NULL, NULL, NULL),
-(84, 30, 26, '8.00', '1', 'Salon', '8.00', '-', '2025-09-05 17:34:41', NULL, 1, 0, NULL, NULL, NULL),
-(85, 30, 51, '20.00', '1', 'Salon', '20.00', '-', '2025-09-05 17:34:41', NULL, 1, 0, NULL, NULL, NULL),
-(86, 31, 64, '12.00', '1', 'Salon', '12.00', '-', '2025-09-05 17:36:24', NULL, 1, 0, NULL, NULL, NULL),
-(87, 31, 60, '10.00', '1', 'Salon', '10.00', '-', '2025-09-05 17:36:24', NULL, 1, 0, NULL, NULL, NULL),
-(88, 31, 68, '15.00', '1', 'Salon', '15.00', '-', '2025-09-05 17:36:24', NULL, 1, 0, NULL, NULL, NULL),
-(89, 31, 68, '15.00', '1', 'Salon', '15.00', '-', '2025-09-05 17:36:24', NULL, 1, 0, NULL, NULL, NULL);
+(1, 1, 3, 11.00, '1', 'Salon', 11.00, '-', '2025-10-02 16:48:00', NULL, 1, 1, NULL, NULL, NULL),
+(2, 2, 5, 10.00, '1', 'Salon', 10.00, '-', '2025-10-02 17:44:47', NULL, 1, 1, NULL, NULL, NULL),
+(3, 3, 3, 11.00, '1', 'Delivery', 11.00, '-', '2025-10-02 18:31:27', NULL, 1, 1, NULL, NULL, NULL),
+(4, 2, 5, 10.00, '1', 'Salon', 10.00, '-', '2025-10-03 11:20:44', NULL, 1, 1, NULL, NULL, NULL),
+(5, 2, 40, 25.00, '1', 'Salon', 25.00, '-', '2025-10-03 11:20:44', NULL, 1, 0, NULL, NULL, NULL),
+(6, 4, 5, 10.00, '1', 'Delivery', 10.00, '-', '2025-10-03 12:37:01', NULL, 1, 1, NULL, NULL, NULL),
+(7, 4, 9, 12.00, '1', 'Delivery', 12.00, '-', '2025-10-03 12:37:01', NULL, 1, 1, NULL, NULL, NULL),
+(8, 4, 10, 12.00, '1', 'Delivery', 12.00, '-', '2025-10-03 12:37:01', NULL, 1, 1, NULL, NULL, NULL),
+(9, 5, 12, 5.00, '1', 'Delivery', 5.00, '-', '2025-10-03 12:47:05', NULL, 1, 1, NULL, NULL, NULL),
+(10, 6, 12, 5.00, '1', 'Delivery', 5.00, '-', '2025-10-03 16:08:02', NULL, 1, 0, NULL, NULL, NULL),
+(11, 6, 15, 5.00, '1', 'Delivery', 5.00, '-', '2025-10-03 16:08:02', '2025-10-03 16:09:04', 0, 0, NULL, NULL, 1),
+(14, 8, 12, 5.00, '1', 'Salon', 5.00, '-', '2025-10-03 17:37:10', NULL, 1, 1, NULL, NULL, NULL),
+(15, 8, 36, 10.00, '1', 'Salon', 10.00, '-', '2025-10-03 17:37:10', NULL, 1, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversiones`
+-- Estructura de tabla para la tabla `conversiones`
 --
 
 CREATE TABLE `conversiones` (
@@ -429,7 +326,7 @@ CREATE TABLE `conversiones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `correlativos`
+-- Estructura de tabla para la tabla `correlativos`
 --
 
 CREATE TABLE `correlativos` (
@@ -444,7 +341,7 @@ CREATE TABLE `correlativos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `correlativos`
+-- Volcado de datos para la tabla `correlativos`
 --
 
 INSERT INTO `correlativos` (`id_correlativo`, `correlativo_b`, `correlativo_f`, `correlativo_in`, `correlativo_out`, `correlativo_nc`, `correlativo_nd`, `correlativo_venta`) VALUES
@@ -453,7 +350,7 @@ INSERT INTO `correlativos` (`id_correlativo`, `correlativo_b`, `correlativo_f`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalle_compra`
+-- Estructura de tabla para la tabla `detalle_compra`
 --
 
 CREATE TABLE `detalle_compra` (
@@ -474,7 +371,7 @@ CREATE TABLE `detalle_compra` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalle_recetas`
+-- Estructura de tabla para la tabla `detalle_recetas`
 --
 
 CREATE TABLE `detalle_recetas` (
@@ -490,7 +387,7 @@ CREATE TABLE `detalle_recetas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documentos`
+-- Estructura de tabla para la tabla `documentos`
 --
 
 CREATE TABLE `documentos` (
@@ -508,7 +405,7 @@ CREATE TABLE `documentos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa`
+-- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE `empresa` (
@@ -531,21 +428,24 @@ CREATE TABLE `empresa` (
   `empresa_correo` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `empresa_usuario_sol` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `empresa_clave_sol` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `empresa_cdt_nombre` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `empresa_cdt_clave` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `empresa_sunat_produccion` tinyint NOT NULL DEFAULT '0' COMMENT ' 0 beta, 1 produccion',
   `empresa_fechayhora` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `empresa_estado` tinyint NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `empresa`
+-- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `empresa_razon_social`, `empresa_nombrecomercial`, `empresa_descrpcion`, `empresa_ruc`, `empresa_domiciliofiscal`, `empresa_pais`, `empresa_departamento`, `empresa_provincia`, `empresa_distrito`, `empresa_ubigeo`, `empresa_telefono1`, `empresa_telefono2`, `empresa_celular1`, `empresa_celular2`, `empresa_foto`, `empresa_correo`, `empresa_usuario_sol`, `empresa_clave_sol`, `empresa_fechayhora`, `empresa_estado`) VALUES
-(1, 'PEREZ SILVANO LUISA MAGALIA', 'KAFFU 2D CAFETERIA', NULL, '10478050122', 'JIRON SAREGENTO LORES 457', 'PE', 'LORETO', 'MAYNAS', 'IQUITOS', '160101', NULL, NULL, NULL, NULL, NULL, NULL, 'KAFFBUFE', 'KaffuBufeo1', '2025-08-21 22:08:42', 1);
+INSERT INTO `empresa` (`id_empresa`, `empresa_razon_social`, `empresa_nombrecomercial`, `empresa_descrpcion`, `empresa_ruc`, `empresa_domiciliofiscal`, `empresa_pais`, `empresa_departamento`, `empresa_provincia`, `empresa_distrito`, `empresa_ubigeo`, `empresa_telefono1`, `empresa_telefono2`, `empresa_celular1`, `empresa_celular2`, `empresa_foto`, `empresa_correo`, `empresa_usuario_sol`, `empresa_clave_sol`, `empresa_cdt_nombre`, `empresa_cdt_clave`, `empresa_sunat_produccion`, `empresa_fechayhora`, `empresa_estado`) VALUES
+(1, 'EMPRESA DEMO', 'EMPRESA DEMO', NULL, '20000000000', 'Sin Direccion', 'PE', 'LORETO', 'MAYNAS', 'IQUITOS', '160101', NULL, NULL, NULL, NULL, NULL, NULL, 'MODDATOS', 'MODDATOS', 'certificado_prueba.pfx', '12345678', 0, '2025-09-29 22:08:42', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `envio_resumen`
+-- Estructura de tabla para la tabla `envio_resumen`
 --
 
 CREATE TABLE `envio_resumen` (
@@ -566,7 +466,7 @@ CREATE TABLE `envio_resumen` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `envio_resumen_detalle`
+-- Estructura de tabla para la tabla `envio_resumen_detalle`
 --
 
 CREATE TABLE `envio_resumen_detalle` (
@@ -579,7 +479,7 @@ CREATE TABLE `envio_resumen_detalle` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feriados`
+-- Estructura de tabla para la tabla `feriados`
 --
 
 CREATE TABLE `feriados` (
@@ -589,7 +489,7 @@ CREATE TABLE `feriados` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `feriados`
+-- Volcado de datos para la tabla `feriados`
 --
 
 INSERT INTO `feriados` (`id_feriado`, `feriado_dia`, `feriado_motivo`) VALUES
@@ -617,7 +517,7 @@ INSERT INTO `feriados` (`id_feriado`, `feriado_dia`, `feriado_motivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grupos`
+-- Estructura de tabla para la tabla `grupos`
 --
 
 CREATE TABLE `grupos` (
@@ -629,7 +529,7 @@ CREATE TABLE `grupos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `grupos`
+-- Volcado de datos para la tabla `grupos`
 --
 
 INSERT INTO `grupos` (`id_grupo`, `grupo_nombre`, `grupo_ticketera`, `grupo_fecha_registro`, `grupo_estado`) VALUES
@@ -640,7 +540,7 @@ INSERT INTO `grupos` (`id_grupo`, `grupo_nombre`, `grupo_ticketera`, `grupo_fech
 -- --------------------------------------------------------
 
 --
--- Table structure for table `igv`
+-- Estructura de tabla para la tabla `igv`
 --
 
 CREATE TABLE `igv` (
@@ -656,7 +556,7 @@ CREATE TABLE `igv` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `igv`
+-- Volcado de datos para la tabla `igv`
 --
 
 INSERT INTO `igv` (`id_igv`, `igv_codigo`, `igv_codigoafectacion`, `igv_descripcion`, `igv_codigoInternacional`, `igv_nombre`, `igv_tipodeafectacion`, `igv_tipo_json`, `igv_estado`) VALUES
@@ -684,7 +584,7 @@ INSERT INTO `igv` (`id_igv`, `igv_codigo`, `igv_codigoafectacion`, `igv_descripc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memorandum`
+-- Estructura de tabla para la tabla `memorandum`
 --
 
 CREATE TABLE `memorandum` (
@@ -703,7 +603,7 @@ CREATE TABLE `memorandum` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `memorandum`
+-- Volcado de datos para la tabla `memorandum`
 --
 
 INSERT INTO `memorandum` (`id_memorandum`, `id_persona`, `memorandum_numero`, `memorandum_motivo`, `memorandum_otros`, `memorandum_fecha`, `memorandum_descripcion`, `id_usuario`, `memorandum_fecha_creacion`, `id_user_aprobacion`, `memoradum_fecha_aprobacion`, `memorandum_estado`) VALUES
@@ -712,7 +612,7 @@ INSERT INTO `memorandum` (`id_memorandum`, `id_persona`, `memorandum_numero`, `m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Estructura de tabla para la tabla `menus`
 --
 
 CREATE TABLE `menus` (
@@ -726,7 +626,7 @@ CREATE TABLE `menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `menus`
+-- Volcado de datos para la tabla `menus`
 --
 
 INSERT INTO `menus` (`id_menu`, `menu_nombre`, `menu_controlador`, `menu_icono`, `menu_orden`, `menu_mostrar`, `menu_estado`) VALUES
@@ -737,27 +637,27 @@ INSERT INTO `menus` (`id_menu`, `menu_nombre`, `menu_controlador`, `menu_icono`,
 (5, 'Usuarios', 'Usuario', 'fa fa-user', 4, 1, 1),
 (6, 'Datos Personales', 'Datos', 'fa fa-', 0, 0, 1),
 (7, 'Negocios', 'Negocio', 'fa fa-industry', 10, 1, 1),
-(8, 'Recursos', 'Recursos', 'fa fa-cart-plus', 7, 1, 1),
+(8, 'Recursos', 'Recursos', 'fa fa-cart-plus', 7, 0, 1),
 (9, 'Proveedores', 'Proveedor', 'fa fa-car', 9, 1, 1),
-(10, 'Orden de Compra', 'Ordencompra', 'fa fa-cart-plus', 9, 1, 1),
+(10, 'Orden de Compra', 'Ordencompra', 'fa fa-cart-plus', 9, 0, 1),
 (11, 'Productos', 'Producto', 'fa fa-tags', 9, 1, 1),
 (12, 'Pedidos', 'Pedido', 'fa fa-shopping-cart', 11, 1, 1),
 (13, 'Mesas', 'Mesa', 'fa fa-sitemap', 6, 1, 1),
 (14, 'Almacen', 'Almacen', 'fa fa-folder-open', 6, 0, 1),
-(15, 'Recetas', 'Receta', 'fa fa-file-text-o', 9, 1, 1),
+(15, 'Recetas', 'Receta', 'fa fa-file-text-o', 7, 0, 1),
 (16, 'Ventas ', 'Ventas', 'fa fa-money', 12, 1, 1),
 (17, 'Clientes', 'Cliente', 'fa fa-male', 5, 1, 1),
-(18, 'Conversiones', 'Conversiones', 'fa fa-refresh', 8, 1, 1),
+(18, 'Conversiones', 'Conversiones', 'fa fa-refresh', 8, 0, 1),
 (19, 'Movimientos', 'Egreso', 'fa fa-usd', 13, 1, 1),
 (20, 'Reportes', 'Reporte', 'fa fa-calendar-minus-o', 14, 1, 1),
 (21, 'Insumos', 'Insumos', 'fa fa-apple', 8, 0, 1),
 (22, 'Categorias', 'Categorias', 'fa fa-cutlery', 6, 0, 1),
-(23, 'Recursos Humanos', 'Rhumanos', 'fa fa-folder-open', 2, 1, 1);
+(23, 'Recursos Humanos', 'Rhumanos', 'fa fa-folder-open', 2, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mesas`
+-- Estructura de tabla para la tabla `mesas`
 --
 
 CREATE TABLE `mesas` (
@@ -770,18 +670,18 @@ CREATE TABLE `mesas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `mesas`
+-- Volcado de datos para la tabla `mesas`
 --
 
 INSERT INTO `mesas` (`id_mesa`, `id_sucursal`, `mesa_nombre`, `mesa_capacidad`, `mesa_estado`, `mesa_estado_atencion`) VALUES
 (0, 4, 'Delivery', 1, 1, 2),
-(6, 4, 'Mesa 01', 3, 1, 1),
+(6, 4, 'Mesa 01', 3, 1, 2),
 (7, 4, 'Mesa 02', 2, 1, 1),
 (8, 4, 'Mesa 03', 4, 1, 1),
-(9, 4, 'Mesa 04', 6, 1, 1),
-(10, 4, 'Mesa 05', 4, 1, 1),
+(9, 4, 'Mesa 04', 6, 1, 0),
+(10, 4, 'Mesa 05', 4, 1, 0),
 (11, 4, 'Mesa 06', 2, 1, 0),
-(12, 4, 'Mesa 07', 4, 1, 1),
+(12, 4, 'Mesa 07', 4, 1, 0),
 (13, 4, 'Mesa 08', 2, 1, 0),
 (14, 4, 'mesa 09', 2, 1, 0),
 (15, 4, 'Mesa 10', 4, 1, 0),
@@ -802,7 +702,7 @@ INSERT INTO `mesas` (`id_mesa`, `id_sucursal`, `mesa_nombre`, `mesa_capacidad`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `monedas`
+-- Estructura de tabla para la tabla `monedas`
 --
 
 CREATE TABLE `monedas` (
@@ -815,7 +715,7 @@ CREATE TABLE `monedas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `monedas`
+-- Volcado de datos para la tabla `monedas`
 --
 
 INSERT INTO `monedas` (`id_moneda`, `moneda`, `abreviado`, `abrstandar`, `simbolo`, `activo`) VALUES
@@ -826,7 +726,7 @@ INSERT INTO `monedas` (`id_moneda`, `moneda`, `abreviado`, `abrstandar`, `simbol
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movimientos`
+-- Estructura de tabla para la tabla `movimientos`
 --
 
 CREATE TABLE `movimientos` (
@@ -842,21 +742,16 @@ CREATE TABLE `movimientos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `movimientos`
+-- Volcado de datos para la tabla `movimientos`
 --
 
 INSERT INTO `movimientos` (`id_movimiento`, `id_caja_numero`, `id_usuario`, `id_sucursal`, `movimiento_tipo`, `egreso_descripcion`, `egreso_monto`, `egreso_fecha_registro`, `egreso_estado`) VALUES
-(1, 1, 16, 4, 2, 'calculadora', '11.00', '2025-09-02 11:33:21', 1),
-(2, 1, 16, 4, 2, 'pincha papel', '5.00', '2025-09-02 11:34:28', 1),
-(3, 1, 16, 4, 2, 'aceite', '36.80', '2025-09-02 11:35:01', 1),
-(4, 1, 16, 4, 2, 'atomizador, timbre', '16.50', '2025-09-02 11:35:34', 1),
-(5, 1, 16, 4, 2, 'ketchup, limon, aji limo', '32.80', '2025-09-02 11:36:07', 1),
-(6, 1, 16, 4, 2, 'llaves', '9.00', '2025-09-02 11:38:04', 1);
+(1, 1, 15, 4, 2, 'gasolina', 5.00, '2025-10-04 12:48:41', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `negocios`
+-- Estructura de tabla para la tabla `negocios`
 --
 
 CREATE TABLE `negocios` (
@@ -872,16 +767,16 @@ CREATE TABLE `negocios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `negocios`
+-- Volcado de datos para la tabla `negocios`
 --
 
 INSERT INTO `negocios` (`id_negocio`, `id_ciudad`, `negocio_nombre`, `negocio_direccion`, `negocio_ruc`, `negocio_foto`, `negocio_telefono`, `negocio_estado`, `negocio_fecha_registro`) VALUES
-(3, 1, 'KAFFU 2D CAFETERIA', 'JIRON SAREGENTO LORES 457', '10478050122', 'media/negocio/LA ULTIMA CONCHITA_24032021142225.jp', '999999999', 1, '2025-08-27 14:22:25');
+(3, 1, 'Empresa Demo', 'Sin Direccion', '20000000000', 'media/logo/logo_empresa.jpg', '999999999', 1, '2025-08-27 14:22:25');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota_venta`
+-- Estructura de tabla para la tabla `nota_venta`
 --
 
 CREATE TABLE `nota_venta` (
@@ -907,7 +802,7 @@ CREATE TABLE `nota_venta` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota_venta_detalle`
+-- Estructura de tabla para la tabla `nota_venta_detalle`
 --
 
 CREATE TABLE `nota_venta_detalle` (
@@ -929,7 +824,7 @@ CREATE TABLE `nota_venta_detalle` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obligacion_pagar`
+-- Estructura de tabla para la tabla `obligacion_pagar`
 --
 
 CREATE TABLE `obligacion_pagar` (
@@ -959,7 +854,7 @@ CREATE TABLE `obligacion_pagar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obligacion_personal`
+-- Estructura de tabla para la tabla `obligacion_personal`
 --
 
 CREATE TABLE `obligacion_personal` (
@@ -987,7 +882,7 @@ CREATE TABLE `obligacion_personal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opciones`
+-- Estructura de tabla para la tabla `opciones`
 --
 
 CREATE TABLE `opciones` (
@@ -1002,7 +897,7 @@ CREATE TABLE `opciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `opciones`
+-- Volcado de datos para la tabla `opciones`
 --
 
 INSERT INTO `opciones` (`id_opcion`, `id_menu`, `opcion_nombre`, `opcion_funcion`, `opcion_icono`, `opcion_mostrar`, `opcion_orden`, `opcion_estado`) VALUES
@@ -1055,7 +950,7 @@ INSERT INTO `opciones` (`id_opcion`, `id_menu`, `opcion_nombre`, `opcion_funcion
 (47, 16, 'Ver Detalle Venta', 'ver_detalle_venta', '', 0, 0, 1),
 (48, 12, 'Historial Delivery Pendientes', 'historial_delivery', '', 1, 3, 1),
 (49, 20, 'Reporte Clientes', 'reporte_clientes', '', 1, 2, 1),
-(50, 20, 'Reporte Proveedores', 'reporte_proveedores', '', 1, 3, 1),
+(50, 20, 'Reporte Proveedores', 'reporte_proveedores', '', 0, 3, 1),
 (51, 20, 'Reporte Meseros', 'reporte_meseros', '', 1, 4, 1),
 (52, 16, 'Historial Ventas Sunat', 'historial_ventas_enviadas', '', 1, 3, 1),
 (53, 16, 'Resumen Diario', 'envio_resumenes_diario', '', 1, 4, 1),
@@ -1107,7 +1002,7 @@ INSERT INTO `opciones` (`id_opcion`, `id_menu`, `opcion_nombre`, `opcion_funcion
 (99, 20, 'Ventas por Tipo de Pago', 'ventas_tipo_pago', '', 0, 8, 1),
 (100, 20, 'Reporte Ventas por Productos', 'reporte_ventas_productos', '', 1, 0, 1),
 (101, 23, 'Gestionar Turnos', 'gestionar_turnos', '', 0, 0, 1),
-(102, 16, 'Historial Notas Ventas', 'historial_notas_ventas', '', 1, 1, 1),
+(102, 16, 'Historial Notas Ventas', 'historial_notas_ventas', '', 0, 1, 1),
 (103, 16, 'tabla_productos_editar', 'tabla_productos_editar', '', 0, 0, 1),
 (104, 16, 'editar_nota_venta', 'editar_nota_venta', '', 0, 0, 1),
 (105, 20, 'Reporte Ventas Porductos PDF', 'reporte_ventas_productos_pdf', '', 0, 0, 1),
@@ -1119,14 +1014,15 @@ INSERT INTO `opciones` (`id_opcion`, `id_menu`, `opcion_nombre`, `opcion_funcion
 (111, 20, 'Excel Reporte Productos', 'excel_reporte_productos', '', 0, 0, 1),
 (112, 20, 'excel_solo_productos', 'excel_solo_productos', '', 0, 0, 1),
 (113, 12, 'Pedidos Eliminados', 'pedidos_eliminados', '', 1, 15, 1),
-(114, 12, 'Pedidos en atención', 'pedidos_atencion', NULL, 1, 16, 1),
-(115, 20, 'Reporte de atenciones', 'reporte_atenciones', NULL, 1, 9, 1),
-(116, 20, 'Reporte Entradas y Salidas', 'reporte_entradas_salidas', NULL, 1, 10, 1);
+(114, 12, 'Pedidos en atención', 'pedidos_atencion', '', 0, 16, 1),
+(115, 20, 'Reporte de atenciones', 'reporte_atenciones', '', 0, 9, 1),
+(116, 20, 'Reporte Entradas y Salidas', 'reporte_entradas_salidas', NULL, 1, 10, 1),
+(117, 12, 'historial_pedidos_excel', 'historial_pedidos_excel', '', 0, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orden_compra`
+-- Estructura de tabla para la tabla `orden_compra`
 --
 
 CREATE TABLE `orden_compra` (
@@ -1156,7 +1052,7 @@ CREATE TABLE `orden_compra` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos_gratis`
+-- Estructura de tabla para la tabla `pedidos_gratis`
 --
 
 CREATE TABLE `pedidos_gratis` (
@@ -1176,7 +1072,7 @@ CREATE TABLE `pedidos_gratis` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos_gratis_detalles`
+-- Estructura de tabla para la tabla `pedidos_gratis_detalles`
 --
 
 CREATE TABLE `pedidos_gratis_detalles` (
@@ -1189,7 +1085,7 @@ CREATE TABLE `pedidos_gratis_detalles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `periodo_laboral`
+-- Estructura de tabla para la tabla `periodo_laboral`
 --
 
 CREATE TABLE `periodo_laboral` (
@@ -1227,7 +1123,7 @@ CREATE TABLE `periodo_laboral` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permisos`
+-- Estructura de tabla para la tabla `permisos`
 --
 
 CREATE TABLE `permisos` (
@@ -1238,7 +1134,7 @@ CREATE TABLE `permisos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `permisos`
+-- Volcado de datos para la tabla `permisos`
 --
 
 INSERT INTO `permisos` (`id_permiso`, `id_opcion`, `permiso_accion`, `permiso_estado`) VALUES
@@ -1414,7 +1310,7 @@ INSERT INTO `permisos` (`id_permiso`, `id_opcion`, `permiso_accion`, `permiso_es
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personas`
+-- Estructura de tabla para la tabla `personas`
 --
 
 CREATE TABLE `personas` (
@@ -1425,7 +1321,7 @@ CREATE TABLE `personas` (
   `persona_apellido_materno` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_email` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_tipo_documento` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `persona_dni` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `persona_dni` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_nacionalidad` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_estado_civil` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_direccion` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
@@ -1447,7 +1343,7 @@ CREATE TABLE `personas` (
   `persona_blacklist` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_bank` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_number_account` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `persona_bank_alt` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `persona_bank_alt` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_number_account_alt` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_bank_cts` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `persona_account_cts` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
@@ -1456,26 +1352,23 @@ CREATE TABLE `personas` (
   `persona_creacion` datetime NOT NULL,
   `persona_modificacion` datetime NOT NULL,
   `person_codigo` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `persona_estado` tinyint NOT NULL
+  `persona_estado` tinyint NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `personas`
+-- Volcado de datos para la tabla `personas`
 --
 
 INSERT INTO `personas` (`id_persona`, `id_empresa`, `persona_nombre`, `persona_apellido_paterno`, `persona_apellido_materno`, `persona_email`, `persona_tipo_documento`, `persona_dni`, `persona_nacionalidad`, `persona_estado_civil`, `persona_direccion`, `persona_discapacidad`, `persona_job`, `persona_nacimiento`, `persona_sexo`, `persona_telefono`, `persona_telefono_2`, `persona_foto`, `persona_hijos`, `persona_departamento`, `persona_provincia`, `persona_distrito`, `persona_adicional`, `persona_afp`, `persona_cuspp`, `persona_afiliac`, `persona_blacklist`, `persona_bank`, `persona_number_account`, `persona_bank_alt`, `persona_number_account_alt`, `persona_bank_cts`, `persona_account_cts`, `persona_cv`, `persona_empleado`, `persona_creacion`, `persona_modificacion`, `person_codigo`, `persona_estado`) VALUES
 (1, 0, 'César José', 'Ruiz', 'Reategui', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, 0, '2020-09-17 00:00:00', '2020-09-17 00:00:00', '010101010101', 1),
-(2, 1, 'Kaffu', '2D', 'Cafetería', NULL, NULL, '00000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, 1, '2020-10-27 18:29:10', '2021-08-12 17:02:37', '1603841350.1786', 1),
-(15, 1, 'Luis', 'Salazar', 'Bartra', '', 'DNI', '71106432', 'PERUANA', 'SOLTERO', '', '', '', '1995-11-23', 'M', '953295553', '', 'media/persona/default.png', '0', '', '', '', '', NULL, NULL, NULL, 'NO', '', NULL, '', '', '', '', '', NULL, '2025-08-21 22:49:10', '2025-08-21 22:49:10', '1755834550.0443', 1),
-(16, 1, 'Jackeline', 'Jackeline', 'Jackeline', '', 'DNI', '11111111', 'PERUANA', '', '', '', '', '2002-01-01', '', '999999999', '', 'media/persona/default.png', '0', '', '', '', '', NULL, NULL, NULL, 'NO', '', NULL, '', '', '', '', '', NULL, '2025-08-28 13:10:35', '2025-08-28 13:39:27', '1756404635.6779', 1),
-(17, 1, 'Maia', 'Maia', 'Maia', '', 'DNI', '11111112', 'PERUANA', '', '', '', '', '2002-01-01', '', '', '', 'media/persona/default.png', '0', '', '', '', '', NULL, NULL, NULL, 'NO', '', NULL, '', '', '', '', '', NULL, '2025-08-28 13:12:01', '2025-08-28 13:12:01', '1756404721.4972', 1),
-(18, 1, 'Aaron', 'Aaron', 'Aaron', '', 'DNI', '11111113', 'PERUANA', '', '', '', '', '2002-01-01', '', '', '', 'media/persona/default.png', '0', '', '', '', '', NULL, NULL, NULL, 'NO', '', NULL, '', '', '', '', '', NULL, '2025-08-28 13:13:45', '2025-08-28 13:13:45', '1756404825.8018', 1),
-(19, 1, 'Blanca', 'Blanca', 'Blanca', '', 'DNI', '11111114', 'PERUANA', '', '', '', '', '2002-01-01', '', '', '', 'media/persona/default.png', '0', '', '', '', '', NULL, NULL, NULL, 'NO', '', NULL, '', '', '', '', '', NULL, '2025-08-28 13:38:50', '2025-08-28 13:38:50', '1756406330.413', 1);
+(2, 1, 'Admin', 'Empresa', 'Demo', NULL, NULL, '00000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, 1, '2020-10-27 18:29:10', '2021-08-12 17:02:37', '1603841350.1786', 1),
+(15, 1, 'Cajero Demo', 'Caja', 'Demo', '', 'DNI', '71106432', 'PERUANA', 'SOLTERO', '', '', '', '1995-11-23', 'M', '999999999', '', 'media/persona/default.png', '0', '', '', '', '', NULL, NULL, NULL, 'NO', '', NULL, '', '', '', '', '', NULL, '2025-08-21 22:49:10', '2025-10-04 11:56:42', '1755834550.0443', 1),
+(20, 1, 'Demo', 'Demo', 'Demo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-09-30 16:37:49', '2025-09-30 16:37:49', '1759268269.3244', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `persona_turno`
+-- Estructura de tabla para la tabla `persona_turno`
 --
 
 CREATE TABLE `persona_turno` (
@@ -1487,7 +1380,7 @@ CREATE TABLE `persona_turno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `persona_turno`
+-- Volcado de datos para la tabla `persona_turno`
 --
 
 INSERT INTO `persona_turno` (`id_persona_turno`, `id_persona`, `id_turno`, `persona_turno_fecha_registro`, `persona_estado_turno`) VALUES
@@ -1507,7 +1400,7 @@ INSERT INTO `persona_turno` (`id_persona_turno`, `id_persona`, `id_turno`, `pers
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos`
+-- Estructura de tabla para la tabla `productos`
 --
 
 CREATE TABLE `productos` (
@@ -1526,7 +1419,7 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `productos`
+-- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`id_producto`, `id_receta`, `id_grupo`, `id_usuario`, `id_producto_familia`, `producto_nombre`, `producto_codigo_barra`, `producto_descripcion`, `producto_foto`, `producto_estado`, `producto_fecha_registro`, `producto_codigo`) VALUES
@@ -1603,7 +1496,7 @@ INSERT INTO `productos` (`id_producto`, `id_receta`, `id_grupo`, `id_usuario`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producto_familia`
+-- Estructura de tabla para la tabla `producto_familia`
 --
 
 CREATE TABLE `producto_familia` (
@@ -1614,7 +1507,7 @@ CREATE TABLE `producto_familia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `producto_familia`
+-- Volcado de datos para la tabla `producto_familia`
 --
 
 INSERT INTO `producto_familia` (`id_producto_familia`, `producto_familia_nombre`, `producto_familia_fecha_registro`, `producto_familia_estado`) VALUES
@@ -1630,7 +1523,7 @@ INSERT INTO `producto_familia` (`id_producto_familia`, `producto_familia_nombre`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producto_precio`
+-- Estructura de tabla para la tabla `producto_precio`
 --
 
 CREATE TABLE `producto_precio` (
@@ -1644,95 +1537,97 @@ CREATE TABLE `producto_precio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `producto_precio`
+-- Volcado de datos para la tabla `producto_precio`
 --
 
 INSERT INTO `producto_precio` (`id_producto_precio`, `id_producto`, `id_unidad_medida`, `producto_precio_codigoafectacion`, `producto_precio_venta`, `producto_precio_fecha_registro`, `producto_precio_estado`) VALUES
-(1, 1, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(2, 2, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(3, 3, 59, '20', '12.00', '2025-08-27 00:00:00', 1),
-(4, 4, 59, '20', '6.00', '2025-08-27 00:00:00', 1),
-(5, 5, 59, '20', '12.00', '2025-08-27 00:00:00', 0),
-(6, 6, 59, '20', '12.00', '2025-08-27 00:00:00', 0),
-(7, 7, 59, '20', '12.00', '2025-08-27 00:00:00', 0),
-(8, 8, 59, '20', '12.00', '2025-08-27 00:00:00', 0),
-(9, 9, 59, '20', '15.00', '2025-08-27 00:00:00', 0),
-(10, 10, 59, '20', '15.00', '2025-08-27 00:00:00', 0),
-(11, 11, 59, '20', '15.00', '2025-08-27 00:00:00', 0),
-(12, 12, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(13, 13, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(14, 14, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(15, 15, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(16, 16, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(17, 17, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(18, 18, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(19, 19, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(20, 20, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(21, 21, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(22, 22, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(23, 23, 59, '20', '5.00', '2025-08-27 00:00:00', 1),
-(24, 24, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(25, 25, 59, '20', '8.00', '2025-08-27 00:00:00', 1),
-(26, 26, 59, '20', '8.00', '2025-08-27 00:00:00', 1),
-(27, 27, 59, '20', '12.00', '2025-08-27 00:00:00', 1),
-(28, 28, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(29, 29, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(30, 30, 59, '20', '12.00', '2025-08-27 00:00:00', 1),
-(31, 31, 59, '20', '20.00', '2025-08-27 00:00:00', 1),
-(32, 32, 59, '20', '20.00', '2025-08-27 00:00:00', 1),
-(33, 33, 59, '20', '22.00', '2025-08-27 00:00:00', 1),
-(34, 34, 59, '20', '9.00', '2025-08-27 00:00:00', 1),
-(35, 35, 59, '20', '9.00', '2025-08-27 00:00:00', 0),
-(36, 36, 59, '20', '12.00', '2025-08-27 00:00:00', 0),
-(37, 37, 59, '20', '10.00', '2025-08-27 00:00:00', 0),
-(38, 38, 59, '20', '9.00', '2025-08-27 00:00:00', 1),
-(39, 39, 59, '20', '9.00', '2025-08-27 00:00:00', 1),
-(40, 40, 59, '20', '27.00', '2025-08-27 00:00:00', 0),
-(41, 41, 59, '20', '20.00', '2025-08-27 00:00:00', 1),
-(42, 42, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(43, 43, 59, '20', '9.00', '2025-08-27 00:00:00', 1),
-(44, 44, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(45, 45, 59, '20', '13.00', '2025-08-27 00:00:00', 1),
-(46, 46, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(47, 47, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(48, 48, 59, '20', '22.00', '2025-08-27 00:00:00', 1),
-(49, 49, 59, '20', '20.00', '2025-08-27 00:00:00', 1),
-(50, 50, 59, '20', '22.00', '2025-08-27 00:00:00', 1),
-(51, 51, 59, '20', '20.00', '2025-08-27 00:00:00', 1),
-(52, 52, 59, '20', '22.00', '2025-08-27 00:00:00', 1),
-(53, 53, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(54, 54, 59, '20', '10.00', '2025-08-27 00:00:00', 1),
-(55, 55, 59, '20', '15.00', '2025-08-27 00:00:00', 1),
-(56, 35, 59, '20', '6.00', '2025-08-30 09:27:53', 0),
-(57, 56, 59, '20', '9.00', '2025-08-30 14:01:51', 1),
-(58, 57, 59, '20', '15.00', '2025-08-30 14:08:07', 1),
-(59, 35, 59, '20', '9.00', '2025-08-30 14:26:34', 1),
-(60, 36, 59, '20', '10.00', '2025-08-30 14:30:51', 1),
-(61, 37, 59, '20', '9.00', '2025-08-30 14:31:38', 1),
-(62, 40, 59, '20', '25.00', '2025-08-30 14:33:41', 1),
-(63, 5, 59, '20', '10.00', '2025-08-30 14:42:30', 1),
-(64, 7, 59, '20', '10.00', '2025-08-30 14:42:57', 1),
-(65, 58, 59, '20', '10.00', '2025-08-30 14:44:07', 1),
-(66, 8, 59, '20', '10.00', '2025-08-30 14:44:30', 1),
-(67, 9, 59, '20', '12.00', '2025-08-30 14:44:51', 1),
-(68, 10, 59, '20', '12.00', '2025-08-30 14:45:26', 1),
-(69, 11, 59, '20', '12.00', '2025-08-30 14:45:40', 1),
-(70, 59, 59, '20', '10.00', '2025-09-04 11:20:22', 1),
-(71, 60, 59, '20', '10.00', '2025-09-04 11:21:23', 1),
-(72, 61, 59, '20', '10.00', '2025-09-04 11:21:56', 1),
-(73, 62, 59, '20', '12.00', '2025-09-04 11:22:27', 1),
-(74, 63, 59, '20', '11.00', '2025-09-04 11:23:07', 1),
-(75, 64, 59, '20', '12.00', '2025-09-04 11:23:41', 1),
-(76, 65, 59, '20', '9.00', '2025-09-04 11:24:18', 1),
-(77, 66, 59, '20', '9.00', '2025-09-04 11:24:49', 1),
-(78, 67, 59, '20', '10.00', '2025-09-04 11:32:32', 1),
-(79, 68, 59, '20', '15.00', '2025-09-04 11:33:25', 1),
-(80, 69, 59, '20', '15.00', '2025-09-04 11:34:06', 1);
+(1, 1, 59, '20', 10.00, '2025-08-27 00:00:00', 0),
+(2, 2, 59, '20', 10.00, '2025-08-27 00:00:00', 0),
+(3, 3, 59, '20', 12.00, '2025-08-27 00:00:00', 0),
+(4, 4, 59, '20', 6.00, '2025-08-27 00:00:00', 1),
+(5, 5, 59, '20', 12.00, '2025-08-27 00:00:00', 0),
+(6, 6, 59, '20', 12.00, '2025-08-27 00:00:00', 0),
+(7, 7, 59, '20', 12.00, '2025-08-27 00:00:00', 0),
+(8, 8, 59, '20', 12.00, '2025-08-27 00:00:00', 0),
+(9, 9, 59, '20', 15.00, '2025-08-27 00:00:00', 0),
+(10, 10, 59, '20', 15.00, '2025-08-27 00:00:00', 0),
+(11, 11, 59, '20', 15.00, '2025-08-27 00:00:00', 0),
+(12, 12, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(13, 13, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(14, 14, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(15, 15, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(16, 16, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(17, 17, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(18, 18, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(19, 19, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(20, 20, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(21, 21, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(22, 22, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(23, 23, 59, '20', 5.00, '2025-08-27 00:00:00', 1),
+(24, 24, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(25, 25, 59, '20', 8.00, '2025-08-27 00:00:00', 1),
+(26, 26, 59, '20', 8.00, '2025-08-27 00:00:00', 1),
+(27, 27, 59, '20', 12.00, '2025-08-27 00:00:00', 1),
+(28, 28, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(29, 29, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(30, 30, 59, '20', 12.00, '2025-08-27 00:00:00', 1),
+(31, 31, 59, '20', 20.00, '2025-08-27 00:00:00', 1),
+(32, 32, 59, '20', 20.00, '2025-08-27 00:00:00', 1),
+(33, 33, 59, '20', 22.00, '2025-08-27 00:00:00', 1),
+(34, 34, 59, '20', 9.00, '2025-08-27 00:00:00', 1),
+(35, 35, 59, '20', 9.00, '2025-08-27 00:00:00', 0),
+(36, 36, 59, '20', 12.00, '2025-08-27 00:00:00', 0),
+(37, 37, 59, '20', 10.00, '2025-08-27 00:00:00', 0),
+(38, 38, 59, '20', 9.00, '2025-08-27 00:00:00', 1),
+(39, 39, 59, '20', 9.00, '2025-08-27 00:00:00', 1),
+(40, 40, 59, '20', 27.00, '2025-08-27 00:00:00', 0),
+(41, 41, 59, '20', 20.00, '2025-08-27 00:00:00', 1),
+(42, 42, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(43, 43, 59, '20', 9.00, '2025-08-27 00:00:00', 1),
+(44, 44, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(45, 45, 59, '20', 13.00, '2025-08-27 00:00:00', 1),
+(46, 46, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(47, 47, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(48, 48, 59, '20', 22.00, '2025-08-27 00:00:00', 1),
+(49, 49, 59, '20', 20.00, '2025-08-27 00:00:00', 1),
+(50, 50, 59, '20', 22.00, '2025-08-27 00:00:00', 1),
+(51, 51, 59, '20', 20.00, '2025-08-27 00:00:00', 1),
+(52, 52, 59, '20', 22.00, '2025-08-27 00:00:00', 1),
+(53, 53, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(54, 54, 59, '20', 10.00, '2025-08-27 00:00:00', 1),
+(55, 55, 59, '20', 15.00, '2025-08-27 00:00:00', 1),
+(56, 35, 59, '20', 6.00, '2025-08-30 09:27:53', 0),
+(57, 56, 59, '20', 9.00, '2025-08-30 14:01:51', 1),
+(58, 57, 59, '20', 15.00, '2025-08-30 14:08:07', 1),
+(59, 35, 59, '20', 9.00, '2025-08-30 14:26:34', 1),
+(60, 36, 59, '20', 10.00, '2025-08-30 14:30:51', 1),
+(61, 37, 59, '20', 9.00, '2025-08-30 14:31:38', 1),
+(62, 40, 59, '20', 25.00, '2025-08-30 14:33:41', 1),
+(63, 5, 59, '20', 10.00, '2025-08-30 14:42:30', 1),
+(64, 7, 59, '20', 10.00, '2025-08-30 14:42:57', 1),
+(65, 58, 59, '20', 10.00, '2025-08-30 14:44:07', 1),
+(66, 8, 59, '20', 10.00, '2025-08-30 14:44:30', 1),
+(67, 9, 59, '20', 12.00, '2025-08-30 14:44:51', 1),
+(68, 10, 59, '20', 12.00, '2025-08-30 14:45:26', 1),
+(69, 11, 59, '20', 12.00, '2025-08-30 14:45:40', 1),
+(70, 59, 59, '20', 10.00, '2025-09-04 11:20:22', 1),
+(71, 60, 59, '20', 10.00, '2025-09-04 11:21:23', 1),
+(72, 61, 59, '20', 10.00, '2025-09-04 11:21:56', 1),
+(73, 62, 59, '20', 12.00, '2025-09-04 11:22:27', 1),
+(74, 63, 59, '20', 11.00, '2025-09-04 11:23:07', 1),
+(75, 64, 59, '20', 12.00, '2025-09-04 11:23:41', 1),
+(76, 65, 59, '20', 9.00, '2025-09-04 11:24:18', 1),
+(77, 66, 59, '20', 9.00, '2025-09-04 11:24:49', 1),
+(78, 67, 59, '20', 10.00, '2025-09-04 11:32:32', 1),
+(79, 68, 59, '20', 15.00, '2025-09-04 11:33:25', 1),
+(80, 69, 59, '20', 15.00, '2025-09-04 11:34:06', 1),
+(81, 3, 59, '20', 10.00, '2025-10-01 19:29:10', 0),
+(82, 3, 59, '20', 11.00, '2025-10-01 19:34:35', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proveedor`
+-- Estructura de tabla para la tabla `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -1752,7 +1647,7 @@ CREATE TABLE `proveedor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recetas`
+-- Estructura de tabla para la tabla `recetas`
 --
 
 CREATE TABLE `recetas` (
@@ -1764,7 +1659,7 @@ CREATE TABLE `recetas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `recetas`
+-- Volcado de datos para la tabla `recetas`
 --
 
 INSERT INTO `recetas` (`id_receta`, `id_usuario`, `receta_nombre`, `receta_fecha`, `receta_estado`) VALUES
@@ -1773,7 +1668,7 @@ INSERT INTO `recetas` (`id_receta`, `id_usuario`, `receta_nombre`, `receta_fecha
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recursos`
+-- Estructura de tabla para la tabla `recursos`
 --
 
 CREATE TABLE `recursos` (
@@ -1786,7 +1681,7 @@ CREATE TABLE `recursos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recursos_movimientos`
+-- Estructura de tabla para la tabla `recursos_movimientos`
 --
 
 CREATE TABLE `recursos_movimientos` (
@@ -1800,7 +1695,7 @@ CREATE TABLE `recursos_movimientos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recursos_sede`
+-- Estructura de tabla para la tabla `recursos_sede`
 --
 
 CREATE TABLE `recursos_sede` (
@@ -1826,7 +1721,7 @@ CREATE TABLE `recursos_sede` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registro_asistencias`
+-- Estructura de tabla para la tabla `registro_asistencias`
 --
 
 CREATE TABLE `registro_asistencias` (
@@ -1843,7 +1738,7 @@ CREATE TABLE `registro_asistencias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reporte_movimiento`
+-- Estructura de tabla para la tabla `reporte_movimiento`
 --
 
 CREATE TABLE `reporte_movimiento` (
@@ -1856,44 +1751,18 @@ CREATE TABLE `reporte_movimiento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `reporte_movimiento`
+-- Volcado de datos para la tabla `reporte_movimiento`
 --
 
 INSERT INTO `reporte_movimiento` (`id_reporte_movimiento`, `reporte_movimiento_tipo`, `id_usuario`, `reporte_movimiento_fecha`, `reporte_movimiento_estado`, `reporte_movimiento_mt`) VALUES
-(1, 2, 1, '2025-08-29 17:26:38', 1, '1756506398.9436'),
-(2, 2, 1, '2025-08-29 18:45:42', 1, '1756511142.7902'),
-(3, 2, 1, '2025-08-29 19:43:47', 1, '1756514627.5867'),
-(4, 2, 1, '2025-08-29 21:32:58', 1, '1756521178.0134'),
-(5, 2, 1, '2025-08-29 22:40:36', 1, '1756525236.9564'),
-(6, 2, 1, '2025-08-30 09:12:48', 1, '1756563168.32'),
-(7, 2, 1, '2025-08-30 13:56:56', 1, '1756580216.6894'),
-(8, 2, 1, '2025-08-30 15:11:57', 1, '1756584717.1024'),
-(9, 2, 1, '2025-08-30 16:28:07', 1, '1756589287.0031'),
-(10, 2, 1, '2025-08-30 16:57:02', 1, '1756591022.3699'),
-(11, 2, 1, '2025-08-30 20:27:57', 1, '1756603677.7507'),
-(12, 2, 1, '2025-08-30 20:40:04', 1, '1756604404.5654'),
-(13, 2, 1, '2025-08-30 20:44:16', 1, '1756604656.001'),
-(14, 2, 1, '2025-09-01 17:23:10', 1, '1756765390.9236'),
-(15, 2, 1, '2025-09-01 19:17:23', 1, '1756772243.1478'),
-(16, 2, 1, '2025-09-01 19:36:13', 1, '1756773373.534'),
-(17, 2, 1, '2025-09-01 19:49:12', 1, '1756774152.3598'),
-(18, 2, 1, '2025-09-01 20:52:15', 1, '1756777935.703'),
-(19, 2, 1, '2025-09-02 18:25:42', 1, '1756855542.2504'),
-(20, 2, 1, '2025-09-02 19:09:48', 1, '1756858188.0084'),
-(21, 2, 1, '2025-09-02 20:00:20', 1, '1756861220.067'),
-(22, 2, 1, '2025-09-04 17:28:54', 1, '1757024934.6181'),
-(23, 2, 1, '2025-09-04 20:29:02', 1, '1757035742.6068'),
-(24, 2, 1, '2025-09-05 17:19:08', 1, '1757110748.2241'),
-(25, 2, 1, '2025-09-05 17:22:45', 1, '1757110965.984'),
-(26, 2, 1, '2025-09-05 17:24:44', 1, '1757111084.1133'),
-(27, 2, 1, '2025-09-05 17:27:01', 1, '1757111221.2363'),
-(28, 2, 1, '2025-09-05 17:34:40', 1, '1757111680.9356'),
-(29, 2, 1, '2025-09-05 17:36:24', 1, '1757111784.3506');
+(1, 2, 1, '2025-10-02 16:48:00', 1, '1759441680.2294'),
+(2, 2, 1, '2025-10-02 17:44:47', 1, '1759445087.4293'),
+(3, 2, 1, '2025-10-03 17:37:10', 1, '1759531030.6857');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reporte_movimiento_detalle`
+-- Estructura de tabla para la tabla `reporte_movimiento_detalle`
 --
 
 CREATE TABLE `reporte_movimiento_detalle` (
@@ -1907,7 +1776,7 @@ CREATE TABLE `reporte_movimiento_detalle` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservas`
+-- Estructura de tabla para la tabla `reservas`
 --
 
 CREATE TABLE `reservas` (
@@ -1921,17 +1790,10 @@ CREATE TABLE `reservas` (
   `reserva_estado` tinyint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `reservas`
---
-
-INSERT INTO `reservas` (`id_reserva`, `id_mesa`, `reserva_nombre`, `reserva_cantidad`, `reserva_fecha`, `reserva_hora`, `reserva_fecha_registro`, `reserva_estado`) VALUES
-(1, 8, '', '2', '2021-09-15', '14:30:00', '2021-09-15 14:00:45', 2);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `restricciones`
+-- Estructura de tabla para la tabla `restricciones`
 --
 
 CREATE TABLE `restricciones` (
@@ -1941,7 +1803,7 @@ CREATE TABLE `restricciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `restricciones`
+-- Volcado de datos para la tabla `restricciones`
 --
 
 INSERT INTO `restricciones` (`id_restriccion`, `id_rol`, `id_opcion`) VALUES
@@ -1968,7 +1830,7 @@ INSERT INTO `restricciones` (`id_restriccion`, `id_rol`, `id_opcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estructura de tabla para la tabla `roles`
 --
 
 CREATE TABLE `roles` (
@@ -1979,7 +1841,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Volcado de datos para la tabla `roles`
 --
 
 INSERT INTO `roles` (`id_rol`, `rol_nombre`, `rol_descripcion`, `rol_estado`) VALUES
@@ -1994,7 +1856,7 @@ INSERT INTO `roles` (`id_rol`, `rol_nombre`, `rol_descripcion`, `rol_estado`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles_menus`
+-- Estructura de tabla para la tabla `roles_menus`
 --
 
 CREATE TABLE `roles_menus` (
@@ -2004,7 +1866,7 @@ CREATE TABLE `roles_menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles_menus`
+-- Volcado de datos para la tabla `roles_menus`
 --
 
 INSERT INTO `roles_menus` (`id_rol_menu`, `id_rol`, `id_menu`) VALUES
@@ -2077,7 +1939,7 @@ INSERT INTO `roles_menus` (`id_rol_menu`, `id_rol`, `id_menu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `serie`
+-- Estructura de tabla para la tabla `serie`
 --
 
 CREATE TABLE `serie` (
@@ -2089,13 +1951,13 @@ CREATE TABLE `serie` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=FIXED;
 
 --
--- Dumping data for table `serie`
+-- Volcado de datos para la tabla `serie`
 --
 
 INSERT INTO `serie` (`id_serie`, `tipocomp`, `serie`, `correlativo`, `estado`) VALUES
-(1, '01', 'F001', 0, 1),
+(1, '01', 'F001', 3, 1),
 (2, '01', 'F002', 0, 0),
-(3, '03', 'B001', 23, 1),
+(3, '03', 'B001', 4, 1),
 (5, '07', 'FN01', 0, 1),
 (6, '07', 'BN01', 0, 1),
 (7, '08', 'FD01', 0, 1),
@@ -2108,7 +1970,7 @@ INSERT INTO `serie` (`id_serie`, `tipocomp`, `serie`, `correlativo`, `estado`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_recetas`
+-- Estructura de tabla para la tabla `sub_recetas`
 --
 
 CREATE TABLE `sub_recetas` (
@@ -2125,7 +1987,7 @@ CREATE TABLE `sub_recetas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sucursal`
+-- Estructura de tabla para la tabla `sucursal`
 --
 
 CREATE TABLE `sucursal` (
@@ -2142,16 +2004,16 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `sucursal`
+-- Volcado de datos para la tabla `sucursal`
 --
 
 INSERT INTO `sucursal` (`id_sucursal`, `id_ciudad`, `id_negocio`, `sucursal_nombre`, `sucursal_direccion`, `sucursal_ruc`, `sucursal_foto`, `sucursal_telefono`, `sucursal_estado`, `sucursal_fecha_registro`) VALUES
-(4, 1, 3, 'KAFFU 2D CAFETERÍA', 'JIRON SAREGENTO LORES 457', '10478050122', 'media/sucursal/default.png', '999999999', 1, '2025-08-27 14:23:50');
+(4, 1, 3, 'Empresa Demo', 'Sin Dirección', '20000000000', 'media/sucursal/default.png', '999999999', 1, '2025-08-27 14:23:50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipoadjuntos`
+-- Estructura de tabla para la tabla `tipoadjuntos`
 --
 
 CREATE TABLE `tipoadjuntos` (
@@ -2161,7 +2023,7 @@ CREATE TABLE `tipoadjuntos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipoadjuntos`
+-- Volcado de datos para la tabla `tipoadjuntos`
 --
 
 INSERT INTO `tipoadjuntos` (`id_adjunto`, `adjunto_nombre`, `adjunto_ext`) VALUES
@@ -2190,7 +2052,7 @@ INSERT INTO `tipoadjuntos` (`id_adjunto`, `adjunto_nombre`, `adjunto_ext`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipocargo`
+-- Estructura de tabla para la tabla `tipocargo`
 --
 
 CREATE TABLE `tipocargo` (
@@ -2200,7 +2062,7 @@ CREATE TABLE `tipocargo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipocargo`
+-- Volcado de datos para la tabla `tipocargo`
 --
 
 INSERT INTO `tipocargo` (`id_cargo`, `id_departamento`, `cargo_nombre`) VALUES
@@ -2214,7 +2076,7 @@ INSERT INTO `tipocargo` (`id_cargo`, `id_departamento`, `cargo_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipocontrato`
+-- Estructura de tabla para la tabla `tipocontrato`
 --
 
 CREATE TABLE `tipocontrato` (
@@ -2223,7 +2085,7 @@ CREATE TABLE `tipocontrato` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipocontrato`
+-- Volcado de datos para la tabla `tipocontrato`
 --
 
 INSERT INTO `tipocontrato` (`id_contrato`, `contrato_nombre`) VALUES
@@ -2238,7 +2100,7 @@ INSERT INTO `tipocontrato` (`id_contrato`, `contrato_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipodepartamento`
+-- Estructura de tabla para la tabla `tipodepartamento`
 --
 
 CREATE TABLE `tipodepartamento` (
@@ -2247,7 +2109,7 @@ CREATE TABLE `tipodepartamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipodepartamento`
+-- Volcado de datos para la tabla `tipodepartamento`
 --
 
 INSERT INTO `tipodepartamento` (`id_departamento`, `departamento_nombre`) VALUES
@@ -2259,7 +2121,7 @@ INSERT INTO `tipodepartamento` (`id_departamento`, `departamento_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiposede`
+-- Estructura de tabla para la tabla `tiposede`
 --
 
 CREATE TABLE `tiposede` (
@@ -2268,7 +2130,7 @@ CREATE TABLE `tiposede` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tiposede`
+-- Volcado de datos para la tabla `tiposede`
 --
 
 INSERT INTO `tiposede` (`id_sede`, `sede_nombre`) VALUES
@@ -2278,7 +2140,7 @@ INSERT INTO `tiposede` (`id_sede`, `sede_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_afectacion`
+-- Estructura de tabla para la tabla `tipo_afectacion`
 --
 
 CREATE TABLE `tipo_afectacion` (
@@ -2291,7 +2153,7 @@ CREATE TABLE `tipo_afectacion` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tipo_afectacion`
+-- Volcado de datos para la tabla `tipo_afectacion`
 --
 
 INSERT INTO `tipo_afectacion` (`id_tipo_afectacion`, `codigo`, `descripcion`, `codigo_afectacion`, `nombre_afectacion`, `tipo_afectacion`) VALUES
@@ -2303,7 +2165,7 @@ INSERT INTO `tipo_afectacion` (`id_tipo_afectacion`, `codigo`, `descripcion`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_documentos`
+-- Estructura de tabla para la tabla `tipo_documentos`
 --
 
 CREATE TABLE `tipo_documentos` (
@@ -2314,7 +2176,7 @@ CREATE TABLE `tipo_documentos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipo_documentos`
+-- Volcado de datos para la tabla `tipo_documentos`
 --
 
 INSERT INTO `tipo_documentos` (`id_tipodocumento`, `tipodocumento_codigo`, `tipodocumento_identidad`, `tipodocumento_estado`) VALUES
@@ -2329,7 +2191,7 @@ INSERT INTO `tipo_documentos` (`id_tipodocumento`, `tipodocumento_codigo`, `tipo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_ncreditos`
+-- Estructura de tabla para la tabla `tipo_ncreditos`
 --
 
 CREATE TABLE `tipo_ncreditos` (
@@ -2340,7 +2202,7 @@ CREATE TABLE `tipo_ncreditos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipo_ncreditos`
+-- Volcado de datos para la tabla `tipo_ncreditos`
 --
 
 INSERT INTO `tipo_ncreditos` (`id`, `codigo`, `tipo_nota_descripcion`, `estado`) VALUES
@@ -2361,7 +2223,7 @@ INSERT INTO `tipo_ncreditos` (`id`, `codigo`, `tipo_nota_descripcion`, `estado`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_ndebitos`
+-- Estructura de tabla para la tabla `tipo_ndebitos`
 --
 
 CREATE TABLE `tipo_ndebitos` (
@@ -2372,7 +2234,7 @@ CREATE TABLE `tipo_ndebitos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipo_ndebitos`
+-- Volcado de datos para la tabla `tipo_ndebitos`
 --
 
 INSERT INTO `tipo_ndebitos` (`id`, `codigo`, `tipo_nota_descripcion`, `estado`) VALUES
@@ -2385,7 +2247,7 @@ INSERT INTO `tipo_ndebitos` (`id`, `codigo`, `tipo_nota_descripcion`, `estado`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_pago`
+-- Estructura de tabla para la tabla `tipo_pago`
 --
 
 CREATE TABLE `tipo_pago` (
@@ -2395,7 +2257,7 @@ CREATE TABLE `tipo_pago` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tipo_pago`
+-- Volcado de datos para la tabla `tipo_pago`
 --
 
 INSERT INTO `tipo_pago` (`id_tipo_pago`, `tipo_pago_nombre`, `tipo_pago_estado`) VALUES
@@ -2409,7 +2271,7 @@ INSERT INTO `tipo_pago` (`id_tipo_pago`, `tipo_pago_nombre`, `tipo_pago_estado`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `turno`
+-- Estructura de tabla para la tabla `turno`
 --
 
 CREATE TABLE `turno` (
@@ -2424,7 +2286,7 @@ CREATE TABLE `turno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `turno`
+-- Volcado de datos para la tabla `turno`
 --
 
 INSERT INTO `turno` (`id_turno`, `turno_nombre`, `turno_hora_entrada`, `turno_hora_tolerancia`, `turno_hora_salida`, `turno_estado`, `turno_fecha_registro`, `turno_usuario_registro`) VALUES
@@ -2436,7 +2298,7 @@ INSERT INTO `turno` (`id_turno`, `turno_nombre`, `turno_hora_entrada`, `turno_ho
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unidad_medida`
+-- Estructura de tabla para la tabla `unidad_medida`
 --
 
 CREATE TABLE `unidad_medida` (
@@ -2447,7 +2309,7 @@ CREATE TABLE `unidad_medida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `unidad_medida`
+-- Volcado de datos para la tabla `unidad_medida`
 --
 
 INSERT INTO `unidad_medida` (`id_medida`, `medida_codigo_unidad`, `medida_nombre`, `medida_activo`) VALUES
@@ -2517,7 +2379,7 @@ INSERT INTO `unidad_medida` (`id_medida`, `medida_codigo_unidad`, `medida_nombre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -2535,22 +2397,23 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `id_persona`, `id_rol`, `usuario_nickname`, `usuario_contrasenha`, `usuario_email`, `usuario_imagen`, `usuario_estado`, `usuario_creacion`, `usuario_ultimo_login`, `usuario_ultima_modificacion`) VALUES
-(1, 1, 2, 'superadmin', '$2y$10$oPOOOgTUr4zIh511ATm/q.vzsAmxP.e2.vzyEbRn/1pzyWz2oXj0a', 'cesarjose@bufeotec.com', 'media/usuarios/usuario.jpg', 1, '2020-09-17 00:00:00', '2025-09-03 18:09:40', '2020-09-17 00:00:00'),
-(2, 2, 3, 'admin', '$2y$10$fqpoOPjLyAoz4L0hD2VvjeYeNZLML4pB7GsQwq7MTYZpkWKrCVUUm', 'gaia@gmail.com', 'media/usuarios/usuario.jpg', 1, '2020-10-27 18:29:10', '2025-08-28 13:03:33', '2021-08-12 17:02:46'),
-(15, 15, 5, 'luis.salazar', '$2y$10$qv71mN8ydj.PzRP.VJLbbeouEfo8qvdlC//3dvLnj/GhnYIW6piJa', '', 'media/persona/default.png', 1, '2025-08-21 22:49:10', '2025-08-28 13:01:51', '2025-08-21 22:49:10'),
+(1, 1, 2, 'superadmin', '$2y$10$oPOOOgTUr4zIh511ATm/q.vzsAmxP.e2.vzyEbRn/1pzyWz2oXj0a', 'cesarjose@bufeotec.com', 'media/usuarios/usuario.jpg', 1, '2020-09-17 00:00:00', '2025-10-03 13:54:29', '2020-09-17 00:00:00'),
+(2, 2, 3, 'admin', '$2y$10$fqpoOPjLyAoz4L0hD2VvjeYeNZLML4pB7GsQwq7MTYZpkWKrCVUUm', 'gaia@gmail.com', 'media/usuarios/usuario.jpg', 1, '2020-10-27 18:29:10', '2025-10-04 12:03:18', '2021-08-12 17:02:46'),
+(15, 15, 5, 'cajero.demo', '$2y$10$qv71mN8ydj.PzRP.VJLbbeouEfo8qvdlC//3dvLnj/GhnYIW6piJa', 'cajero@gmail.com', 'media/persona/default.png', 1, '2025-08-21 22:49:10', '2025-10-04 12:03:45', '2025-10-04 11:57:18'),
 (16, 16, 5, 'Jackeline', '$2y$10$3S7palS1jxGH.XXLC6BlbOu.nAzhOxjPVW8kxhWTaeT27j9cl6pkG', '', 'media/persona/default.png', 1, '2025-08-28 13:10:35', '2025-09-05 17:25:31', '2025-08-28 13:10:35'),
 (17, 17, 4, 'Maia', '$2y$10$GFWC3lJUW53gjI2vL7ABYenBGIC6qzb/uZqbLkEE8Nrvh0HUXwyRS', '', 'media/persona/default.png', 1, '2025-08-28 13:12:01', '2025-09-01 11:11:09', '2025-08-28 13:12:01'),
 (18, 18, 4, 'Aaron', '$2y$10$/MrjWKfjmGxM.lco83IMCuBBfuET.nmVC5iO5jqZTonezTLg4EdT2', '', 'media/persona/default.png', 1, '2025-08-28 13:13:45', '2025-09-05 17:04:45', '2025-08-28 13:13:45'),
-(19, 19, 4, 'blanca', '$2y$10$oR2TDcW/ofQTf1P/UGxJ8.RbMQ7pFMqJ3/t7xDIJDjWNgX7mpsUu6', '', 'media/persona/default.png', 1, '2025-08-28 13:38:50', '2025-08-28 13:38:50', '2025-08-28 13:38:50');
+(19, 19, 4, 'blanca', '$2y$10$oR2TDcW/ofQTf1P/UGxJ8.RbMQ7pFMqJ3/t7xDIJDjWNgX7mpsUu6', '', 'media/persona/default.png', 1, '2025-08-28 13:38:50', '2025-08-28 13:38:50', '2025-08-28 13:38:50'),
+(20, 20, 3, 'demo', '$2y$10$FDb0wxN.fWWrDhSKSjaF.e7QV17FfYhyZ1OgkGIFzMtW60OLhmm3K', 'demo@gmail.com', 'media/usuarios/usuario.jpg', 1, '2025-09-30 16:37:49', '2025-09-30 16:37:49', '2025-09-30 16:38:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios_negocio`
+-- Estructura de tabla para la tabla `usuarios_negocio`
 --
 
 CREATE TABLE `usuarios_negocio` (
@@ -2562,7 +2425,7 @@ CREATE TABLE `usuarios_negocio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `usuarios_negocio`
+-- Volcado de datos para la tabla `usuarios_negocio`
 --
 
 INSERT INTO `usuarios_negocio` (`id_usuario_negocio`, `id_negocio`, `id_usuario`, `usuario_negocio_fecha`, `usuario_negocio_estado`) VALUES
@@ -2572,7 +2435,7 @@ INSERT INTO `usuarios_negocio` (`id_usuario_negocio`, `id_negocio`, `id_usuario`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios_sucursal`
+-- Estructura de tabla para la tabla `usuarios_sucursal`
 --
 
 CREATE TABLE `usuarios_sucursal` (
@@ -2585,7 +2448,7 @@ CREATE TABLE `usuarios_sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `usuarios_sucursal`
+-- Volcado de datos para la tabla `usuarios_sucursal`
 --
 
 INSERT INTO `usuarios_sucursal` (`id_usuario_sucursal`, `id_sucursal`, `id_usuario`, `id_rol`, `usuario_sucursal_fecha`, `usuario_sucursal_estado`) VALUES
@@ -2600,7 +2463,7 @@ INSERT INTO `usuarios_sucursal` (`id_usuario_sucursal`, `id_sucursal`, `id_usuar
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas`
+-- Estructura de tabla para la tabla `ventas`
 --
 
 CREATE TABLE `ventas` (
@@ -2647,38 +2510,22 @@ CREATE TABLE `ventas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `ventas`
+-- Volcado de datos para la tabla `ventas`
 --
 
 INSERT INTO `ventas` (`id_venta`, `id_caja_numero`, `id_empresa`, `id_usuario`, `id_mesa`, `id_cliente`, `id_tipo_pago`, `id_moneda`, `venta_condicion_resumen`, `venta_tipo_envio`, `venta_direccion`, `venta_tipo`, `venta_serie`, `venta_correlativo`, `venta_totalgratuita`, `venta_totalexonerada`, `venta_totalinafecta`, `venta_totalgravada`, `venta_totaligv`, `venta_incluye_igv`, `venta_totaldescuento`, `venta_icbper`, `venta_total`, `venta_pago_cliente`, `venta_vuelto`, `venta_fecha`, `venta_observacion`, `tipo_documento_modificar`, `serie_modificar`, `correlativo_modificar`, `venta_codigo_motivo_nota`, `venta_estado_sunat`, `venta_fecha_envio`, `venta_rutaXML`, `venta_rutaCDR`, `venta_respuesta_sunat`, `venta_fecha_de_baja`, `anulado_sunat`, `venta_cancelar`, `venta_seriecorrelativo_notaventa`) VALUES
-(1, 1, 1, 16, 6, 1, 3, 1, 1, 0, NULL, '03', 'B001', '1', '0.00', '10.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '10.00', '20.00', '20.00', '2025-08-29 17:31:39', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(2, 1, 1, 16, 6, 1, 5, 1, 1, 0, NULL, '03', 'B001', '2', '0.00', '32.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '32.00', '0.00', '0.00', '2025-08-29 20:01:32', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(3, 1, 1, 16, 8, 1, 1, 1, 1, 0, NULL, '03', 'B001', '3', '0.00', '69.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '69.00', '0.00', '0.00', '2025-08-29 21:34:31', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(4, 1, 1, 16, 7, 1, 3, 1, 1, 0, NULL, '03', 'B001', '4', '0.00', '54.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '54.00', '100.00', '46.00', '2025-08-29 22:33:26', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(5, 1, 1, 16, 6, 1, 3, 1, 1, 0, NULL, '03', 'B001', '5', '0.00', '55.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '55.00', '0.00', '0.00', '2025-08-29 22:41:00', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(6, 1, 1, 16, 6, 1, 1, 1, 1, 0, NULL, '03', 'B001', '6', '0.00', '21.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '21.00', '0.00', '0.00', '2025-08-30 09:31:00', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(7, 1, 1, 16, 8, 1, 5, 1, 1, 0, NULL, '03', 'B001', '7', '0.00', '25.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '25.00', '15.10', '-9.90', '2025-08-30 15:58:12', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(8, 1, 1, 16, 8, 1, 3, 1, 1, 0, NULL, '03', 'B001', '8', '0.00', '20.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '20.00', '0.00', '0.00', '2025-08-30 16:57:24', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(9, 1, 1, 16, 6, 1, 3, 1, 1, 0, NULL, '03', 'B001', '9', '0.00', '46.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '46.00', '0.00', '0.00', '2025-08-30 17:39:33', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(10, 1, 1, 16, 8, 1, 1, 1, 1, 0, NULL, '03', 'B001', '10', '0.00', '139.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '139.00', '0.00', '0.00', '2025-08-30 21:53:16', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(11, 1, 1, 16, 9, 1, 3, 1, 1, 0, NULL, '03', 'B001', '11', '0.00', '25.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '25.00', '30.00', '30.00', '2025-08-30 21:57:11', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(12, 1, 1, 16, 6, 1, 3, 1, 1, 0, NULL, '03', 'B001', '12', '0.00', '41.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '41.00', '100.00', '59.00', '2025-08-30 22:27:17', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(13, 1, 1, 16, 7, 1, 5, 1, 1, 0, NULL, '03', 'B001', '13', '0.00', '32.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '32.00', '0.00', '0.00', '2025-08-30 22:27:45', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(14, 1, 1, 16, 6, 1, 1, 1, 1, 0, NULL, '03', 'B001', '14', '0.00', '10.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '10.00', '0.00', '0.00', '2025-09-01 20:18:04', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(15, 1, 1, 16, 7, 1, 1, 1, 1, 0, NULL, '03', 'B001', '15', '0.00', '45.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '45.00', '0.00', '0.00', '2025-09-01 20:19:00', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(16, 1, 1, 16, 9, 1, 1, 1, 1, 0, NULL, '03', 'B001', '16', '0.00', '10.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '10.00', '0.00', '0.00', '2025-09-01 20:19:38', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(17, 1, 1, 16, 7, 1, 3, 1, 1, 0, NULL, '03', 'B001', '17', '0.00', '12.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '12.00', '20.00', '8.00', '2025-09-01 20:53:48', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(18, 1, 1, 16, 8, 1, 1, 1, 1, 0, NULL, '03', 'B001', '18', '0.00', '22.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '22.00', '0.00', '0.00', '2025-09-01 21:25:59', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(19, 1, 1, 16, 7, 1, 5, 1, 1, 0, NULL, '03', 'B001', '19', '0.00', '52.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '52.00', '0.00', '0.00', '2025-09-02 19:07:24', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(20, 1, 1, 16, 7, 1, 5, 1, 1, 0, NULL, '03', 'B001', '20', '0.00', '52.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '52.00', '12.00', '-40.00', '2025-09-02 19:10:35', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(21, 1, 1, 16, 6, 1, 3, 1, 1, 0, NULL, '03', 'B001', '21', '0.00', '71.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '71.00', '100.00', '29.00', '2025-09-02 21:13:18', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(22, 1, 1, 16, 7, 1, 3, 1, 1, 0, NULL, '03', 'B001', '22', '0.00', '92.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '92.00', '0.00', '0.00', '2025-09-04 20:21:56', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
-(23, 1, 1, 16, 6, 1, 5, 1, 1, 0, NULL, '03', 'B001', '23', '0.00', '52.00', '0.00', '0.00', '0.00', 1, '0.00', '0.00', '52.00', '0.00', '0.00', '2025-09-04 21:01:39', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL);
+(3, 1, 1, 1, 0, 3, 3, 1, 1, 1, NULL, '01', 'F001', '1', 0.00, 11.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 11.00, 0.00, -11.00, '2025-10-03 13:33:33', NULL, '', NULL, '', '0', 1, '2025-10-04 13:24:06', 'libs/ApiFacturacion/xml/20000000000-01-F001-1.XML', 'libs/ApiFacturacion/cdr/R-20000000000-01-F001-1.XML', 'La Factura numero F001-1, ha sido aceptada', NULL, 0, 1, NULL),
+(4, 1, 1, 1, 0, 3, 3, 1, 1, 1, NULL, '01', 'F001', '2', 0.00, 10.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 10.00, 0.00, -10.00, '2025-10-03 13:40:23', NULL, '', NULL, '', '0', 1, '2025-10-04 13:25:32', 'libs/ApiFacturacion/xml/20000000000-01-F001-2.XML', 'libs/ApiFacturacion/cdr/R-20000000000-01-F001-2.XML', 'La Factura numero F001-2, ha sido aceptada', NULL, 0, 1, NULL),
+(5, 1, 1, 1, 0, 3, 3, 1, 1, 0, NULL, '01', 'F001', '3', 0.00, 24.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 24.00, 0.00, -24.00, '2025-10-03 13:47:22', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
+(6, 1, 1, 1, 8, 1, 3, 1, 1, 2, NULL, '03', 'B001', '1', 0.00, 5.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 5.00, 0.00, -5.00, '2025-10-03 17:58:57', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL),
+(7, 1, 1, 15, 6, 1, 3, 1, 1, 0, NULL, '03', 'B001', '2', 0.00, 11.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 11.00, 0.00, -11.00, '2025-10-04 12:46:14', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
+(8, 1, 1, 15, 7, 1, 3, 1, 1, 0, NULL, '03', 'B001', '3', 0.00, 10.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 10.00, 0.00, -10.00, '2025-10-04 12:57:20', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL),
+(9, 1, 1, 15, 7, 7, 1, 1, 1, 0, NULL, '03', 'B001', '4', 0.00, 10.00, 0.00, 0.00, 0.00, 1, 0.00, 0.00, 10.00, 0.00, -10.00, '2025-10-04 13:06:53', NULL, '', NULL, '', '0', 0, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas_anulados`
+-- Estructura de tabla para la tabla `ventas_anulados`
 --
 
 CREATE TABLE `ventas_anulados` (
@@ -2699,7 +2546,7 @@ CREATE TABLE `ventas_anulados` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas_cuotas`
+-- Estructura de tabla para la tabla `ventas_cuotas`
 --
 
 CREATE TABLE `ventas_cuotas` (
@@ -2716,7 +2563,7 @@ CREATE TABLE `ventas_cuotas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas_detalle`
+-- Estructura de tabla para la tabla `ventas_detalle`
 --
 
 CREATE TABLE `ventas_detalle` (
@@ -2736,79 +2583,23 @@ CREATE TABLE `ventas_detalle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `ventas_detalle`
+-- Volcado de datos para la tabla `ventas_detalle`
 --
 
 INSERT INTO `ventas_detalle` (`id_venta_detalle`, `id_venta`, `id_comanda_detalle`, `venta_detalle_valor_unitario`, `venta_detalle_precio_unitario`, `venta_detalle_nombre_producto`, `venta_detalle_cantidad`, `venta_detalle_total_igv`, `venta_detalle_porcentaje_igv`, `venta_detalle_total_icbper`, `venta_detalle_valor_total`, `venta_detalle_importe_total`, `id_producto_precio`) VALUES
-(1, 1, 1, '10.00', '10.00', 'Café americano', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(2, 2, 5, '12.00', '12.00', 'Café capuchino', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(3, 2, 6, '20.00', '20.00', 'Chaufa amazónico ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(4, 3, 2, '22.00', '22.00', 'Broaster', 2, '0.00', '18.00', '0.00', '44.00', '44.00', NULL),
-(5, 3, 3, '5.00', '5.00', 'Refresco camu camu', 2, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(6, 3, 4, '15.00', '15.00', 'Salchipapa', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(7, 4, 7, '22.00', '22.00', 'Broaster', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(8, 4, 8, '5.00', '5.00', 'Refresco camu camu', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL),
-(9, 4, 10, '22.00', '22.00', 'Alitas acevichadas ', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(10, 4, 11, '5.00', '5.00', 'Refresco camu camu', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL),
-(11, 5, 14, '15.00', '15.00', 'Frappe oreo', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(12, 5, 15, '20.00', '20.00', 'Alitas bbq ', 2, '0.00', '18.00', '0.00', '40.00', '40.00', NULL),
-(13, 6, 16, '12.00', '12.00', 'Café capuchino', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(14, 6, 17, '9.00', '9.00', 'Pan con plata ', 1, '0.00', '18.00', '0.00', '9.00', '9.00', NULL),
-(15, 7, 21, '5.00', '5.00', 'Refresco camu camu', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL),
-(16, 7, 22, '20.00', '20.00', 'Chaufa amazónico ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(17, 8, 25, '20.00', '20.00', 'Chaufa amazónico ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(18, 9, 18, '22.00', '22.00', 'Alitas Acevi-Crash', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(19, 9, 19, '9.00', '9.00', 'Chaufa', 1, '0.00', '18.00', '0.00', '9.00', '9.00', NULL),
-(20, 9, 20, '15.00', '15.00', 'Chocolate frío', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(21, 10, 26, '25.00', '25.00', 'Club 2D', 1, '0.00', '18.00', '0.00', '25.00', '25.00', NULL),
-(22, 10, 27, '10.00', '10.00', 'Americano Classic', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(23, 10, 28, '22.00', '22.00', 'Broaster Crunch', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(24, 10, 29, '22.00', '22.00', 'Alitas Acevi-Crash', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(25, 10, 30, '20.00', '20.00', 'Alitas bbq ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(26, 10, 31, '10.00', '10.00', 'Jugo de papaya', 3, '0.00', '18.00', '0.00', '30.00', '30.00', NULL),
-(27, 10, 38, '5.00', '5.00', 'Refresco camu camu', 2, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(28, 11, 34, '20.00', '20.00', 'Alitas bbq ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(29, 11, 35, '5.00', '5.00', 'Refresco camu camu', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL),
-(30, 12, 32, '12.00', '12.00', 'Capuccino Asesino', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(31, 12, 33, '20.00', '20.00', 'Alitas bbq ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(32, 12, 37, '9.00', '9.00', 'Chaufa', 1, '0.00', '18.00', '0.00', '9.00', '9.00', NULL),
-(33, 13, 24, '12.00', '12.00', 'Fresa con leche', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(34, 13, 40, '20.00', '20.00', 'Chaufa amazónico ', 1, '0.00', '18.00', '0.00', '20.00', '20.00', NULL),
-(35, 14, 41, '10.00', '10.00', 'Camu camu Ice', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(36, 15, 42, '15.00', '15.00', 'Tequeños', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(37, 15, 43, '15.00', '15.00', 'Frappe maracuya', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(38, 15, 44, '15.00', '15.00', 'Frappe cafe ', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(39, 16, 47, '10.00', '10.00', 'Café Expresso', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(40, 17, 48, '12.00', '12.00', 'Capuccino Asesino', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(41, 18, 45, '10.00', '10.00', 'Triple Power', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(42, 18, 46, '12.00', '12.00', 'Fresa con leche', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(43, 19, 49, '22.00', '22.00', 'Alitas Acevi-Crash', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(44, 19, 50, '15.00', '15.00', 'Frappe fresa', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(45, 19, 51, '15.00', '15.00', 'Frappe oreo', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(46, 20, 52, '15.00', '15.00', 'Frappe fresa', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(47, 20, 53, '15.00', '15.00', 'Frappe oreo', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(48, 20, 54, '22.00', '22.00', 'Alitas Acevi-Crash', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(49, 21, 55, '22.00', '22.00', 'Broaster Crunch', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(50, 21, 56, '10.00', '10.00', 'Jugo de papaya', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(51, 21, 57, '12.00', '12.00', 'Capuccino Asesino', 1, '0.00', '18.00', '0.00', '12.00', '12.00', NULL),
-(52, 21, 58, '22.00', '22.00', 'Alitas Acevi-Crash', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(53, 21, 59, '5.00', '5.00', 'Agua c/s gas ', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL),
-(54, 22, 60, '15.00', '15.00', 'Frappe oreo', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(55, 22, 61, '15.00', '15.00', 'Frappe cafe ', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(56, 22, 62, '10.00', '10.00', 'Arazá Wow', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(57, 22, 63, '15.00', '15.00', 'Salchipapa', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(58, 22, 64, '22.00', '22.00', 'Alitas Acevi-Crush', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(59, 22, 65, '10.00', '10.00', 'Triple Power', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(60, 22, 66, '5.00', '5.00', 'Gaseosa coca cola', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL),
-(61, 23, 67, '15.00', '15.00', 'Salchipapa', 1, '0.00', '18.00', '0.00', '15.00', '15.00', NULL),
-(62, 23, 68, '22.00', '22.00', 'Canoitas amazónicos', 1, '0.00', '18.00', '0.00', '22.00', '22.00', NULL),
-(63, 23, 69, '10.00', '10.00', 'Maracuya Pop', 1, '0.00', '18.00', '0.00', '10.00', '10.00', NULL),
-(64, 23, 70, '5.00', '5.00', 'Agua c/s gas ', 1, '0.00', '18.00', '0.00', '5.00', '5.00', NULL);
+(2, 3, 3, 11.00, 11.00, 'Capuccino Asesino', 1, 0.00, 18.00, 0.00, 11.00, 11.00, NULL),
+(3, 4, 6, 10.00, 10.00, 'Maracuya Pop', 1, 0.00, 18.00, 0.00, 10.00, 10.00, NULL),
+(4, 5, 7, 12.00, 12.00, 'Pink Punch', 1, 0.00, 18.00, 0.00, 12.00, 12.00, NULL),
+(5, 5, 8, 12.00, 12.00, 'Mango Ice', 1, 0.00, 18.00, 0.00, 12.00, 12.00, NULL),
+(6, 6, 14, 5.00, 5.00, 'Refresco maracuya', 1, 0.00, 18.00, 0.00, 5.00, 5.00, NULL),
+(7, 7, 1, 11.00, 11.00, 'Capuccino Asesino', 1, 0.00, 18.00, 0.00, 11.00, 11.00, NULL),
+(8, 8, 2, 10.00, 10.00, 'Maracuya Pop', 1, 0.00, 18.00, 0.00, 10.00, 10.00, NULL),
+(9, 9, 4, 10.00, 10.00, 'Maracuya Pop', 1, 0.00, 18.00, 0.00, 10.00, 10.00, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas_detalle_pagos`
+-- Estructura de tabla para la tabla `ventas_detalle_pagos`
 --
 
 CREATE TABLE `ventas_detalle_pagos` (
@@ -2820,40 +2611,25 @@ CREATE TABLE `ventas_detalle_pagos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `ventas_detalle_pagos`
+-- Volcado de datos para la tabla `ventas_detalle_pagos`
 --
 
 INSERT INTO `ventas_detalle_pagos` (`id_venta_detalle_pago`, `id_venta`, `id_tipo_pago`, `venta_detalle_pago_monto`, `venta_detalle_pago_estado`) VALUES
-(1, 1, 3, '10.00', 1),
-(2, 2, 5, '32.00', 1),
-(3, 3, 1, '69.00', 1),
-(4, 4, 3, '54.00', 1),
-(5, 5, 3, '55.00', 1),
-(6, 6, 1, '21.00', 1),
-(7, 7, 5, '25.00', 1),
-(8, 8, 3, '20.00', 1),
-(9, 9, 3, '46.00', 1),
-(10, 10, 1, '139.00', 1),
-(11, 11, 3, '25.00', 1),
-(12, 12, 3, '41.00', 1),
-(13, 13, 5, '32.00', 1),
-(14, 14, 1, '10.00', 1),
-(15, 15, 1, '45.00', 1),
-(16, 16, 1, '10.00', 1),
-(17, 17, 3, '12.00', 1),
-(18, 18, 1, '22.00', 1),
-(19, 19, 5, '52.00', 1),
-(20, 20, 5, '52.00', 1),
-(21, 21, 3, '71.00', 1),
-(22, 22, 3, '92.00', 1),
-(23, 23, 5, '52.00', 1);
+(1, 1, 3, 5.00, 1),
+(2, 3, 3, 11.00, 1),
+(3, 4, 3, 10.00, 1),
+(4, 5, 3, 24.00, 1),
+(5, 6, 3, 5.00, 1),
+(6, 7, 3, 11.00, 1),
+(7, 8, 3, 10.00, 1),
+(8, 9, 1, 10.00, 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `almacenes`
+-- Indices de la tabla `almacenes`
 --
 ALTER TABLE `almacenes`
   ADD PRIMARY KEY (`id_almacen`),
@@ -2861,38 +2637,38 @@ ALTER TABLE `almacenes`
   ADD KEY `id_sucursal` (`id_sucursal`);
 
 --
--- Indexes for table `asistencia`
+-- Indices de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
   ADD PRIMARY KEY (`id_asistencia`),
   ADD KEY `id_persona_turno` (`id_persona_turno`);
 
 --
--- Indexes for table `asistencia_fecha`
+-- Indices de la tabla `asistencia_fecha`
 --
 ALTER TABLE `asistencia_fecha`
   ADD PRIMARY KEY (`id_asistencia_fecha`);
 
 --
--- Indexes for table `caja`
+-- Indices de la tabla `caja`
 --
 ALTER TABLE `caja`
   ADD PRIMARY KEY (`id_caja`);
 
 --
--- Indexes for table `caja_numero`
+-- Indices de la tabla `caja_numero`
 --
 ALTER TABLE `caja_numero`
   ADD PRIMARY KEY (`id_caja_numero`);
 
 --
--- Indexes for table `categorias`
+-- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `categorias_negocio`
+-- Indices de la tabla `categorias_negocio`
 --
 ALTER TABLE `categorias_negocio`
   ADD PRIMARY KEY (`id_categoria_negocio`),
@@ -2900,19 +2676,19 @@ ALTER TABLE `categorias_negocio`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indexes for table `ciudad`
+-- Indices de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
   ADD PRIMARY KEY (`id_ciudad`);
 
 --
--- Indexes for table `clientes`
+-- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
--- Indexes for table `comanda`
+-- Indices de la tabla `comanda`
 --
 ALTER TABLE `comanda`
   ADD PRIMARY KEY (`id_comanda`),
@@ -2920,7 +2696,7 @@ ALTER TABLE `comanda`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `comanda_detalle`
+-- Indices de la tabla `comanda_detalle`
 --
 ALTER TABLE `comanda_detalle`
   ADD PRIMARY KEY (`id_comanda_detalle`),
@@ -2928,7 +2704,7 @@ ALTER TABLE `comanda_detalle`
   ADD KEY `id_producto` (`id_producto`);
 
 --
--- Indexes for table `conversiones`
+-- Indices de la tabla `conversiones`
 --
 ALTER TABLE `conversiones`
   ADD PRIMARY KEY (`id_conversion`),
@@ -2936,13 +2712,13 @@ ALTER TABLE `conversiones`
   ADD KEY `conversion_unidad_medida` (`conversion_unidad_medida`);
 
 --
--- Indexes for table `correlativos`
+-- Indices de la tabla `correlativos`
 --
 ALTER TABLE `correlativos`
   ADD PRIMARY KEY (`id_correlativo`);
 
 --
--- Indexes for table `detalle_compra`
+-- Indices de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
   ADD PRIMARY KEY (`id_detalle_compra`),
@@ -2950,7 +2726,7 @@ ALTER TABLE `detalle_compra`
   ADD KEY `id_recurso_sede` (`id_recurso_sede`);
 
 --
--- Indexes for table `detalle_recetas`
+-- Indices de la tabla `detalle_recetas`
 --
 ALTER TABLE `detalle_recetas`
   ADD PRIMARY KEY (`id_detalle_receta`),
@@ -2958,77 +2734,77 @@ ALTER TABLE `detalle_recetas`
   ADD KEY `id_recursos_sede` (`id_recursos_sede`);
 
 --
--- Indexes for table `documentos`
+-- Indices de la tabla `documentos`
 --
 ALTER TABLE `documentos`
   ADD PRIMARY KEY (`id_documento`);
 
 --
--- Indexes for table `empresa`
+-- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   ADD PRIMARY KEY (`id_empresa`);
 
 --
--- Indexes for table `envio_resumen`
+-- Indices de la tabla `envio_resumen`
 --
 ALTER TABLE `envio_resumen`
   ADD PRIMARY KEY (`id_envio_resumen`),
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
--- Indexes for table `envio_resumen_detalle`
+-- Indices de la tabla `envio_resumen_detalle`
 --
 ALTER TABLE `envio_resumen_detalle`
   ADD PRIMARY KEY (`id_envio_resumen_detalle`),
   ADD KEY `id_envio_resumen` (`id_envio_resumen`);
 
 --
--- Indexes for table `feriados`
+-- Indices de la tabla `feriados`
 --
 ALTER TABLE `feriados`
   ADD PRIMARY KEY (`id_feriado`);
 
 --
--- Indexes for table `grupos`
+-- Indices de la tabla `grupos`
 --
 ALTER TABLE `grupos`
   ADD PRIMARY KEY (`id_grupo`);
 
 --
--- Indexes for table `igv`
+-- Indices de la tabla `igv`
 --
 ALTER TABLE `igv`
   ADD PRIMARY KEY (`id_igv`);
 
 --
--- Indexes for table `memorandum`
+-- Indices de la tabla `memorandum`
 --
 ALTER TABLE `memorandum`
   ADD PRIMARY KEY (`id_memorandum`),
   ADD KEY `id_persona` (`id_persona`);
 
 --
--- Indexes for table `menus`
+-- Indices de la tabla `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indexes for table `mesas`
+-- Indices de la tabla `mesas`
 --
 ALTER TABLE `mesas`
   ADD PRIMARY KEY (`id_mesa`),
   ADD KEY `id_sucursal` (`id_sucursal`);
 
 --
--- Indexes for table `monedas`
+-- Indices de la tabla `monedas`
 --
 ALTER TABLE `monedas`
   ADD PRIMARY KEY (`id_moneda`);
 
 --
--- Indexes for table `movimientos`
+-- Indices de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
   ADD PRIMARY KEY (`id_movimiento`),
@@ -3036,14 +2812,14 @@ ALTER TABLE `movimientos`
   ADD KEY `id_sucursal` (`id_sucursal`);
 
 --
--- Indexes for table `negocios`
+-- Indices de la tabla `negocios`
 --
 ALTER TABLE `negocios`
   ADD PRIMARY KEY (`id_negocio`),
   ADD KEY `id_ciudad` (`id_ciudad`);
 
 --
--- Indexes for table `nota_venta`
+-- Indices de la tabla `nota_venta`
 --
 ALTER TABLE `nota_venta`
   ADD PRIMARY KEY (`id_nota_venta`),
@@ -3055,7 +2831,7 @@ ALTER TABLE `nota_venta`
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
--- Indexes for table `nota_venta_detalle`
+-- Indices de la tabla `nota_venta_detalle`
 --
 ALTER TABLE `nota_venta_detalle`
   ADD PRIMARY KEY (`id_nota_venta_detalle`),
@@ -3063,13 +2839,13 @@ ALTER TABLE `nota_venta_detalle`
   ADD KEY `id_comanda_detalle` (`id_comanda_detalle`);
 
 --
--- Indexes for table `obligacion_pagar`
+-- Indices de la tabla `obligacion_pagar`
 --
 ALTER TABLE `obligacion_pagar`
   ADD PRIMARY KEY (`id_obligacion`);
 
 --
--- Indexes for table `obligacion_personal`
+-- Indices de la tabla `obligacion_personal`
 --
 ALTER TABLE `obligacion_personal`
   ADD PRIMARY KEY (`id_obligacionper`),
@@ -3078,14 +2854,14 @@ ALTER TABLE `obligacion_personal`
   ADD KEY `id_persona` (`id_persona`);
 
 --
--- Indexes for table `opciones`
+-- Indices de la tabla `opciones`
 --
 ALTER TABLE `opciones`
   ADD PRIMARY KEY (`id_opcion`),
   ADD KEY `id_menu` (`id_menu`);
 
 --
--- Indexes for table `orden_compra`
+-- Indices de la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
   ADD PRIMARY KEY (`id_orden_compra`),
@@ -3095,7 +2871,7 @@ ALTER TABLE `orden_compra`
   ADD KEY `id_sucursal` (`id_sucursal`);
 
 --
--- Indexes for table `pedidos_gratis`
+-- Indices de la tabla `pedidos_gratis`
 --
 ALTER TABLE `pedidos_gratis`
   ADD PRIMARY KEY (`id_pedido_gratis`),
@@ -3103,7 +2879,7 @@ ALTER TABLE `pedidos_gratis`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `pedidos_gratis_detalles`
+-- Indices de la tabla `pedidos_gratis_detalles`
 --
 ALTER TABLE `pedidos_gratis_detalles`
   ADD PRIMARY KEY (`id_pedido_gratis_detalle`),
@@ -3111,7 +2887,7 @@ ALTER TABLE `pedidos_gratis_detalles`
   ADD KEY `id_comanda_detalle` (`id_comanda_detalle`);
 
 --
--- Indexes for table `periodo_laboral`
+-- Indices de la tabla `periodo_laboral`
 --
 ALTER TABLE `periodo_laboral`
   ADD PRIMARY KEY (`id_periodo`),
@@ -3123,20 +2899,20 @@ ALTER TABLE `periodo_laboral`
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
--- Indexes for table `permisos`
+-- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD PRIMARY KEY (`id_permiso`),
   ADD KEY `id_opcion` (`id_opcion`);
 
 --
--- Indexes for table `personas`
+-- Indices de la tabla `personas`
 --
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`id_persona`);
 
 --
--- Indexes for table `persona_turno`
+-- Indices de la tabla `persona_turno`
 --
 ALTER TABLE `persona_turno`
   ADD PRIMARY KEY (`id_persona_turno`),
@@ -3144,7 +2920,7 @@ ALTER TABLE `persona_turno`
   ADD KEY `id_turno` (`id_turno`);
 
 --
--- Indexes for table `productos`
+-- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id_producto`),
@@ -3153,13 +2929,13 @@ ALTER TABLE `productos`
   ADD KEY `id_receta` (`id_receta`);
 
 --
--- Indexes for table `producto_familia`
+-- Indices de la tabla `producto_familia`
 --
 ALTER TABLE `producto_familia`
   ADD PRIMARY KEY (`id_producto_familia`);
 
 --
--- Indexes for table `producto_precio`
+-- Indices de la tabla `producto_precio`
 --
 ALTER TABLE `producto_precio`
   ADD PRIMARY KEY (`id_producto_precio`),
@@ -3167,7 +2943,7 @@ ALTER TABLE `producto_precio`
   ADD KEY `id_unidad_medida` (`id_unidad_medida`);
 
 --
--- Indexes for table `proveedor`
+-- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`id_proveedor`),
@@ -3175,28 +2951,28 @@ ALTER TABLE `proveedor`
   ADD KEY `id_tipodocumento` (`id_tipodocumento`);
 
 --
--- Indexes for table `recetas`
+-- Indices de la tabla `recetas`
 --
 ALTER TABLE `recetas`
   ADD PRIMARY KEY (`id_receta`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `recursos`
+-- Indices de la tabla `recursos`
 --
 ALTER TABLE `recursos`
   ADD PRIMARY KEY (`id_recurso`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indexes for table `recursos_movimientos`
+-- Indices de la tabla `recursos_movimientos`
 --
 ALTER TABLE `recursos_movimientos`
   ADD PRIMARY KEY (`id_recurso_movimiento`),
   ADD KEY `id_recurso_sede` (`id_recurso_sede`);
 
 --
--- Indexes for table `recursos_sede`
+-- Indices de la tabla `recursos_sede`
 --
 ALTER TABLE `recursos_sede`
   ADD PRIMARY KEY (`id_recurso_sede`),
@@ -3205,20 +2981,20 @@ ALTER TABLE `recursos_sede`
   ADD KEY `id_recurso` (`id_recurso`);
 
 --
--- Indexes for table `registro_asistencias`
+-- Indices de la tabla `registro_asistencias`
 --
 ALTER TABLE `registro_asistencias`
   ADD PRIMARY KEY (`id_registro`);
 
 --
--- Indexes for table `reporte_movimiento`
+-- Indices de la tabla `reporte_movimiento`
 --
 ALTER TABLE `reporte_movimiento`
   ADD PRIMARY KEY (`id_reporte_movimiento`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `reporte_movimiento_detalle`
+-- Indices de la tabla `reporte_movimiento_detalle`
 --
 ALTER TABLE `reporte_movimiento_detalle`
   ADD PRIMARY KEY (`id_reporte_movimiento_detalle`),
@@ -3226,13 +3002,13 @@ ALTER TABLE `reporte_movimiento_detalle`
   ADD KEY `id_recurso_sede` (`id_recurso_sede`);
 
 --
--- Indexes for table `reservas`
+-- Indices de la tabla `reservas`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id_reserva`);
 
 --
--- Indexes for table `restricciones`
+-- Indices de la tabla `restricciones`
 --
 ALTER TABLE `restricciones`
   ADD PRIMARY KEY (`id_restriccion`),
@@ -3240,13 +3016,13 @@ ALTER TABLE `restricciones`
   ADD KEY `id_opcion` (`id_opcion`);
 
 --
--- Indexes for table `roles`
+-- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
 
 --
--- Indexes for table `roles_menus`
+-- Indices de la tabla `roles_menus`
 --
 ALTER TABLE `roles_menus`
   ADD PRIMARY KEY (`id_rol_menu`),
@@ -3254,13 +3030,13 @@ ALTER TABLE `roles_menus`
   ADD KEY `id_menu` (`id_menu`);
 
 --
--- Indexes for table `serie`
+-- Indices de la tabla `serie`
 --
 ALTER TABLE `serie`
   ADD PRIMARY KEY (`id_serie`) USING BTREE;
 
 --
--- Indexes for table `sub_recetas`
+-- Indices de la tabla `sub_recetas`
 --
 ALTER TABLE `sub_recetas`
   ADD PRIMARY KEY (`id_sub_receta`),
@@ -3269,7 +3045,7 @@ ALTER TABLE `sub_recetas`
   ADD KEY `id_medida` (`id_medida`);
 
 --
--- Indexes for table `sucursal`
+-- Indices de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`id_sucursal`),
@@ -3277,79 +3053,79 @@ ALTER TABLE `sucursal`
   ADD KEY `id_negocio` (`id_negocio`);
 
 --
--- Indexes for table `tipoadjuntos`
+-- Indices de la tabla `tipoadjuntos`
 --
 ALTER TABLE `tipoadjuntos`
   ADD PRIMARY KEY (`id_adjunto`);
 
 --
--- Indexes for table `tipocargo`
+-- Indices de la tabla `tipocargo`
 --
 ALTER TABLE `tipocargo`
   ADD PRIMARY KEY (`id_cargo`);
 
 --
--- Indexes for table `tipocontrato`
+-- Indices de la tabla `tipocontrato`
 --
 ALTER TABLE `tipocontrato`
   ADD PRIMARY KEY (`id_contrato`);
 
 --
--- Indexes for table `tipodepartamento`
+-- Indices de la tabla `tipodepartamento`
 --
 ALTER TABLE `tipodepartamento`
   ADD PRIMARY KEY (`id_departamento`);
 
 --
--- Indexes for table `tiposede`
+-- Indices de la tabla `tiposede`
 --
 ALTER TABLE `tiposede`
   ADD PRIMARY KEY (`id_sede`);
 
 --
--- Indexes for table `tipo_afectacion`
+-- Indices de la tabla `tipo_afectacion`
 --
 ALTER TABLE `tipo_afectacion`
   ADD PRIMARY KEY (`id_tipo_afectacion`);
 
 --
--- Indexes for table `tipo_documentos`
+-- Indices de la tabla `tipo_documentos`
 --
 ALTER TABLE `tipo_documentos`
   ADD PRIMARY KEY (`id_tipodocumento`);
 
 --
--- Indexes for table `tipo_ncreditos`
+-- Indices de la tabla `tipo_ncreditos`
 --
 ALTER TABLE `tipo_ncreditos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipo_ndebitos`
+-- Indices de la tabla `tipo_ndebitos`
 --
 ALTER TABLE `tipo_ndebitos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipo_pago`
+-- Indices de la tabla `tipo_pago`
 --
 ALTER TABLE `tipo_pago`
   ADD PRIMARY KEY (`id_tipo_pago`);
 
 --
--- Indexes for table `turno`
+-- Indices de la tabla `turno`
 --
 ALTER TABLE `turno`
   ADD PRIMARY KEY (`id_turno`);
 
 --
--- Indexes for table `unidad_medida`
+-- Indices de la tabla `unidad_medida`
 --
 ALTER TABLE `unidad_medida`
   ADD PRIMARY KEY (`id_medida`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
@@ -3357,7 +3133,7 @@ ALTER TABLE `usuarios`
   ADD KEY `id_rol` (`id_rol`);
 
 --
--- Indexes for table `usuarios_negocio`
+-- Indices de la tabla `usuarios_negocio`
 --
 ALTER TABLE `usuarios_negocio`
   ADD PRIMARY KEY (`id_usuario_negocio`),
@@ -3365,7 +3141,7 @@ ALTER TABLE `usuarios_negocio`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indexes for table `usuarios_sucursal`
+-- Indices de la tabla `usuarios_sucursal`
 --
 ALTER TABLE `usuarios_sucursal`
   ADD PRIMARY KEY (`id_usuario_sucursal`),
@@ -3374,7 +3150,7 @@ ALTER TABLE `usuarios_sucursal`
   ADD KEY `id_rol` (`id_rol`);
 
 --
--- Indexes for table `ventas`
+-- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`id_venta`),
@@ -3386,7 +3162,7 @@ ALTER TABLE `ventas`
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
--- Indexes for table `ventas_anulados`
+-- Indices de la tabla `ventas_anulados`
 --
 ALTER TABLE `ventas_anulados`
   ADD PRIMARY KEY (`id_venta_anulado`),
@@ -3394,7 +3170,7 @@ ALTER TABLE `ventas_anulados`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `ventas_cuotas`
+-- Indices de la tabla `ventas_cuotas`
 --
 ALTER TABLE `ventas_cuotas`
   ADD PRIMARY KEY (`id_ventas_cuotas`),
@@ -3402,7 +3178,7 @@ ALTER TABLE `ventas_cuotas`
   ADD KEY `id_tipo_pago` (`id_tipo_pago`);
 
 --
--- Indexes for table `ventas_detalle`
+-- Indices de la tabla `ventas_detalle`
 --
 ALTER TABLE `ventas_detalle`
   ADD PRIMARY KEY (`id_venta_detalle`),
@@ -3410,7 +3186,7 @@ ALTER TABLE `ventas_detalle`
   ADD KEY `id_comanda_detalle` (`id_comanda_detalle`);
 
 --
--- Indexes for table `ventas_detalle_pagos`
+-- Indices de la tabla `ventas_detalle_pagos`
 --
 ALTER TABLE `ventas_detalle_pagos`
   ADD PRIMARY KEY (`id_venta_detalle_pago`),
@@ -3418,557 +3194,557 @@ ALTER TABLE `ventas_detalle_pagos`
   ADD KEY `id_tipo_pago` (`id_tipo_pago`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `almacenes`
+-- AUTO_INCREMENT de la tabla `almacenes`
 --
 ALTER TABLE `almacenes`
   MODIFY `id_almacen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `asistencia`
+-- AUTO_INCREMENT de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
   MODIFY `id_asistencia` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `asistencia_fecha`
+-- AUTO_INCREMENT de la tabla `asistencia_fecha`
 --
 ALTER TABLE `asistencia_fecha`
   MODIFY `id_asistencia_fecha` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `caja`
+-- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id_caja` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_caja` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `caja_numero`
+-- AUTO_INCREMENT de la tabla `caja_numero`
 --
 ALTER TABLE `caja_numero`
   MODIFY `id_caja_numero` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `categorias_negocio`
+-- AUTO_INCREMENT de la tabla `categorias_negocio`
 --
 ALTER TABLE `categorias_negocio`
   MODIFY `id_categoria_negocio` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ciudad`
+-- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
   MODIFY `id_ciudad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `clientes`
+-- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `id_cliente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `comanda`
+-- AUTO_INCREMENT de la tabla `comanda`
 --
 ALTER TABLE `comanda`
-  MODIFY `id_comanda` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_comanda` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `comanda_detalle`
+-- AUTO_INCREMENT de la tabla `comanda_detalle`
 --
 ALTER TABLE `comanda_detalle`
-  MODIFY `id_comanda_detalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_comanda_detalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `conversiones`
+-- AUTO_INCREMENT de la tabla `conversiones`
 --
 ALTER TABLE `conversiones`
   MODIFY `id_conversion` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `correlativos`
+-- AUTO_INCREMENT de la tabla `correlativos`
 --
 ALTER TABLE `correlativos`
   MODIFY `id_correlativo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `detalle_compra`
+-- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
   MODIFY `id_detalle_compra` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `detalle_recetas`
+-- AUTO_INCREMENT de la tabla `detalle_recetas`
 --
 ALTER TABLE `detalle_recetas`
   MODIFY `id_detalle_receta` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `documentos`
+-- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
   MODIFY `id_documento` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `empresa`
+-- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   MODIFY `id_empresa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `envio_resumen`
+-- AUTO_INCREMENT de la tabla `envio_resumen`
 --
 ALTER TABLE `envio_resumen`
   MODIFY `id_envio_resumen` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `envio_resumen_detalle`
+-- AUTO_INCREMENT de la tabla `envio_resumen_detalle`
 --
 ALTER TABLE `envio_resumen_detalle`
   MODIFY `id_envio_resumen_detalle` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `feriados`
+-- AUTO_INCREMENT de la tabla `feriados`
 --
 ALTER TABLE `feriados`
   MODIFY `id_feriado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `grupos`
+-- AUTO_INCREMENT de la tabla `grupos`
 --
 ALTER TABLE `grupos`
   MODIFY `id_grupo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `igv`
+-- AUTO_INCREMENT de la tabla `igv`
 --
 ALTER TABLE `igv`
   MODIFY `id_igv` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `memorandum`
+-- AUTO_INCREMENT de la tabla `memorandum`
 --
 ALTER TABLE `memorandum`
   MODIFY `id_memorandum` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `menus`
+-- AUTO_INCREMENT de la tabla `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id_menu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `mesas`
+-- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
   MODIFY `id_mesa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `monedas`
+-- AUTO_INCREMENT de la tabla `monedas`
 --
 ALTER TABLE `monedas`
   MODIFY `id_moneda` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `movimientos`
+-- AUTO_INCREMENT de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
-  MODIFY `id_movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `negocios`
+-- AUTO_INCREMENT de la tabla `negocios`
 --
 ALTER TABLE `negocios`
   MODIFY `id_negocio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `nota_venta`
+-- AUTO_INCREMENT de la tabla `nota_venta`
 --
 ALTER TABLE `nota_venta`
   MODIFY `id_nota_venta` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nota_venta_detalle`
+-- AUTO_INCREMENT de la tabla `nota_venta_detalle`
 --
 ALTER TABLE `nota_venta_detalle`
   MODIFY `id_nota_venta_detalle` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `obligacion_pagar`
+-- AUTO_INCREMENT de la tabla `obligacion_pagar`
 --
 ALTER TABLE `obligacion_pagar`
   MODIFY `id_obligacion` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `obligacion_personal`
+-- AUTO_INCREMENT de la tabla `obligacion_personal`
 --
 ALTER TABLE `obligacion_personal`
   MODIFY `id_obligacionper` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `opciones`
+-- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
-  MODIFY `id_opcion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id_opcion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
--- AUTO_INCREMENT for table `orden_compra`
+-- AUTO_INCREMENT de la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
   MODIFY `id_orden_compra` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pedidos_gratis`
+-- AUTO_INCREMENT de la tabla `pedidos_gratis`
 --
 ALTER TABLE `pedidos_gratis`
   MODIFY `id_pedido_gratis` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pedidos_gratis_detalles`
+-- AUTO_INCREMENT de la tabla `pedidos_gratis_detalles`
 --
 ALTER TABLE `pedidos_gratis_detalles`
   MODIFY `id_pedido_gratis_detalle` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `periodo_laboral`
+-- AUTO_INCREMENT de la tabla `periodo_laboral`
 --
 ALTER TABLE `periodo_laboral`
   MODIFY `id_periodo` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `permisos`
+-- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   MODIFY `id_permiso` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
--- AUTO_INCREMENT for table `personas`
+-- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_persona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `persona_turno`
+-- AUTO_INCREMENT de la tabla `persona_turno`
 --
 ALTER TABLE `persona_turno`
   MODIFY `id_persona_turno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `productos`
+-- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `id_producto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT for table `producto_familia`
+-- AUTO_INCREMENT de la tabla `producto_familia`
 --
 ALTER TABLE `producto_familia`
-  MODIFY `id_producto_familia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_producto_familia` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `producto_precio`
+-- AUTO_INCREMENT de la tabla `producto_precio`
 --
 ALTER TABLE `producto_precio`
-  MODIFY `id_producto_precio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id_producto_precio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT for table `proveedor`
+-- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id_proveedor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_proveedor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `recetas`
+-- AUTO_INCREMENT de la tabla `recetas`
 --
 ALTER TABLE `recetas`
   MODIFY `id_receta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `recursos`
+-- AUTO_INCREMENT de la tabla `recursos`
 --
 ALTER TABLE `recursos`
   MODIFY `id_recurso` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `recursos_movimientos`
+-- AUTO_INCREMENT de la tabla `recursos_movimientos`
 --
 ALTER TABLE `recursos_movimientos`
   MODIFY `id_recurso_movimiento` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `recursos_sede`
+-- AUTO_INCREMENT de la tabla `recursos_sede`
 --
 ALTER TABLE `recursos_sede`
   MODIFY `id_recurso_sede` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `registro_asistencias`
+-- AUTO_INCREMENT de la tabla `registro_asistencias`
 --
 ALTER TABLE `registro_asistencias`
   MODIFY `id_registro` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `reporte_movimiento`
+-- AUTO_INCREMENT de la tabla `reporte_movimiento`
 --
 ALTER TABLE `reporte_movimiento`
-  MODIFY `id_reporte_movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_reporte_movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `reporte_movimiento_detalle`
+-- AUTO_INCREMENT de la tabla `reporte_movimiento_detalle`
 --
 ALTER TABLE `reporte_movimiento_detalle`
   MODIFY `id_reporte_movimiento_detalle` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `reservas`
+-- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_reserva` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `restricciones`
+-- AUTO_INCREMENT de la tabla `restricciones`
 --
 ALTER TABLE `restricciones`
   MODIFY `id_restriccion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_rol` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `roles_menus`
+-- AUTO_INCREMENT de la tabla `roles_menus`
 --
 ALTER TABLE `roles_menus`
   MODIFY `id_rol_menu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
--- AUTO_INCREMENT for table `serie`
+-- AUTO_INCREMENT de la tabla `serie`
 --
 ALTER TABLE `serie`
   MODIFY `id_serie` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `sub_recetas`
+-- AUTO_INCREMENT de la tabla `sub_recetas`
 --
 ALTER TABLE `sub_recetas`
   MODIFY `id_sub_receta` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sucursal`
+-- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   MODIFY `id_sucursal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tipoadjuntos`
+-- AUTO_INCREMENT de la tabla `tipoadjuntos`
 --
 ALTER TABLE `tipoadjuntos`
   MODIFY `id_adjunto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `tipocargo`
+-- AUTO_INCREMENT de la tabla `tipocargo`
 --
 ALTER TABLE `tipocargo`
-  MODIFY `id_cargo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_cargo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tipocontrato`
+-- AUTO_INCREMENT de la tabla `tipocontrato`
 --
 ALTER TABLE `tipocontrato`
   MODIFY `id_contrato` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tipodepartamento`
+-- AUTO_INCREMENT de la tabla `tipodepartamento`
 --
 ALTER TABLE `tipodepartamento`
-  MODIFY `id_departamento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_departamento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tiposede`
+-- AUTO_INCREMENT de la tabla `tiposede`
 --
 ALTER TABLE `tiposede`
   MODIFY `id_sede` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tipo_documentos`
+-- AUTO_INCREMENT de la tabla `tipo_documentos`
 --
 ALTER TABLE `tipo_documentos`
   MODIFY `id_tipodocumento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `tipo_ncreditos`
+-- AUTO_INCREMENT de la tabla `tipo_ncreditos`
 --
 ALTER TABLE `tipo_ncreditos`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `tipo_ndebitos`
+-- AUTO_INCREMENT de la tabla `tipo_ndebitos`
 --
 ALTER TABLE `tipo_ndebitos`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tipo_pago`
+-- AUTO_INCREMENT de la tabla `tipo_pago`
 --
 ALTER TABLE `tipo_pago`
   MODIFY `id_tipo_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `turno`
+-- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
   MODIFY `id_turno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `unidad_medida`
+-- AUTO_INCREMENT de la tabla `unidad_medida`
 --
 ALTER TABLE `unidad_medida`
   MODIFY `id_medida` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_usuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `usuarios_negocio`
+-- AUTO_INCREMENT de la tabla `usuarios_negocio`
 --
 ALTER TABLE `usuarios_negocio`
   MODIFY `id_usuario_negocio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `usuarios_sucursal`
+-- AUTO_INCREMENT de la tabla `usuarios_sucursal`
 --
 ALTER TABLE `usuarios_sucursal`
   MODIFY `id_usuario_sucursal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `ventas`
+-- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_venta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `ventas_anulados`
+-- AUTO_INCREMENT de la tabla `ventas_anulados`
 --
 ALTER TABLE `ventas_anulados`
   MODIFY `id_venta_anulado` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ventas_cuotas`
+-- AUTO_INCREMENT de la tabla `ventas_cuotas`
 --
 ALTER TABLE `ventas_cuotas`
   MODIFY `id_ventas_cuotas` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ventas_detalle`
+-- AUTO_INCREMENT de la tabla `ventas_detalle`
 --
 ALTER TABLE `ventas_detalle`
-  MODIFY `id_venta_detalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_venta_detalle` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `ventas_detalle_pagos`
+-- AUTO_INCREMENT de la tabla `ventas_detalle_pagos`
 --
 ALTER TABLE `ventas_detalle_pagos`
-  MODIFY `id_venta_detalle_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_venta_detalle_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `almacenes`
+-- Filtros para la tabla `almacenes`
 --
 ALTER TABLE `almacenes`
   ADD CONSTRAINT `almacenes_ibfk_1` FOREIGN KEY (`id_negocio`) REFERENCES `negocios` (`id_negocio`),
   ADD CONSTRAINT `almacenes_ibfk_2` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursal` (`id_sucursal`);
 
 --
--- Constraints for table `asistencia`
+-- Filtros para la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
   ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`id_persona_turno`) REFERENCES `persona_turno` (`id_persona_turno`);
 
 --
--- Constraints for table `categorias_negocio`
+-- Filtros para la tabla `categorias_negocio`
 --
 ALTER TABLE `categorias_negocio`
   ADD CONSTRAINT `categorias_negocio_ibfk_1` FOREIGN KEY (`id_negocio`) REFERENCES `negocios` (`id_negocio`),
   ADD CONSTRAINT `categorias_negocio_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 
 --
--- Constraints for table `comanda`
+-- Filtros para la tabla `comanda`
 --
 ALTER TABLE `comanda`
   ADD CONSTRAINT `comanda_ibfk_1` FOREIGN KEY (`id_mesa`) REFERENCES `mesas` (`id_mesa`),
   ADD CONSTRAINT `comanda_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Constraints for table `comanda_detalle`
+-- Filtros para la tabla `comanda_detalle`
 --
 ALTER TABLE `comanda_detalle`
   ADD CONSTRAINT `comanda_detalle_ibfk_1` FOREIGN KEY (`id_comanda`) REFERENCES `comanda` (`id_comanda`),
   ADD CONSTRAINT `comanda_detalle_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
 
 --
--- Constraints for table `conversiones`
+-- Filtros para la tabla `conversiones`
 --
 ALTER TABLE `conversiones`
   ADD CONSTRAINT `conversiones_ibfk_1` FOREIGN KEY (`id_recurso_sede`) REFERENCES `recursos_sede` (`id_recurso_sede`),
   ADD CONSTRAINT `conversiones_ibfk_2` FOREIGN KEY (`conversion_unidad_medida`) REFERENCES `unidad_medida` (`id_medida`);
 
 --
--- Constraints for table `detalle_compra`
+-- Filtros para la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
   ADD CONSTRAINT `detalle_compra_ibfk_1` FOREIGN KEY (`id_orden_compra`) REFERENCES `orden_compra` (`id_orden_compra`),
   ADD CONSTRAINT `detalle_compra_ibfk_2` FOREIGN KEY (`id_recurso_sede`) REFERENCES `recursos_sede` (`id_recurso_sede`);
 
 --
--- Constraints for table `detalle_recetas`
+-- Filtros para la tabla `detalle_recetas`
 --
 ALTER TABLE `detalle_recetas`
   ADD CONSTRAINT `detalle_recetas_ibfk_1` FOREIGN KEY (`id_recursos_sede`) REFERENCES `recursos_sede` (`id_recurso_sede`),
   ADD CONSTRAINT `detalle_recetas_ibfk_2` FOREIGN KEY (`id_receta`) REFERENCES `recetas` (`id_receta`);
 
 --
--- Constraints for table `memorandum`
+-- Filtros para la tabla `memorandum`
 --
 ALTER TABLE `memorandum`
   ADD CONSTRAINT `memorandum_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
 
 --
--- Constraints for table `mesas`
+-- Filtros para la tabla `mesas`
 --
 ALTER TABLE `mesas`
   ADD CONSTRAINT `mesas_ibfk_1` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursal` (`id_sucursal`);
 
 --
--- Constraints for table `movimientos`
+-- Filtros para la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
   ADD CONSTRAINT `movimientos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `movimientos_ibfk_2` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursal` (`id_sucursal`);
 
 --
--- Constraints for table `negocios`
+-- Filtros para la tabla `negocios`
 --
 ALTER TABLE `negocios`
   ADD CONSTRAINT `negocios_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`);
 
 --
--- Constraints for table `obligacion_personal`
+-- Filtros para la tabla `obligacion_personal`
 --
 ALTER TABLE `obligacion_personal`
   ADD CONSTRAINT `obligacion_personal_ibfk_1` FOREIGN KEY (`id_obligacion`) REFERENCES `obligacion_pagar` (`id_obligacion`),
@@ -3976,13 +3752,13 @@ ALTER TABLE `obligacion_personal`
   ADD CONSTRAINT `obligacion_personal_ibfk_3` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`);
 
 --
--- Constraints for table `opciones`
+-- Filtros para la tabla `opciones`
 --
 ALTER TABLE `opciones`
   ADD CONSTRAINT `opciones_ibfk_1` FOREIGN KEY (`id_menu`) REFERENCES `menus` (`id_menu`);
 
 --
--- Constraints for table `orden_compra`
+-- Filtros para la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
   ADD CONSTRAINT `orden_compra_ibfk_1` FOREIGN KEY (`id_solicitante`) REFERENCES `usuarios` (`id_usuario`),
@@ -3991,7 +3767,7 @@ ALTER TABLE `orden_compra`
   ADD CONSTRAINT `orden_compra_ibfk_4` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursal` (`id_sucursal`);
 
 --
--- Constraints for table `periodo_laboral`
+-- Filtros para la tabla `periodo_laboral`
 --
 ALTER TABLE `periodo_laboral`
   ADD CONSTRAINT `periodo_laboral_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`),
@@ -4002,20 +3778,20 @@ ALTER TABLE `periodo_laboral`
   ADD CONSTRAINT `periodo_laboral_ibfk_6` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
 
 --
--- Constraints for table `permisos`
+-- Filtros para la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`id_opcion`) REFERENCES `opciones` (`id_opcion`);
 
 --
--- Constraints for table `persona_turno`
+-- Filtros para la tabla `persona_turno`
 --
 ALTER TABLE `persona_turno`
   ADD CONSTRAINT `persona_turno_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`),
   ADD CONSTRAINT `persona_turno_ibfk_2` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`id_turno`);
 
 --
--- Constraints for table `productos`
+-- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
@@ -4023,32 +3799,32 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_3` FOREIGN KEY (`id_receta`) REFERENCES `recetas` (`id_receta`);
 
 --
--- Constraints for table `producto_precio`
+-- Filtros para la tabla `producto_precio`
 --
 ALTER TABLE `producto_precio`
   ADD CONSTRAINT `producto_precio_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
 
 --
--- Constraints for table `proveedor`
+-- Filtros para la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD CONSTRAINT `proveedor_ibfk_1` FOREIGN KEY (`id_negocio`) REFERENCES `negocios` (`id_negocio`),
   ADD CONSTRAINT `proveedor_ibfk_2` FOREIGN KEY (`id_tipodocumento`) REFERENCES `tipo_documentos` (`id_tipodocumento`);
 
 --
--- Constraints for table `recetas`
+-- Filtros para la tabla `recetas`
 --
 ALTER TABLE `recetas`
   ADD CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Constraints for table `recursos`
+-- Filtros para la tabla `recursos`
 --
 ALTER TABLE `recursos`
   ADD CONSTRAINT `recursos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 
 --
--- Constraints for table `recursos_sede`
+-- Filtros para la tabla `recursos_sede`
 --
 ALTER TABLE `recursos_sede`
   ADD CONSTRAINT `recursos_sede_ibfk_1` FOREIGN KEY (`id_medida`) REFERENCES `unidad_medida` (`id_medida`),
@@ -4056,21 +3832,21 @@ ALTER TABLE `recursos_sede`
   ADD CONSTRAINT `recursos_sede_ibfk_3` FOREIGN KEY (`id_recurso`) REFERENCES `recursos` (`id_recurso`);
 
 --
--- Constraints for table `restricciones`
+-- Filtros para la tabla `restricciones`
 --
 ALTER TABLE `restricciones`
   ADD CONSTRAINT `restricciones_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
   ADD CONSTRAINT `restricciones_ibfk_2` FOREIGN KEY (`id_opcion`) REFERENCES `opciones` (`id_opcion`);
 
 --
--- Constraints for table `roles_menus`
+-- Filtros para la tabla `roles_menus`
 --
 ALTER TABLE `roles_menus`
   ADD CONSTRAINT `roles_menus_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
   ADD CONSTRAINT `roles_menus_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `menus` (`id_menu`);
 
 --
--- Constraints for table `sub_recetas`
+-- Filtros para la tabla `sub_recetas`
 --
 ALTER TABLE `sub_recetas`
   ADD CONSTRAINT `sub_recetas_ibfk_1` FOREIGN KEY (`id_receta`) REFERENCES `recetas` (`id_receta`),
@@ -4078,28 +3854,28 @@ ALTER TABLE `sub_recetas`
   ADD CONSTRAINT `sub_recetas_ibfk_3` FOREIGN KEY (`id_medida`) REFERENCES `unidad_medida` (`id_medida`);
 
 --
--- Constraints for table `sucursal`
+-- Filtros para la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD CONSTRAINT `sucursal_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`),
   ADD CONSTRAINT `sucursal_ibfk_2` FOREIGN KEY (`id_negocio`) REFERENCES `negocios` (`id_negocio`);
 
 --
--- Constraints for table `usuarios`
+-- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`),
   ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
 
 --
--- Constraints for table `usuarios_negocio`
+-- Filtros para la tabla `usuarios_negocio`
 --
 ALTER TABLE `usuarios_negocio`
   ADD CONSTRAINT `usuarios_negocio_ibfk_1` FOREIGN KEY (`id_negocio`) REFERENCES `negocios` (`id_negocio`),
   ADD CONSTRAINT `usuarios_negocio_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Constraints for table `usuarios_sucursal`
+-- Filtros para la tabla `usuarios_sucursal`
 --
 ALTER TABLE `usuarios_sucursal`
   ADD CONSTRAINT `usuarios_sucursal_ibfk_1` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursal` (`id_sucursal`),
@@ -4107,7 +3883,7 @@ ALTER TABLE `usuarios_sucursal`
   ADD CONSTRAINT `usuarios_sucursal_ibfk_3` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
 
 --
--- Constraints for table `ventas`
+-- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
   ADD CONSTRAINT `id_empresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`),
@@ -4118,7 +3894,7 @@ ALTER TABLE `ventas`
   ADD CONSTRAINT `ventas_ibfk_4` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`);
 
 --
--- Constraints for table `ventas_detalle`
+-- Filtros para la tabla `ventas_detalle`
 --
 ALTER TABLE `ventas_detalle`
   ADD CONSTRAINT `id_venta` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`);
